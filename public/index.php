@@ -1,5 +1,5 @@
 <?php 
-require_once(PRIVATE_PATH . '/initialize.php');
+require_once('../private/initialize.php');
 
 $page_title = 'Home';
 
