@@ -1,7 +1,8 @@
 <!-- Recipe specific information -->
 <?php
 
-class Recipe {
+class Recipe extends DatabaseObject {
+  
   static public $table_name = 'recipe';
   static public $db_columns = ['recipe_id', 'user_id', 'recipe_title', 'prep_time_minutes', 'cook_time_minutes', 'description', 'created_at', 'yield', 'yield_measurement_id', 'servings', 'visibility_id'];
 
@@ -16,10 +17,6 @@ class Recipe {
   public $yield_measurement_id;
   public $servings;
   public $visibility_id;
-
-  // public const VISIBILITY = [
-// is there a way to pull in values dynamically from the lookup table?
-  // ];
 
   public function __construct($args=[]) {
     $this->user_id = $args['user_id'] ?? '';

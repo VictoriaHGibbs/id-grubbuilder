@@ -19,7 +19,8 @@ require_once('db_credentials.php');
 require_once('database_functions.php');
 require_once('functions.php');
 require_once('lookup_functions.php');
-
+require_once('validation_functions');
+require_once('status_error_functions');
 
 
 // -> All classes in directory
