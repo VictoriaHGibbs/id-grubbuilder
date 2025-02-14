@@ -108,7 +108,6 @@ class DatabaseObject
 
   public function save()
   {
-    // A new record will not have an ID yet
     if (isset($this->id)) {
       return $this->update();
     } else {
@@ -125,8 +124,6 @@ class DatabaseObject
     }
   }
 
-
-  // Properties which have database columns, excluding ID
   public function attributes()
   {
     $attributes = [];
@@ -155,13 +152,6 @@ class DatabaseObject
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);
     return $result;
-
-    // After deleting the instance of the object will still exist, 
-    // even though the database record does not. 
-    // This can be useful, as in:
-    // echo $user->first_name . " was deleted.";
-    // but, for example, we can't call $user->update() after
-    // calling $user->delete().
   }
 
   public function lookup($lu_id, $lu_table) {
