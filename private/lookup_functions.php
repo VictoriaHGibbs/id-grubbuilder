@@ -2,7 +2,8 @@
 
 function all_from_lookup($table) {
   global $database;
-  $sql = "SELECT * FROM " . $table . " ORDER BY " . $table . "_id ASC";
+  $sql = "SELECT * FROM " . $table . " ";
+  $sql .= "ORDER BY " . $table . "_id ASC";
   $result = mysqli_query($database, $sql);
   return $result;
 }
