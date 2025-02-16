@@ -7,7 +7,7 @@ include(SHARED_PATH . '/public_header.php');
 ?>
 <h2>All the Recipes</h2>
 
-<table border=1>
+<!-- <table border=1>
   <tr>
     <th>Recipe ID</th>
     <th>User ID</th>
@@ -21,16 +21,19 @@ include(SHARED_PATH . '/public_header.php');
     <th>Servings</th>
     <th>Visibility Id</th>
   </tr>
-</table>
+</table> -->
 
 <?php
 
-$sql = "SELECT * FROM recipe";
-$result = $database->query($sql);
-$row = $result->fetch_assoc();
-$result->free();
+$id = 5;
+$recipe = Recipe::find_by_pk($id);
+echo $recipe->display();
+echo Recipe::user_info($recipe);
 
-echo "RECIPE: " . $row['recipe_title'];
+echo Recipe::ingredients($id);
+echo Recipe::directions($id);
+
+die();
 
 ?>
 <?php include(SHARED_PATH . '/public_footer.php'); ?>

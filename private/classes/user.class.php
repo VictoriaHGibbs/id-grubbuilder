@@ -3,6 +3,7 @@
 class User extends DatabaseObject {
 
   static public $table_name = 'user';
+  static public $primary_key = 'user_id';
   static public $db_columns = ['user_id', 'username', 'profile_image_url', 'f_name', 'l_name', 'email_address', 'password_hash', 'joined_at', 'role_id', 'active'];
 
   public $user_id;
@@ -27,5 +28,10 @@ class User extends DatabaseObject {
     $this->joined_at = $args['joined_at'] ?? '';
     $this->role_id = $args['role_id'] ?? 1;
     $this->active = $args['active'] ?? 1;
+  }
+
+  static public function get_username_by_id($user_id) {
+    $user = self::find_by_pk($user_id);
+    return $user ? $user->username : null;
   }
 }
