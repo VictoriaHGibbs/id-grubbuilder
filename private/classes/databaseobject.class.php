@@ -64,44 +64,42 @@ class DatabaseObject
   }
 
   // Get ALL rows (optionally with filters)
-public static function find_related($filters = []) {
-  $table_name = static::$table_name;
-  $query = "SELECT * FROM {$table_name}";
-  $params = [];
-  $types = "";
-  $values = [];
+  public static function find_related($filters = []) {
+    $table_name = static::$table_name;
+    $query = "SELECT * FROM {$table_name}";
+    $params = [];
+    $types = "";
+    $values = [];
 
-  if (!empty($filters)) {
-      $query .= " WHERE " . implode(" AND ", array_map(fn($key) => "$key = ?", array_keys($filters)));
-      $params = array_values($filters);
-      $types = str_repeat("s", count($params));
+    if (!empty($filters)) {
+        $query .= " WHERE " . implode(" AND ", array_map(fn($key) => "$key = ?", array_keys($filters)));
+        $params = array_values($filters);
+        $types = str_repeat("s", count($params));
+    }
+
+    $stmt = static::$database->prepare($query);
+    if (!empty($params)) {
+        $stmt->bind_param($types, ...$params);
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $data = [];
+    while ($row = $result->fetch_object(static::class)) {
+        $data[] = $row;
+    }
+    return $data;
   }
 
-  $stmt = static::$database->prepare($query);
-  if (!empty($params)) {
-      $stmt->bind_param($types, ...$params);
+  // Uses recipe id to pull in associated values from any table.
+  public static function find_by_recipe($recipe_id) {
+    return self::find_related(['recipe_id' => $recipe_id]);
   }
-  $stmt->execute();
-  $result = $stmt->get_result();
 
-  $data = [];
-  while ($row = $result->fetch_object(static::class)) {
-      $data[] = $row;
+  // Uses user id to pull in associated values from any table.
+  public static function find_by_user($user_id) {
+    return self::find_related(['user_id' => $user_id]);
   }
-  return $data;
-}
-
-// Uses recipe id to pull in associated values from any table.
-public static function find_by_recipe($recipe_id) {
-  return self::find_related(['recipe_id' => $recipe_id]);
-}
-
-// Uses user id to pull in associated values from any table.
-public static function find_by_user($user_id) {
-  return self::find_related(['user_id' => $user_id]);
-}
-
-
 
   static protected function instantiate($record)
   {

@@ -7,25 +7,9 @@ include(SHARED_PATH . '/public_header.php');
 ?>
 <h2>All the Recipes</h2>
 
-<!-- <table border=1>
-  <tr>
-    <th>Recipe ID</th>
-    <th>User ID</th>
-    <th>Recipe Title</th>
-    <th>Prep time</th>
-    <th>Cook time</th>
-    <th>Description</th>
-    <th>Created at</th>
-    <th>Yield</th>
-    <th>Yield Measurement Id</th>
-    <th>Servings</th>
-    <th>Visibility Id</th>
-  </tr>
-</table> -->
-
 <?php
 
-$id = 5;
+$id = 3;
 $recipe = Recipe::find_by_pk($id);
 echo $recipe->display();
 echo Recipe::user_info($recipe);
@@ -33,7 +17,18 @@ echo Recipe::user_info($recipe);
 echo Recipe::ingredients($id);
 echo Recipe::directions($id);
 
-die();
-
+$recipes = Recipe::find_all();
 ?>
+
+<?php foreach($recipes as $recipe) { ?>
+  <section class="recipe-card-preview">
+    <a href="detail.php?recipe_id=<?php echo $recipe->recipe_id; ?>">
+    <h3><?php echo h($recipe->recipe_title); ?></h3>
+    <p><?php echo h($recipe->user_info($recipe)) ?></p>
+    <p><?php echo h($recipe->description); ?></p>
+    </a>
+  </section>
+
+<?php } ?>
+
 <?php include(SHARED_PATH . '/public_footer.php'); ?>

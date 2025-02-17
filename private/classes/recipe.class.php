@@ -32,10 +32,10 @@ class Recipe extends DatabaseObject {
     $this->visibility_id = $args['visibility_id'] ?? '';
   }
 
-  // Display recipe info
-    public function display() {
-      return ("Recipe ID: " . $this->recipe_id . "<br>" . $this->recipe_title . "<br>" . $this->description . "<br>User ID:" . $this->user_id);
-    }
+// Display recipe info, TESTING PURPOSES
+  public function display() {
+    return ("Recipe ID: " . $this->recipe_id . "<br>" . $this->recipe_title . "<br>" . $this->description . "<br>User ID:" . $this->user_id);
+  }
 
 // Retrieve associated ingredients
   static public function get_ingredients($recipe_id) {
@@ -45,10 +45,11 @@ class Recipe extends DatabaseObject {
 // Display ingredients
   static public function ingredients($recipe_id) {
     $ingredients = Recipe::get_ingredients($recipe_id);
-    echo "<br>Ingredients: <br>";
+    echo "<ul>";
     foreach ($ingredients as $ingredient) {
-      echo  $ingredient->sort_order . ". " . $ingredient->ingredient_name . "<br>";
+      echo  "<li>" . $ingredient->ingredient_name . "</li>";
     };
+    echo "</ul>";
   }
   
 // Retrieve associated directions
@@ -59,10 +60,11 @@ class Recipe extends DatabaseObject {
 // Display directions
   static public function directions($recipe_id) {
     $directions = Recipe::get_directions($recipe_id);
-    echo "<br>Directions: <br>";
+    echo "<ol>";
     foreach ($directions as $direction) {
-      echo $direction->sort_order . ". " . $direction->direction_text . "<br>";
+      echo "<li>" . $direction->direction_text . "</li>";
     };
+    echo "</ol>";
   }
 
 // Retrieve user info
@@ -70,11 +72,11 @@ class Recipe extends DatabaseObject {
     return $this->user_id;
   }
 
-// Display user info
+// Display user info, takes recipe object
   static public function user_info($recipe) {
       $user_id = $recipe->get_user_id();
       $username = User::get_username_by_id($user_id);
-      echo "Recipe was created by: " . $username;
+      echo "Created by: " . $username;
   }
 
 }
