@@ -18,6 +18,8 @@ class Recipe extends DatabaseObject {
   public $servings;
   public $visibility_id;
 
+  public $video_link;
+
 
   public function __construct($args = []) {
     $this->user_id = $args['user_id'] ?? '';
@@ -44,10 +46,17 @@ class Recipe extends DatabaseObject {
 
 // Display ingredients
   static public function ingredients($recipe_id) {
+    global $database;
     $ingredients = Recipe::get_ingredients($recipe_id);
     echo "<ul>";
     foreach ($ingredients as $ingredient) {
-      echo  "<li>" . $ingredient->ingredient_name . "</li>";
+      $measurement_id = $ingredient->measurement_id;
+      $sql = "SELECT measurement FROM measurement WHERE measurement_id='" . $measurement_id . "'";
+      $result = $database->query($sql);
+      $row = $result->fetch_assoc();
+      $measurement = $row["measurement"];
+      if ($ingredient->quantity > 1) $measurement .= "s";
+      echo  "<li>" . abs($ingredient->quantity) . " " . $measurement . " " . $ingredient->ingredient_name . "</li>";
     };
     echo "</ul>";
   }
@@ -77,6 +86,31 @@ class Recipe extends DatabaseObject {
       $user_id = $recipe->get_user_id();
       $username = User::get_username_by_id($user_id);
       echo "Created by: " . $username;
+  }
+
+// Retrieve measurement id
+  public function get_measurement_id() {
+    return $this->yield_measurement_id;
+  }
+
+// Retrieves measurement name
+  public function find_value($recipe) {
+    global $database;
+    $measurement_id = $recipe->get_measurement_id();
+    $sql = "SELECT measurement FROM measurement WHERE measurement_id='" . $measurement_id . "'";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+      return $row["measurement"];
+  }
+  
+  public function set_video($recipe_id) {
+    global $database;
+    $sql = "SELECT youtube_url FROM video WHERE recipe_id='" . $recipe_id . "'";
+    $result = $database->query($sql);
+    if ($database->affected_rows > 0) {
+      $row = $result->fetch_assoc();
+      return $row["youtube_url"];
+    }
   }
 
 }

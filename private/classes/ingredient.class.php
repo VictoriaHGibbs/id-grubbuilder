@@ -23,8 +23,5 @@ class Ingredient extends DatabaseObject {
   //   $this->sort_order = $args['sort_order'] ?? '';
   // }
 
-  // Fetch all ingredients for a specific recipe
-  // public static function find_by_recipe($recipe_id) {
-  //   return self::find_related(['recipe_id' => $recipe_id]);
-  // }
+  
 }
