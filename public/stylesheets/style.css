@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font: 16px/1.5 'PT Sans', sans-serif;
+}
+
+body {
+  background-color: #e1d4c2;
+  margin: 3rem;
+}
+
+.card-preview-container {
+  border: solid green 3px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.recipe-card-preview {
+  border: solid blue 1px;
+  padding: 2rem;
+}
+
+.recipe-card-preview a {
+  color: #222;
+  text-decoration: none;
+}
+
+section {
+  border: solid red 1px;
+}

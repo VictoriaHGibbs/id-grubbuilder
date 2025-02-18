@@ -20,6 +20,8 @@ echo Recipe::directions($id);
 $recipes = Recipe::find_all();
 ?>
 
+<section class="card-preview-container">
+
 <?php foreach($recipes as $recipe) { ?>
   <section class="recipe-card-preview">
     <a href="detail.php?recipe_id=<?php echo $recipe->recipe_id; ?>">
@@ -30,5 +32,7 @@ $recipes = Recipe::find_all();
   </section>
 
 <?php } ?>
+
+</section>
 
 <?php include(SHARED_PATH . '/public_footer.php'); ?>
