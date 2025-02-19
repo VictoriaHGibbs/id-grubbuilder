@@ -26,7 +26,7 @@ include(SHARED_PATH . '/public_header.php');
     if ($recipe->yield > 1) echo "s"; ?> </p>
 
 
-    <?php $link = $recipe->set_video($id); 
+    <?php $link = $recipe->get_video($id); 
       if ($link) { ?>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo h($link); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
      <?php } ?>

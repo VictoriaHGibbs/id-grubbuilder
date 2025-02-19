@@ -14,7 +14,7 @@ class Recipe extends DatabaseObject {
   public $description;
   public $created_at;
   public $yield;
-  public $yield_measurement_id;
+  public $measurement_id;
   public $servings;
   public $visibility_id;
 
@@ -29,7 +29,7 @@ class Recipe extends DatabaseObject {
     $this->description = $args['description'] ?? '';
     $this->created_at = $args['created_at'] ?? '';
     $this->yield = $args['yield'] ?? '';
-    $this->yield_measurement_id = $args['yield_measurement_id'] ?? '';
+    $this->measurement_id = $args['yield_measurement_id'] ?? '';
     $this->servings = $args['servings'] ?? '';
     $this->visibility_id = $args['visibility_id'] ?? '';
   }
@@ -50,11 +50,7 @@ class Recipe extends DatabaseObject {
     $ingredients = Recipe::get_ingredients($recipe_id);
     echo "<ul>";
     foreach ($ingredients as $ingredient) {
-      $measurement_id = $ingredient->measurement_id;
-      $sql = "SELECT measurement FROM measurement WHERE measurement_id='" . $measurement_id . "'";
-      $result = $database->query($sql);
-      $row = $result->fetch_assoc();
-      $measurement = $row["measurement"];
+      $measurement = $ingredient->find_value($ingredient);
       if ($ingredient->quantity > 1) $measurement .= "s";
       echo  "<li>" . abs($ingredient->quantity) . " " . $measurement . " " . $ingredient->ingredient_name . "</li>";
     };
@@ -87,23 +83,8 @@ class Recipe extends DatabaseObject {
       $username = User::get_username_by_id($user_id);
       echo "Created by: " . $username;
   }
-
-// Retrieve measurement id
-  public function get_measurement_id() {
-    return $this->yield_measurement_id;
-  }
-
-// Retrieves measurement name
-  public function find_value($recipe) {
-    global $database;
-    $measurement_id = $recipe->get_measurement_id();
-    $sql = "SELECT measurement FROM measurement WHERE measurement_id='" . $measurement_id . "'";
-    $result = $database->query($sql);
-    $row = $result->fetch_assoc();
-      return $row["measurement"];
-  }
   
-  public function set_video($recipe_id) {
+  public function get_video($recipe_id) {
     global $database;
     $sql = "SELECT youtube_url FROM video WHERE recipe_id='" . $recipe_id . "'";
     $result = $database->query($sql);

@@ -50,7 +50,7 @@ class DatabaseObject
     }
   }
 
-// Find by the primary key value
+  // Find by the primary key value
   static public function find_by_pk($id)
   {
     $sql = "SELECT * FROM " . static::$table_name . " ";
@@ -64,7 +64,7 @@ class DatabaseObject
   }
 
   // Get ALL rows (optionally with filters)
-  public static function find_related($filters = []) {
+  static public function find_related($filters = []) {
     $table_name = static::$table_name;
     $query = "SELECT * FROM {$table_name}";
     $params = [];
@@ -92,16 +92,28 @@ class DatabaseObject
   }
 
   // Uses recipe id to pull in associated values from any table.
-  public static function find_by_recipe($recipe_id) {
+  static public function find_by_recipe($recipe_id) {
     return self::find_related(['recipe_id' => $recipe_id]);
   }
 
   // Uses user id to pull in associated values from any table.
-  public static function find_by_user($user_id) {
+  static public function find_by_user($user_id) {
     return self::find_related(['user_id' => $user_id]);
   }
 
+  // Retrieve measurement id
+  public function get_measurement_id() {
+    return $this->measurement_id;
+  }
 
+  // Retrieves measurement name, takes object
+  static public function find_value($object) {
+    $measurement_id = $object->get_measurement_id();
+    $sql = "SELECT measurement FROM measurement WHERE measurement_id='" . $measurement_id . "'";
+    $result = self::$database->query($sql);
+    $row = $result->fetch_assoc();
+      return $row["measurement"];
+  }
 
   static protected function instantiate($record)
   {
