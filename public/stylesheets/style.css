@@ -27,6 +27,19 @@ body {
   text-decoration: none;
 }
 
-section {
+textarea {
+  border: solid red 1px;
+}
+
+form {
+  text-transform: capitalize;
+  border: solid red 1px;
+}
+
+legend {
+  border: solid red 1px;
+}
+
+h2 {
   border: solid red 1px;
 }

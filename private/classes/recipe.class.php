@@ -4,7 +4,7 @@ class Recipe extends DatabaseObject {
 
   static public $table_name = 'recipe';
   static public $primary_key = 'recipe_id';
-  static public $db_columns = ['recipe_id', 'user_id', 'recipe_title', 'prep_time_minutes', 'cook_time_minutes', 'description', 'created_at', 'yield', 'yield_measurement_id', 'servings', 'visibility_id'];
+  static public $db_columns = ['recipe_id', 'user_id', 'recipe_title', 'prep_time_minutes', 'cook_time_minutes', 'description', 'created_at', 'yield', 'measurement_id', 'servings', 'visibility_id'];
 
   public $recipe_id;
   public $user_id;
@@ -29,7 +29,7 @@ class Recipe extends DatabaseObject {
     $this->description = $args['description'] ?? '';
     $this->created_at = $args['created_at'] ?? '';
     $this->yield = $args['yield'] ?? '';
-    $this->measurement_id = $args['yield_measurement_id'] ?? '';
+    $this->measurement_id = $args['measurement_id'] ?? '';
     $this->servings = $args['servings'] ?? '';
     $this->visibility_id = $args['visibility_id'] ?? '';
   }
@@ -46,7 +46,6 @@ class Recipe extends DatabaseObject {
 
 // Display ingredients
   static public function ingredients($recipe_id) {
-    global $database;
     $ingredients = Recipe::get_ingredients($recipe_id);
     echo "<ul>";
     foreach ($ingredients as $ingredient) {
@@ -85,10 +84,9 @@ class Recipe extends DatabaseObject {
   }
   
   public function get_video($recipe_id) {
-    global $database;
     $sql = "SELECT youtube_url FROM video WHERE recipe_id='" . $recipe_id . "'";
-    $result = $database->query($sql);
-    if ($database->affected_rows > 0) {
+    $result = parent::$database->query($sql);
+    if (parent::$database->affected_rows > 0) {
       $row = $result->fetch_assoc();
       return $row["youtube_url"];
     }

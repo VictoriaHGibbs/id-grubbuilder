@@ -126,99 +126,99 @@ class DatabaseObject
     return $object;
   }
 
-  protected function validate()
-  {
-    $this->errors = [];
+  // protected function validate()
+  // {
+  //   $this->errors = [];
 
-    return $this->errors;
-  }
+  //   return $this->errors;
+  // }
 
-  protected function create()
-  {
-    $this->validate();
-    if (!empty($this->errors)) {
-      return false;
-    }
-    $attributes = $this->sanitized_attributes();
-    $sql = "INSERT INTO " . static::$table_name . " (";
-    $sql .= join(', ', array_keys($attributes));
-    $sql .= ") VALUES ('";
-    $sql .= join("', '", array_values($attributes));
-    $sql .= "')";
-    $result = self::$database->query($sql);
-    if ($result) {
-      $this->id = self::$database->insert_id;
-    }
-    return $result;
-  }
+  // protected function create()
+  // {
+  //   $this->validate();
+  //   if (!empty($this->errors)) {
+  //     return false;
+  //   }
+  //   $attributes = $this->sanitized_attributes();
+  //   $sql = "INSERT INTO " . static::$table_name . " (";
+  //   $sql .= join(', ', array_keys($attributes));
+  //   $sql .= ") VALUES ('";
+  //   $sql .= join("', '", array_values($attributes));
+  //   $sql .= "')";
+  //   $result = self::$database->query($sql);
+  //   if ($result) {
+  //     $this->id = self::$database->insert_id;
+  //   }
+  //   return $result;
+  // }
 
-  protected function update()
-  {
-    $this->validate();
-    if (!empty($this->errors)) {
-      return false;
-    }
-    $attributes = $this->sanitized_attributes();
-    $attribute_pairs = [];
-    foreach ($attributes as $key => $value) {
-      $attribute_pairs[] = "{$key}='{$value}'";
-    }
+  // protected function update()
+  // {
+  //   $this->validate();
+  //   if (!empty($this->errors)) {
+  //     return false;
+  //   }
+  //   $attributes = $this->sanitized_attributes();
+  //   $attribute_pairs = [];
+  //   foreach ($attributes as $key => $value) {
+  //     $attribute_pairs[] = "{$key}='{$value}'";
+  //   }
 
-    $sql = "UPDATE " . static::$table_name . " SET ";
-    $sql .= join(', ', $attribute_pairs);
-    $sql .= " WHERE id='" . self::$database->escape_string($this->id) . "' ";
-    $sql .= "LIMIT 1";
-    $result = self::$database->query($sql);
-    return $result;
-  }
+  //   $sql = "UPDATE " . static::$table_name . " SET ";
+  //   $sql .= join(', ', $attribute_pairs);
+  //   $sql .= " WHERE id='" . self::$database->escape_string($this->id) . "' ";
+  //   $sql .= "LIMIT 1";
+  //   $result = self::$database->query($sql);
+  //   return $result;
+  // }
 
-  public function save()
-  {
-    if (isset($this->id)) {
-      return $this->update();
-    } else {
-      return $this->create();
-    }
-  }
+  // public function save()
+  // {
+  //   if (isset($this->id)) {
+  //     return $this->update();
+  //   } else {
+  //     return $this->create();
+  //   }
+  // }
 
-  public function merge_attributes($args = [])
-  {
-    foreach ($args as $key => $value) {
-      if (property_exists($this, $key) && !is_null($value)) {
-        $this->$key = $value;
-      }
-    }
-  }
+  // public function merge_attributes($args = [])
+  // {
+  //   foreach ($args as $key => $value) {
+  //     if (property_exists($this, $key) && !is_null($value)) {
+  //       $this->$key = $value;
+  //     }
+  //   }
+  // }
 
-  public function attributes()
-  {
-    $attributes = [];
-    foreach (static::$db_columns as $column) {
-      if ($column == 'id') {
-        continue;
-      }
-      $attributes[$column] = $this->$column;
-    }
-    return $attributes;
-  }
+  // public function attributes()
+  // {
+  //   $attributes = [];
+  //   foreach (static::$db_columns as $column) {
+  //     if ($column == 'id') {
+  //       continue;
+  //     }
+  //     $attributes[$column] = $this->$column;
+  //   }
+  //   return $attributes;
+  // }
 
-  protected function sanitized_attributes()
-  {
-    $sanitized = [];
-    foreach ($this->attributes() as $key => $value) {
-      $sanitized[$key] = self::$database->escape_string($value);
-    }
-    return $sanitized;
-  }
+  // protected function sanitized_attributes()
+  // {
+  //   $sanitized = [];
+  //   foreach ($this->attributes() as $key => $value) {
+  //     $sanitized[$key] = self::$database->escape_string($value);
+  //   }
+  //   return $sanitized;
+  // }
 
-  public function delete()
-  {
-    $sql = "DELETE FROM " . static::$table_name . " ";
-    $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
-    $sql .= "LIMIT 1";
-    $result = self::$database->query($sql);
-    return $result;
-  }
+  // public function delete()
+  // {
+  //   $sql = "DELETE FROM " . static::$table_name . " ";
+  //   $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
+  //   $sql .= "LIMIT 1";
+  //   $result = self::$database->query($sql);
+  //   return $result;
+  // }
 
 // -----------------------------------------------------------------------
 
