@@ -5,7 +5,7 @@
 //   redirect_to(url_for('active_record/recipes.index.php'));
 // }
 // ?>
-<form>
+
   <label for="recipe_title">Recipe Title: </label>
   <input type="text" id="recipe_title" name="recipe_title" maxlength="100" required>
   <br>
@@ -101,4 +101,4 @@
     <option value="">Styles</option>
     <?php all_from_lookup('style');?>
   </select>
-</form>
+

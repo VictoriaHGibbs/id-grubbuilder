@@ -36,7 +36,7 @@ class Recipe extends DatabaseObject {
 
 // Display recipe info, TESTING PURPOSES
   public function display() {
-    return ("Recipe ID: " . $this->recipe_id . "<br>" . $this->recipe_title . "<br>" . $this->description . "<br>User ID:" . $this->user_id);
+    return ("Recipe ID: " . h($this->recipe_id) . "<br>" . h($this->recipe_title) . "<br>" . h($this->description) . "<br>User ID:" . h($this->user_id));
   }
 
 // Retrieve associated ingredients
@@ -49,9 +49,9 @@ class Recipe extends DatabaseObject {
     $ingredients = Recipe::get_ingredients($recipe_id);
     echo "<ul>";
     foreach ($ingredients as $ingredient) {
-      $measurement = $ingredient->find_value($ingredient);
+      $measurement = $ingredient->get_measurement_name($ingredient);
       if ($ingredient->quantity > 1) $measurement .= "s";
-      echo  "<li>" . abs($ingredient->quantity) . " " . $measurement . " " . $ingredient->ingredient_name . "</li>";
+      echo  "<li>" . abs($ingredient->quantity) . " " . h($measurement) . " " . h($ingredient->ingredient_name) . "</li>";
     };
     echo "</ul>";
   }
@@ -66,14 +66,14 @@ class Recipe extends DatabaseObject {
     $directions = Recipe::get_directions($recipe_id);
     echo "<ol>";
     foreach ($directions as $direction) {
-      echo "<li>" . $direction->direction_text . "</li>";
+      echo "<li>" . h($direction->direction_text) . "</li>";
     };
     echo "</ol>";
   }
 
-// Retrieve user info
+// Retrieve user id 
   public function get_user_id() {
-    return $this->user_id;
+    return (int) $this->user_id;
   }
 
 // Display user info, takes recipe object
@@ -86,10 +86,22 @@ class Recipe extends DatabaseObject {
   public function get_video($recipe_id) {
     $sql = "SELECT youtube_url FROM video WHERE recipe_id='" . $recipe_id . "'";
     $result = parent::$database->query($sql);
-    if (parent::$database->affected_rows > 0) {
+    if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
-      return $row["youtube_url"];
+      $link = $row["youtube_url"];
+      if ($link) { ?>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo h($link); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+     <?php }
     }
+  }
+
+  protected function validate()
+  {
+    $this->errors = [];
+
+    // Subclass specific validation
+
+    return $this->errors;
   }
 
 }

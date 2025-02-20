@@ -23,15 +23,12 @@ include(SHARED_PATH . '/user_header.php');
     <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
     <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
     <p>Servings: <?php echo h($recipe->servings); ?></p>
-    <p>Yield: <?php echo h(abs($recipe->yield)) . " " . h($recipe->find_value($recipe));
+    <p>Yield: <?php echo h(abs($recipe->yield)) . " " . h($recipe->get_measurement_name($recipe));
     if ($recipe->yield > 1) echo "s"; ?> </p>
     <!-- PRINTER FRIENDLY LINK -->
     <!-- ADD TO FAVORITES -->
     <!-- NUTRITION FACTS -->
-    <?php $link = $recipe->get_video($id); 
-      if ($link) { ?>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo h($link); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <?php } ?>
+    <?php $link = $recipe->get_video($id); ?>
       
      
   </section>

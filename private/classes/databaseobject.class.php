@@ -74,7 +74,7 @@ class DatabaseObject
     if (!empty($filters)) {
         $sql .= " WHERE " . implode(" AND ", array_map(fn($key) => "$key = ?", array_keys($filters)));
         $params = array_values($filters);
-        $types = str_repeat("i", count($params));
+        $types = str_repeat("s", count($params));
     }
 
     $stmt = static::$database->prepare($sql);
@@ -92,9 +92,9 @@ class DatabaseObject
   }
 
   // Uses recipe id to pull in associated values from any table.
-  static public function find_by_recipe($recipe_id) {
-    return self::find_related(['recipe_id' => $recipe_id]);
-  }
+  // static public function find_by_recipe($recipe_id) {
+  //   return self::find_related(['recipe_id' => $recipe_id]);
+  // }
 
   // Uses user id to pull in associated values from any table.
   static public function find_by_user($user_id) {
@@ -107,7 +107,7 @@ class DatabaseObject
   }
 
   // Retrieves measurement name, takes object
-  static public function find_value($object) {
+  static public function get_measurement_name($object) {
     $measurement_id = $object->get_measurement_id();
     $sql = "SELECT measurement FROM measurement WHERE measurement_id='" . $measurement_id . "'";
     $result = self::$database->query($sql);
@@ -129,6 +129,8 @@ class DatabaseObject
   protected function validate()
   {
     $this->errors = [];
+
+    // Subclass specific validation
 
     return $this->errors;
   }
@@ -211,14 +213,14 @@ class DatabaseObject
     return $sanitized;
   }
 
-  // public function delete()
-  // {
-  //   $sql = "DELETE FROM " . static::$table_name . " ";
-  //   $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
-  //   $sql .= "LIMIT 1";
-  //   $result = self::$database->query($sql);
-  //   return $result;
-  // }
+  public function delete()
+  {
+    $sql = "DELETE FROM " . static::$table_name . " ";
+    $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
+    $sql .= "LIMIT 1";
+    $result = self::$database->query($sql);
+    return $result;
+  }
 
 // -----------------------------------------------------------------------
 

@@ -7,7 +7,7 @@ function all_from_lookup($table) {
   $sql .= "ORDER BY " . $table . " ASC";
   $result = mysqli_query($database, $sql);
   while($row = mysqli_fetch_assoc($result)) {
-    echo '<option value="' . $row[$table . "_id"] . '">'  . $row[$table] . '</option>';
+    echo '<option value="' . $row[$table . "_id"] . '">'  . ucwords($row[$table]) . '</option>';
   }
 }
 

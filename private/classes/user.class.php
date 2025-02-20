@@ -30,8 +30,31 @@ class User extends DatabaseObject {
     $this->active = $args['active'] ?? 1;
   }
 
+  // Retrieve username from a $user_id
   static public function get_username_by_id($user_id) {
     $user = self::find_by_pk($user_id);
     return $user ? $user->username : null;
   }
+
+  // Hash password before storing
+  public function set_hashed_password() {
+    $this->hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
+  }
+
+  // Verify password
+  public function verify_password($password) {
+    return password_verify($password, $this->hashed_password);
+  }
+
+  // Check if a username exists
+  static public function username_exists($username) {
+    $sql = "SELECT COUNT(*) FROM " . static::$table_name . " WHERE username = ?";
+    $stmt = self::$database->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->bind_result($count);
+    $stmt->fetch();
+    return $count > 0;
+  }
+
 }

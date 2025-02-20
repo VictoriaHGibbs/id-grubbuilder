@@ -13,13 +13,26 @@ class Direction extends DatabaseObject {
   public $sort_order;
 
   // public function __construct($args = []) {
-  // $this->direction_line_item = $args['direction_line_item'] ?? '';
-  // $this->direction_text = $args['direction_text'] ?? '';
-  // $this->sort_order = $args['sort_order'] ?? '';
+  //   $this->direction_id = $args['direction_id'] ?? '';
+  //   $this->recipe_id = $args['recipe_id'] ?? '';
+  //   $this->direction_line_item = $args['direction_line_item'] ?? '';
+  //   $this->direction_text = $args['direction_text'] ?? '';
+  //   $this->sort_order = $args['sort_order'] ?? '';
   // }
 
   // Fetch all directions for a specific recipe
-  // public static function find_by_recipe($recipe_id) {
-  //   return self::find_related(['recipe_id' => $recipe_id]);
-  // }
+  public static function find_by_recipe($recipe_id) {
+    return self::find_related(['recipe_id' => $recipe_id]);
+  }
+
+  protected function validate()
+  {
+    $this->errors = [];
+
+    if (empty($this->direction_text)) {
+      $this->errors[] = "Direction text cannot be empty.";
+    }
+    
+    return $this->errors;
+  }
 }

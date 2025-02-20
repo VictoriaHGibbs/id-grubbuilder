@@ -17,7 +17,7 @@ require_once('../../../private/initialize.php');
 
     <?php //echo display_errors($recipe->errors); ?>
 
-    <form action="<?php echo url_for('/active_record/recipes/new.php'); ?>" method="post">
+    <form action="<?php echo url_for('/active_record/recipes/new.php'); ?>" method="post" enctype="multipart/form-data">
 
       <?php include('form_fields.php'); ?>
 

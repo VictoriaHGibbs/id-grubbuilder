@@ -9,7 +9,7 @@ include(SHARED_PATH . '/public_header.php');
 
 <?php
 
-$id = 3;
+$id = rand(1, 9);
 $recipe = Recipe::find_by_pk($id);
 echo $recipe->display();
 echo Recipe::user_info($recipe);
