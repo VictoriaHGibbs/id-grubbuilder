@@ -11,7 +11,7 @@ $page_title = 'Detail: ' . $recipe->recipe_title;
 include(SHARED_PATH . '/user_header.php');
 ?>
 
-<a href="<?php echo url_for('/active_record/users/index.php'); ?>">Return to List</a>
+<a href="<?php echo url_for('/active_record/recipes/index.php'); ?>">Return to List</a>
 
 <section>
     <section>

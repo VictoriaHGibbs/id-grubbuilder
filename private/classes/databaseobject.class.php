@@ -216,7 +216,7 @@ class DatabaseObject
   public function delete()
   {
     $sql = "DELETE FROM " . static::$table_name . " ";
-    $sql .= "WHERE " . static::$table_name . "_id='" . self::$database->escape_string($this->primary_key) . "' ";
+    $sql .= "WHERE " . static::$table_name . "_id='" . self::$database->escape_string($this->user_id) . "' ";
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);
     return $result;
