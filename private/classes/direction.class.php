@@ -3,9 +3,9 @@
 class Direction extends DatabaseObject {
 
   static public $table_name = 'direction';
-  static public $primary_key = 'direction_id';
   static public $db_columns = ['direction_id', 'recipe_id', 'direction_line_item', 'direction_text', 'sort_order'];
-
+  static public $primary_key = 'direction_id';
+  
   public $direction_id;
   public $recipe_id;
   public $direction_line_item;

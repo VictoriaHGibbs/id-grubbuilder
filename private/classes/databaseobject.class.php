@@ -149,7 +149,7 @@ class DatabaseObject
     $sql .= "')";
     $result = self::$database->query($sql);
     if ($result) {
-      $this->id = self::$database->insert_id;
+      $this->user_id = self::$database->insert_id;
     }
     return $result;
   }
@@ -168,7 +168,7 @@ class DatabaseObject
 
     $sql = "UPDATE " . static::$table_name . " SET ";
     $sql .= join(', ', $attribute_pairs);
-    $sql .= " WHERE id='" . self::$database->escape_string($this->id) . "' ";
+    $sql .= " WHERE " . static::$table_name . "_id='" . self::$database->escape_string($this->user_id) . "' ";
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);
     return $result;
@@ -176,7 +176,7 @@ class DatabaseObject
 
   public function save()
   {
-    if (isset($this->id)) {
+    if (isset($this->user_id)) {
       return $this->update();
     } else {
       return $this->create();
@@ -196,7 +196,7 @@ class DatabaseObject
   {
     $attributes = [];
     foreach (static::$db_columns as $column) {
-      if ($column == 'id') {
+      if ($column == (static::$table_name . '_id')) {
         continue;
       }
       $attributes[$column] = $this->$column;
@@ -216,7 +216,7 @@ class DatabaseObject
   public function delete()
   {
     $sql = "DELETE FROM " . static::$table_name . " ";
-    $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
+    $sql .= "WHERE " . static::$table_name . "_id='" . self::$database->escape_string($this->primary_key) . "' ";
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);
     return $result;

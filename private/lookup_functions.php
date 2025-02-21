@@ -11,6 +11,15 @@ function all_from_lookup($table) {
   }
 }
 
+function find_value_from_lookup($id, $table) {
+  global $database;
+  $sql = "SELECT " . $table . " FROM " . $table . " ";
+  $sql .= "WHERE " . $table . "_id='" . $id . "'";
+  $result = mysqli_query($database, $sql);
+  while($row = mysqli_fetch_assoc($result)) {
+    echo ucwords($row[$table]);
+  }
+}
 
 // This one isnt working yet
 // function find_value_by_id($id, $table) {
@@ -30,9 +39,3 @@ function all_from_lookup($table) {
 //   return $measurement;
 // }
 
-// function find_value($id, $table) {
-//   global $database;
-//   $sql = "SELECT " . $table . " FROM " . $table . " ";
-//   $sql .= "WHERE " . $table . "_id='" . $id . "'";
-//   return mysqli_query($database, $sql);
-// }

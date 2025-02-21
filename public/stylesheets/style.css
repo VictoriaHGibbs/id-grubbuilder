@@ -27,6 +27,20 @@ body {
   text-decoration: none;
 }
 
+table,
+th,
+tr,
+td {
+  border: solid #333 1px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: center;
+}
+
 textarea {
   border: solid red 1px;
 }

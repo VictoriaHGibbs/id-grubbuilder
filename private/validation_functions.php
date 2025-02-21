@@ -108,14 +108,14 @@ function has_valid_email_format($value)
 // * For new records, provide only the username.
 // * For existing records, provide current ID as second argument
 //   has_unique_username('johnqpublic', 4)
-// function has_unique_username($username, $current_id = "0")
-// {
-//   $user = User::find_by_username($username);
-//   if ($user === false || $user->id == $current_id) {
-//     // is unique
-//     return true;
-//   } else {
-//     // not unique
-//     return false;
-//   }
-// }
+function has_unique_username($username, $current_id = "0")
+{
+  $user = User::find_by_username($username);
+  if ($user === false || $user->user_id == $current_id) {
+    // is unique
+    return true;
+  } else {
+    // not unique
+    return false;
+  }
+}

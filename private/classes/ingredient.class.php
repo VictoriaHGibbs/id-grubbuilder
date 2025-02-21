@@ -3,9 +3,9 @@
 class Ingredient extends DatabaseObject {
 
   static public $table_name = 'ingredient';
-  static public $primary_key = 'ingredient_id';
   static public $db_columns = ['ingredient_id', 'recipe_id', 'ingredient_line_item', 'quantity', 'ingredient_name', 'measurement_id', 'sort_order'];
-
+  static public $primary_key = 'ingredient_id';
+  
   public $ingredient_id;
   public $recipe_id;
   public $ingredient_line_item;

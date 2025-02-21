@@ -3,8 +3,8 @@
 class Image extends DatabaseObject {
 
   static public $table_name = 'image';
-  static public $primary_key = 'image_id';
   static public $db_columns = ['image_id', 'recipe_id', 'image_line_item', 'image_url', 'sort_order'];
+  static public $primary_key = 'image_id';
 
   public $image_id;
   public $recipe_id;

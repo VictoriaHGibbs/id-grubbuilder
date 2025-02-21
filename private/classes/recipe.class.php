@@ -3,9 +3,9 @@
 class Recipe extends DatabaseObject {
 
   static public $table_name = 'recipe';
-  static public $primary_key = 'recipe_id';
   static public $db_columns = ['recipe_id', 'user_id', 'recipe_title', 'prep_time_minutes', 'cook_time_minutes', 'description', 'created_at', 'yield', 'measurement_id', 'servings', 'visibility_id'];
-
+  static public $primary_key = 'recipe_id';
+  
   public $recipe_id;
   public $user_id;
   public $recipe_title;
