@@ -98,7 +98,9 @@ class DatabaseObject
 
   // Uses user id to pull in associated values from any table.
   static public function find_by_user($user_id) {
-    return self::find_related(['user_id' => $user_id]);
+    $sql = "SELECT * FROM " . static::$table_name . " ";
+    $sql .= "WHERE user_id='" . self::$database->escape_string($user_id) . "'";
+    return static::find_by_sql($sql);
   }
 
   // Retrieve measurement id
@@ -168,7 +170,7 @@ class DatabaseObject
 
     $sql = "UPDATE " . static::$table_name . " SET ";
     $sql .= join(', ', $attribute_pairs);
-    $sql .= " WHERE " . static::$table_name . "_id='" . self::$database->escape_string($this->user_id) . "' ";
+    $sql .= " WHERE user_id='" . self::$database->escape_string($this->user_id) . "' ";
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);
     return $result;
@@ -196,7 +198,7 @@ class DatabaseObject
   {
     $attributes = [];
     foreach (static::$db_columns as $column) {
-      if ($column == (static::$table_name . '_id')) {
+      if ($column == 'user_id') {
         continue;
       }
       $attributes[$column] = $this->$column;

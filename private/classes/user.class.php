@@ -25,9 +25,9 @@ class User extends DatabaseObject
 
     public function __construct($args = [])
     {
-        $this->user_id = $args['user_id'] ?? '';
+        // $this->user_id = $args['user_id'] ?? '';
         $this->username = $args['username'] ?? '';
-        $this->profile_image_url = $args['profile_image_url'] ?? 'NULL';
+        $this->profile_image_url = $args['profile_image_url'] ?? NULL;
         $this->f_name = $args['f_name'] ?? '';
         $this->l_name = $args['l_name'] ?? '';
         $this->email_address = $args['email_address'] ?? '';
@@ -88,8 +88,8 @@ class User extends DatabaseObject
 
       if(is_blank($this->username)) {
         $this->errors[] = "Username cannot be blank.";
-      } elseif (!has_length($this->username, array('min' => 6, 'max' => 20))) {
-        $this->errors[] = "Username must be between 6 and 20 characters.";
+      } elseif (!has_length($this->username, array('min' => 5, 'max' => 20))) {
+        $this->errors[] = "Username must be between 5 and 20 characters.";
       } elseif (!has_unique_username($this->username, $this->user_id ?? 0)) {
         $this->errors[] = "Username not allowed. Try another.";
       }

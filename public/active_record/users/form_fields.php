@@ -25,21 +25,21 @@ if (!isset($user)) {
 <br>
 
 <label for="password">Password</label>
-<input type="password" id="password" name="user[password]">
+<input type="password" id="password" name="user[password]" value="">
 <br>
 
 <label for="confirm_password">Confirm Password</label>
-<input type="password" id="confirm_password" name="user[confirm_password]">
+<input type="password" id="confirm_password" name="user[confirm_password]" value="">
 
 <!-- <? //php if ($session->is_admin_logged_in()): 
 ?> -->
-<fieldset>
+<!-- <fieldset>
     <legend>User Level</legend> 
     <input type="radio" id="user" name="user[role_id]" value="1">
     <label for="user">User</label>
 
     <input type="radio" id="admin" name="user[role_id]" value="2">
     <label for="admin">Admin</label>
-</fieldset>
+</fieldset> -->
 <!-- <? //php endif; 
 ?> -->

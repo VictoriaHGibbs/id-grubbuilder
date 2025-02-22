@@ -1,11 +1,11 @@
 <?php
 require_once('../../../private/initialize.php');
 
-$user_id = $_GET['user_id'] ?? '1';
+$id = $_GET['user_id'] ?? false;
 
-$user = User::find_by_pk($user_id);
+$user = User::find_by_pk($id);
 
-$page_title = 'Show User: ' . h($user->username);
+$page_title = 'Show User: ' . $user->username;
 
 
 include(SHARED_PATH . '/user_header.php');

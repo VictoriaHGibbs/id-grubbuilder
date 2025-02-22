@@ -6,10 +6,14 @@ $page_title = 'Home';
 include(SHARED_PATH . '/public_header.php');
 ?>
 
-<a href="<?php echo url_for('/active_record/users/index.php') ?>">user index</a>
-<a href="<?php echo url_for('/active_record/users/new.php') ?>">Add User</a>
-<a href="<?php echo url_for('/active_record/recipes/index.php') ?>">recipe index</a>
-<a href="<?php echo url_for('/active_record/index.php') ?>">active record index</a>
+<ul>
+  <li><a href="<?php echo url_for('/active_record/users/index.php') ?>">user index</a></li>
+  <li><a href="<?php echo url_for('/active_record/users/new.php') ?>">Add User</a></li>
+  <li><a href="<?php echo url_for('/active_record/recipes/index.php') ?>">recipe index</a></li>
+  <li><a href="<?php echo url_for('/active_record/index.php') ?>">active record index</a></li>
+  <li><a href="<?php echo url_for('/active_record/login.php') ?>">user login</a></li>
+  <li><a href="<?php echo url_for('/active_record/signup.php') ?>">new user sign up</a></li>
+</ul>
 
 <p>Welcome</p>
 <form action="<?php echo url_for('/index.php'); ?>" method="get">
