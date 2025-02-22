@@ -4,7 +4,7 @@ require_once('../../private/initialize.php');
 // require_login();
 $user_id = $_SESSION['user_id'] ?? false;
 $recipes = Recipe::find_by_user($user_id);
-var_dump($recipes);
+
 
 $page_title = 'User Menu/ Main Profile Page';
 
@@ -19,9 +19,12 @@ include(SHARED_PATH . '/user_header.php');
 
 
   <li><a href="<?php echo url_for('/active_record/recipes/index.php'); ?>">All Recipe list</a></li>
+  <li><a href="<?php echo url_for('/active_record/recipes/new.php'); ?>">Add Recipe</a></li>
+  <li><a href="<?php echo url_for('/active_record/logout.php'); ?>">Logout</a></li>
 
 </ul>
 
+<?php if ($recipes) { ?>
 <h2>All Your Recipes</h2>
 
 <section class="card-preview-container">
@@ -39,6 +42,11 @@ include(SHARED_PATH . '/user_header.php');
 <?php } ?>
 
 </section>
+<?php } else { ?>
+
+  <h2>Looks like you haven't added anything yet!</h2>
+
+<?php } ?>
 
 
 <?php include(SHARED_PATH . '/user_footer.php'); ?>
