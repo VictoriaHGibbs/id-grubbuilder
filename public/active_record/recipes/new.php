@@ -3,6 +3,22 @@
 require_once('../../../private/initialize.php');
 // require_login();
 
+if(is_post_request()) {
+  include_once('insert.php');
+
+  if($result) {
+    $new_id = $recipe->id;
+    $session->message('The recipe was added successfully.');
+    redirect_to(url_for('/active_record/recipes/show.php?id=' . $new_id));
+  } else {
+    // show errors
+  }
+
+} else {
+  // display the form
+  $recipe = new Recipe;
+}
+
 ?>
 
 <?php $page_title = 'Create Recipe'; ?>

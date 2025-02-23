@@ -22,7 +22,7 @@ class Recipe extends DatabaseObject {
 
 
   public function __construct($args = []) {
-    $this->user_id = $args['user_id'] ?? $_SESSION['user_id'];
+    $this->user_id = $args['user_id'] ?? '';
     $this->recipe_title = $args['recipe_title'] ?? '';
     $this->prep_time_minutes = $args['prep_time_minutes'] ?? '';
     $this->cook_time_minutes = $args['cook_time_minutes'] ?? '';

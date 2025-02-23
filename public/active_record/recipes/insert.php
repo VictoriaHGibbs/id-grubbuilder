@@ -75,6 +75,7 @@ try {
 // Commit transaction
   $database->commit();
   echo "Recipe creation successful!";
+  return $recipe_id;
 
 } catch (Exception $error) {
   // Rollback transaction if error
