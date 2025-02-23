@@ -17,28 +17,19 @@ try {
 // Get last inserted recipe_id
   $recipe_id = $recipe->id;
   var_dump($recipe_id);
-// For single ingredient testing till I get the JS built for multiples
-
-  // $stmt2 = $_POST['ingredient'];
-  // $ingredient = new Ingredient($stmt2);
-  // $ingredient->save();
   
 // Ingredient Array Loop 
   foreach ($_POST['ingredient'] as $index => $ingredient_data) {
     $ingredient_data['recipe_id'] = $recipe_id;
+    $ingredient_data['ingredient_line_item'] = $index + 1;
     $ingredient = new Ingredient($ingredient_data);
     $ingredient->save();
   }
 
-
-// For single direction testing till I get the JS built for multiples
-  // $stmt3 = $_POST['direction'];
-  // $direction = new Direction($stmt3);
-  // $direction->save();
-
 // Direction Array Loop
   foreach ($_POST['direction'] as $index => $direction_data) {
-    $direction_data['recipe_id'] = $recipe_id; 
+    $direction_data['recipe_id'] = $recipe_id;
+    $direction_data['direction_line_item'] = $index + 1;
     $direction = new Direction($direction_data);
     $direction->save();
   }
@@ -48,16 +39,21 @@ try {
 // Image Array Loop
     foreach ($_POST['image'] as $index => $image_data) {
         $image_data['recipe_id'] = $recipe_id;
+        $image_data['image_line_item'] = $index + 1;
         $image = new Image($image_data);
         $image->save();
     }
   }
+
 // Check if video
   if (has_presence($_POST['youtube_url'])) {
+// Pull substring out of youtube url for storage
+    $youtube_url = $_POST['youtube_url'];
+    $storage_link = set_video($youtube_url);
 // Prepare and bind VIDEO table
-  $stmt5 = $database->prepare("INSERT INTO video (recipe_id, youtube_url) VALUES (?,?)");
-  $stmt5->bind_param("is", $recipe_id, $_POST['youtube_url']);
-  $stmt5->execute();
+    $stmt5 = $database->prepare("INSERT INTO video (recipe_id, youtube_url) VALUES (?,?)");
+    $stmt5->bind_param("is", $recipe_id, $storage_link);
+    $stmt5->execute();
   }
 
 // Check if meal_type

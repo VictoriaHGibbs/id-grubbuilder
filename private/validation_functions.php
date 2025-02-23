@@ -119,3 +119,20 @@ function has_unique_username($username, $current_id = "0")
     return false;
   }
 }
+
+function set_video($string) {
+  $substring = "watch?v=";
+  $substring2 = "tu.be/";
+
+  if (substr_count($string, $substring) > 0) {
+  $position = stripos($string,"watch?v=");
+  $start = $position + 8;
+  } elseif (substr_count($string, $substring2) > 0) {
+  $position = stripos($string,"tu.be/");
+  $start = $position + 5;
+  } else {
+  echo "Not a valid Youtube link.";
+  }
+  $storage_link = substr($string, $start);
+  return $storage_link;
+}

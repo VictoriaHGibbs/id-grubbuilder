@@ -78,7 +78,7 @@
     <input type="button" value="Add Another Image" id="add-image">
   </fieldset>
 
-  <label for="youtube_url">YouTube Video Share Link - PLACEHOLDER:</label>
+  <label for="youtube_url">YouTube Video Share Link:</label>
   <input type="text" id="youtube_url" name="youtube_url" >
   <br>
 
