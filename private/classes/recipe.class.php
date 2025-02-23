@@ -83,12 +83,22 @@ class Recipe extends DatabaseObject {
       echo "Created by: " . $username;
   }
   
+  protected function set_user_id() {
+    $this->user_id = $_SESSION['user_id'];
+  }
+
+  protected function create() {
+    $this->set_user_id();
+    return parent::create();
+  }
+
   public function get_video($recipe_id) {
-    $sql = "SELECT youtube_url FROM video WHERE recipe_id='" . $recipe_id . "'";
+    $sql = "SELECT youtube_url FROM video WHERE recipe_id='" . h($recipe_id) . "'";
     $result = parent::$database->query($sql);
+
     if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
-      $link = $row["youtube_url"];
+      $link = h($row["youtube_url"]);
       if ($link) { ?>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo h($link); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
      <?php }

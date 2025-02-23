@@ -46,17 +46,19 @@ class User extends DatabaseObject
 
     // Active display
     public function active_display() {
-      if ($this->active == 1) {
-        echo 'Active';
-      } else {
-        echo 'Deactivated';
-      }
+      return $this->active == 1 ? 'Active' : 'Deactivated';
+    }
+
+    public function full_name() {
+      return trim("{$this->f_name} {$this->l_name}");
     }
 
     // Hash password before storing
     protected function set_hashed_password()
     {
         $this->password_hash = password_hash($this->password, PASSWORD_BCRYPT);
+        $this->password = null;
+        $this->confirm_password = null;
     }
 
     // Verify password

@@ -5,39 +5,51 @@
 $database->begin_transaction();
 
 try {
-// Prepare and bind RECIPE table
+// Insert into RECIPE table
   $stmt1 = $_POST['recipe'];
   $recipe = new Recipe($stmt1);
   $stmt1_result = $recipe->save();
 
-// Get last inserted recipe_id
-  $recipe_id = $database->insert_id;
+  if (!$stmt1_result) {
+    throw new Exception("Recipe insertion failed.");
+  }
 
-// Prepare INGREDIENT table
-  $stmt2 = $_POST['ingredient'];
-// Loop 
-  foreach ($stmt2 as $index) {
-    $ingredient_line_item = $index + 1;
-    $ingredient = new Ingredient($stmt2);
-    $stmt2_result = $ingredient->save();
+// Get last inserted recipe_id
+  $recipe_id = $recipe->id;
+  var_dump($recipe_id);
+// For single ingredient testing till I get the JS built for multiples
+
+  // $stmt2 = $_POST['ingredient'];
+  // $ingredient = new Ingredient($stmt2);
+  // $ingredient->save();
+  
+// Ingredient Array Loop 
+  foreach ($_POST['ingredient'] as $index => $ingredient_data) {
+    $ingredient_data['recipe_id'] = $recipe_id;
+    $ingredient = new Ingredient($ingredient_data);
+    $ingredient->save();
   }
-// Prepare and bind DIRECTION table
-  $stmt3 = $_POST['direction'];
-// Loop
-  foreach ($stmt3 as $index) {
-    $direction_line_item = $index + 1;
-    $direction = new Direction($stmt3);
-    $stmt3_result = $direction->save();
+
+
+// For single direction testing till I get the JS built for multiples
+  // $stmt3 = $_POST['direction'];
+  // $direction = new Direction($stmt3);
+  // $direction->save();
+
+// Direction Array Loop
+  foreach ($_POST['direction'] as $index => $direction_data) {
+    $direction_data['recipe_id'] = $recipe_id; 
+    $direction = new Direction($direction_data);
+    $direction->save();
   }
+
 // Check if image
   if (has_presence($_POST['image'])) {
-// Prepare and bind IMAGE table
-    $stmt4 = $_POST['image'];
-// Loop
-    foreach ($stmt4 as $index) {
-      $image_line_item = $index + 1;
-      $image = new Image($stmt4);
-      $stmt4_result = $image->save();
+// Image Array Loop
+    foreach ($_POST['image'] as $index => $image_data) {
+        $image_data['recipe_id'] = $recipe_id;
+        $image = new Image($image_data);
+        $image->save();
     }
   }
 // Check if video
@@ -75,10 +87,13 @@ try {
 // Commit transaction
   $database->commit();
   echo "Recipe creation successful!";
+  $result = true;
   return $recipe_id;
 
 } catch (Exception $error) {
   // Rollback transaction if error
   $database->rollback();
+  $result = false;
   echo "Recipe not created! :( ";
+  echo "Error: " . $error->getMessage();
 }
