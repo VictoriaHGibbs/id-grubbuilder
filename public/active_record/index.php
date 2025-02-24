@@ -11,18 +11,8 @@ $page_title = 'User Menu/ Main Profile Page';
 include(SHARED_PATH . '/user_header.php');
 ?>
 
-<h2>Welcome back <?php echo h(User::get_username_by_id($id)); ?> </h2>
-<ul>
-
-  <!-- will be for admin only  -->
-  <li><a href="<?php echo url_for('/active_record/users/index.php'); ?>">Users</a></li>
 
 
-  <li><a href="<?php echo url_for('/active_record/recipes/index.php'); ?>">All Recipe list</a></li>
-  <li><a href="<?php echo url_for('/active_record/recipes/new.php'); ?>">Add Recipe</a></li>
-  <li><a href="<?php echo url_for('/active_record/logout.php'); ?>">Logout</a></li>
-
-</ul>
 
 <?php if ($recipes) { ?>
 <h2>All Your Recipes</h2>

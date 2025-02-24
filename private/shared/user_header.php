@@ -12,5 +12,35 @@
 
   <header>
     <h1><a href="<?php echo url_for('/index.php'); ?>">Grub Builder</a></h1>
+
+    <form action="../search.php" method="post" role="form">
+      <label for="search"></label>
+      <input type="text" id="search" name="search">
+      <input id="search-submit" type="submit" value="Search">
+    </form>
+
+    <h2>Welcome back <?php echo h(User::get_username_by_id($id)); ?></h2>
+
+
+    <nav role="navigation" aria-label="">
+      <ul>
+        <li><a href="<?php echo url_for('/active_record/users/index.php'); ?>">Users</a></li><!-- will be for admin only  -->
+        
+        <li><a href="<?php echo url_for('/active_record/recipes/index.php'); ?>">My Profile</a></li>
+        <li><a href="<?php echo url_for('/active_record/recipes/new.php'); ?>">Add Recipe</a></li>
+        <li><a href="<?php echo url_for('/active_record/logout.php'); ?>">Logout</a></li>
+      </ul>
+    </nav>
+
+    <nav role="navigation" aria-label="main site">
+      <ul>
+        <<li><a href="<?php echo url_for('/active_record/recipes/index.php'); ?>">All Recipe list</a></li>
+        <li><a href="<?php echo url_for('/.php') ?>">Popular</a></li>
+        <li><a href="<?php echo url_for('/.php') ?>">Courses</a></li>
+        <li><a href="<?php echo url_for('/.php') ?>">Diet</a></li>
+        <li><a href="<?php echo url_for('/.php') ?>">Cuisine</a></li>
+        <li><a href="<?php echo url_for('/about.php') ?>">About us</a></li>
+      </ul>
+    </nav>
   </header>
   
