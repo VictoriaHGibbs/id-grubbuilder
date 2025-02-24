@@ -1,7 +1,7 @@
 <?php
 require_once('../../private/initialize.php');
 
-// require_login();
+require_login();
 $id = $_SESSION['user_id'] ?? false;
 $recipes = Recipe::find_by_user_id($id);
 

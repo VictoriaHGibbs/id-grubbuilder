@@ -21,8 +21,8 @@
     </form>
 
     <ul>
-      <li><a href="<?php echo url_for('/active_record/login.php') ?>">user login</a></li>
-      <li><a href="<?php echo url_for('/active_record/signup.php') ?>">new user sign up</a></li>
+      <li><a href="<?php echo url_for('/active_record/login.php') ?>">User Login</a></li>
+      <li><a href="<?php echo url_for('/active_record/signup.php') ?>">No account? Sign-up here!</a></li>
     </ul>
 
     <nav role="navigation" aria-label="main site">

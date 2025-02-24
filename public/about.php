@@ -3,7 +3,11 @@ require_once('../private/initialize.php');
 
 $page_title = 'About';
 
-include(SHARED_PATH . '/public_header.php');
+if ($session->is_logged_in()) {
+  include(SHARED_PATH . '/user_header.php');
+} else {
+  include(SHARED_PATH . '/public_header.php');
+}
 ?>
 
 <h2>About</h2>
