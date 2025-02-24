@@ -5,6 +5,7 @@ require_once('../../../private/initialize.php');
 
 if (is_post_request()) {
 
+    // include_once(SHARED_PATH . '/forms/profile_image_handler.php');
     // Create record using post parameters
     $args = $_POST['user'];
     $user = new User($args);
@@ -36,7 +37,7 @@ if (is_post_request()) {
 <?php echo display_errors($user->errors);
 ?>
 
-<form action="<?php echo url_for('/active_record/users/new.php'); ?>" method="post">
+<form action="<?php echo url_for('/active_record/users/new.php'); ?>" method="post" enctype="multipart/form-data">
 
     <?php include('form_fields.php'); ?>
 
