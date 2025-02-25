@@ -10,7 +10,8 @@ $id = $_SESSION['user_id'] ?? false;
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grub Builder <?php if (isset($page_title)) {echo '- ' . htmlspecialchars($page_title);} ?></title>
-  <link rel="stylesheet" href="<?php echo url_for('/stylesheets/styles.css'); ?>">
+  <link rel="stylesheet" href="<?php echo url_for('/stylesheets/style.css'); ?>">
+  <script src="<?php echo url_for('/js/recipe_items.js'); ?>" defer></script>
 </head>
 
 <body>

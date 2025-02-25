@@ -85,6 +85,8 @@ td {
 
 textarea {
   border: solid red 1px;
+  height: 150px;
+  width: 350px;
 }
 
 h1,
@@ -94,10 +96,4 @@ form {
   border: solid rgb(111, 0, 255) 1px;
 }
 
-legend {
-  border: solid rgb(0, 255, 34) 1px;
-}
 
-h2 {
-  border: solid rgb(255, 230, 0) 1px;
-}

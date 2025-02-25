@@ -1,9 +1,9 @@
 <?php
 require_once('../../../private/initialize.php');
 
-$id = $_GET['id'] ?? false;
+$recipe_id = $_GET['id'] ?? false;
 
-$recipe = Recipe::find_by_id($id);
+$recipe = Recipe::find_by_id($recipe_id);
 
 $page_title = 'Detail: ' . $recipe->recipe_title;
 
@@ -31,19 +31,19 @@ include(SHARED_PATH . '/user_header.php');
         <!-- PRINTER FRIENDLY LINK -->
         <!-- ADD TO FAVORITES -->
         <!-- NUTRITION FACTS -->
-        <?php $link = h($recipe->get_video($id)); ?>
+        <?php $link = h($recipe->get_video($recipe_id)); ?>
 
 
     </section>
 
     <section>
         <h3>Ingredients</h3>
-        <?php echo Recipe::ingredients($id); ?>
+        <?php echo Recipe::ingredients($recipe_id); ?>
     </section>
 
     <section>
         <h3>Directions</h3>
-        <?php echo Recipe::directions($id); ?>
+        <?php echo Recipe::directions($recipe_id); ?>
     </section>
 
 </section>

@@ -52,7 +52,6 @@ class User extends DatabaseObject
 
     // Set user profile image
     static public function set_profile_image($id) {
-      $_POST['submit'];
       $file = $_FILES['profile_image_url'];
 
       $file_name = $file['name'];  // this is the 'picture.jpg'
