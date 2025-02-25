@@ -11,6 +11,46 @@ body {
   margin: 3rem;
 }
 
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/********************* Header **********************/
+
+/* header nav {
+
+} */
+
+#header-top {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#header-top form {
+  justify-self: center;
+  padding: 1rem;
+}
+
+#header-lower nav ul {
+  justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  
+  padding: .75rem 0;
+}
+
+header li {
+  list-style: none;
+}
+
+header nav a {
+  border: solid #333 1px;
+  padding: .75rem 2rem;
+  text-decoration: none;
+}
+
 .card-preview-container {
   border: solid green 3px;
   display: grid;
@@ -26,6 +66,8 @@ body {
   color: #222;
   text-decoration: none;
 }
+
+/******************* TEMP STYLING ******************/
 
 table,
 th,
@@ -45,6 +87,8 @@ textarea {
   border: solid red 1px;
 }
 
+h1,
+ul,
 form {
   text-transform: capitalize;
   border: solid rgb(111, 0, 255) 1px;
