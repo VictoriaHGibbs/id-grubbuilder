@@ -5,7 +5,6 @@ require_once('../../../private/initialize.php');
 
 if (is_post_request()) {
 
-    // include_once(SHARED_PATH . '/forms/profile_image_handler.php');
     // Create record using post parameters
     $args = $_POST['user'];
     $user = new User($args);

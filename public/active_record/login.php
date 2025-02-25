@@ -26,6 +26,7 @@ if (is_post_request()) {
       // Mark user as logged in
       $session->login($user);
       redirect_to(url_for('/active_record/index.php'));
+      echo "Signup was successful! Please login.";
     } else {
       // username not found or password does not match
       $errors[] = "Log in was unsuccessful.";

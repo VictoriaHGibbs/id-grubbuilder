@@ -11,8 +11,23 @@ $page_title = 'User Menu/ Main Profile Page';
 include(SHARED_PATH . '/user_header.php');
 ?>
 
-<img src="<?php echo url_for('/images/user/') . "$profile_image"; ?>">
+<img src="<?php echo ('../../uploads/') . "$profile_image" . "?" . mt_rand() ; ?>">
+<!-- CODE TO UPLOAD AN IMAGE HERE -->
+<form action="index.php" method="post" enctype="multipart/form-data">
+  <label for="profile_image_url">Upload Profile Image: </label>
+  <input type="file" id="profile_image_url"  name="profile_image_url">
+  <button type="submit" name="submit">Upload</button>
+</form>
+<?php
+if (is_post_request()) {
+  if (isset($_POST['submit'])) {
+    User::set_profile_image($id);
+  }
+}
+?>
 
+
+<!-- CODE TO ADD IN NAME HERE -->
 
 <?php if ($recipes) { ?>
 <h2>All Your Recipes</h2>
@@ -35,6 +50,7 @@ include(SHARED_PATH . '/user_header.php');
 <?php } else { ?>
 
   <h2>Looks like you haven't added anything yet!</h2>
+  <p><a href="<?php echo url_for('/active_record/recipes/new.php'); ?>">Add your first recipe.</a></p>
 
 <?php } ?>
 

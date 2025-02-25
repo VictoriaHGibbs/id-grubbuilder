@@ -43,10 +43,47 @@ class User extends DatabaseObject
         $user = self::find_by_id($id);
         return $user ? $user->username : null;
     }
-
+    
+    // Retrieves user profile image
     static public function get_user_image($id) {
       $user = self::find_by_id($id);
       return $user ? $user->profile_image_url : null;
+    }
+
+    // Set user profile image
+    static public function set_profile_image($id) {
+      $_POST['submit'];
+      $file = $_FILES['profile_image_url'];
+
+      $file_name = $file['name'];  // this is the 'picture.jpg'
+      $file_tmp_name = $file['tmp_name'];
+      $file_size = $file['size'];
+      $file_error = $file['error'];
+      $file_type = $file['type'];
+
+      $file_ext = explode('.', $file_name);  // array where values are 'picture' and 'jpg'
+      $file_actual_ext = strtolower(end($file_ext)); // this is just the 'jpg'
+
+      $allowed = array('jpg', 'jpeg', 'png', 'webp');
+
+      if (in_array($file_actual_ext, $allowed)) { // checking if uploaded extension is allowed
+        if ($file_error === 0) {
+          if ($file_size < 15000) { // max file size in kb
+            $file_name_new = "profile" . $id . "." . $file_actual_ext;
+            $file_destination = ('../../uploads/') . $file_name_new;
+            move_uploaded_file($file_tmp_name, $file_destination);
+            $sql = "UPDATE user SET profile_image_url='" . self::$database->escape_string($file_name_new) . "' WHERE id='" . $id . "';"; 
+            parent::$database->query($sql);
+            // redirect_to(url_for('/index.php'));
+          } else {
+            echo "Your file is too big!";
+          }
+        } else {
+          echo "There was an error uploading your file.";
+        }
+      } else {
+        echo "You cannot upload images of that type!";
+      }
     }
 
     // Active display
@@ -62,8 +99,6 @@ class User extends DatabaseObject
     protected function set_hashed_password()
     {
         $this->password_hash = password_hash($this->password, PASSWORD_BCRYPT);
-        $this->password = null;
-        $this->confirm_password = null;
     }
 
     // Verify password
@@ -99,17 +134,17 @@ class User extends DatabaseObject
         $this->errors[] = "Username not allowed. Try another.";
       }
   
-      if(is_blank($this->f_name)) {
-        $this->errors[] = "First name cannot be blank.";
-      } elseif (!has_length($this->f_name, array('min' => 2, 'max' => 50))) {
-        $this->errors[] = "First name must be between 2 and 50 characters.";
-      }
+      // if(is_blank($this->f_name)) {
+      //   $this->errors[] = "First name cannot be blank.";
+      // } elseif (!has_length($this->f_name, array('min' => 2, 'max' => 50))) {
+      //   $this->errors[] = "First name must be between 2 and 50 characters.";
+      // }
   
-      if(is_blank($this->l_name)) {
-        $this->errors[] = "Last name cannot be blank.";
-      } elseif (!has_length($this->l_name, array('min' => 2, 'max' => 50))) {
-        $this->errors[] = "Last name must be between 2 and 50 characters.";
-      }
+      // if(is_blank($this->l_name)) {
+      //   $this->errors[] = "Last name cannot be blank.";
+      // } elseif (!has_length($this->l_name, array('min' => 2, 'max' => 50))) {
+      //   $this->errors[] = "Last name must be between 2 and 50 characters.";
+      // }
   
       if(is_blank($this->email_address)) {
         $this->errors[] = "Email cannot be blank.";

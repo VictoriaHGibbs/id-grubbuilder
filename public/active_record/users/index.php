@@ -10,7 +10,7 @@ include(SHARED_PATH . '/user_header.php');
 
 <a href="<?php echo url_for('/active_record/users/new.php') ?>">Add User</a>
 
-<h2>All Users</h2>
+<h2>All Users / Admin Dashboard</h2>
 
 <table>
     <tr>
@@ -46,6 +46,8 @@ include(SHARED_PATH . '/user_header.php');
         </tr>
     <?php } ?>
 </table>
+
+<!-- ADD IN MEAL TYPE, DIET AND STYLE TABLES HERE FOR EDITING  -->
 
 
 <?php include(SHARED_PATH . '/user_footer.php'); ?>

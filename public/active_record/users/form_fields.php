@@ -8,18 +8,6 @@ if (!isset($user)) {
 <input type="text" id="username" name="user[username]" value="<?php echo h($user->username); ?>" required>
 <br>
 
-<label for="profile_image_url">Profile Image: </label>
-<input type="file" id="profile_image_url" name="user[profile_image_url]" accept="image/*">
-<br>
-
-<label for="f_name">First Name: </label>
-<input type="text" id="f_name" name="user[f_name]" value="<?php echo h($user->f_name); ?>" required>
-<br>
-
-<label for="l_name">Last Name: </label>
-<input type="text" id="l_name" name="user[l_name]" value="<?php echo h($user->l_name); ?>" required>
-<br>
-
 <label for="email_address">Email Address: </label>
 <input type="email" id="email_address" name="user[email_address]" value="<?php echo h($user->email_address); ?>" required>
 <br>

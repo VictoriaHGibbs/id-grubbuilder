@@ -18,7 +18,7 @@ if (isset($_POST['image'])) {
     if ($file_error === 0) {
       if ($file_size < 30000) { // max file size in kb
         $file_name_new =  "recipe" . "$recipe_id" . "$image_line_item" . "." . $file_actual_ext;
-        $file_destination = IMAGE_PATH . '/user' . '/' . $file_name_new;
+        $file_destination = url_for('/images/user/') . $file_name_new;
         move_uploaded_file($file_tmp_name, $file_destination);
       } else {
         echo "Your file is too big!";
