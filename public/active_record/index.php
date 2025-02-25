@@ -4,14 +4,14 @@ require_once('../../private/initialize.php');
 require_login();
 $id = $_SESSION['user_id'] ?? false;
 $recipes = Recipe::find_by_user_id($id);
-
+$profile_image = User::get_user_image($id);
 
 $page_title = 'User Menu/ Main Profile Page';
 
 include(SHARED_PATH . '/user_header.php');
 ?>
 
-
+<img src="<?php echo url_for('/images/user/') . "$profile_image"; ?>">
 
 
 <?php if ($recipes) { ?>

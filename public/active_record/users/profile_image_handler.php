@@ -1,5 +1,6 @@
 <?php
-// Cant be used for profile images 
+// need to make separate file handler, let users upload images after sign up
+$id = $_SESSION['user_id']; // get current logged in users id 
 
 if (isset($_POST['submit'])) {
   $file = $_FILES['user[profile_image_url]'];
@@ -18,9 +19,11 @@ if (isset($_POST['submit'])) {
   if (in_array($file_actual_ext, $allowed)) { // checking if uploaded extension is allowed
     if ($file_error === 0) {
       if ($file_size < 15000) { // max file size in kb
-        $file_name_new = uniqid('', true) . "." . $file_actual_ext;
-        $file_destination = IMAGE_PATH . '/user' . '/' . $file_name_new;
+        $file_name_new = "profile" . $id . "." . $file_actual_ext;
+        $file_destination = url_for('/images/user/') . $file_name_new;
         move_uploaded_file($file_tmp_name, $file_destination);
+        $sql = "UPDATE user SET profile_image_url='" . $file_name_new . "'"; // Work out a safe way to do this sql
+        $sql .= "WHERE id='" . $id . "';";
       } else {
         echo "Your file is too big!";
       }

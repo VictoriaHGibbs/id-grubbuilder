@@ -25,7 +25,7 @@ class User extends DatabaseObject
     public function __construct($args = [])
     {
         $this->username = $args['username'] ?? '';
-        $this->profile_image_url = $args['profile_image_url'] ?? NULL;
+        $this->profile_image_url = $args['profile_image_url'] ?? 'default_profile.webp';
         $this->f_name = $args['f_name'] ?? '';
         $this->l_name = $args['l_name'] ?? '';
         $this->email_address = $args['email_address'] ?? '';
@@ -42,6 +42,11 @@ class User extends DatabaseObject
     {
         $user = self::find_by_id($id);
         return $user ? $user->username : null;
+    }
+
+    static public function get_user_image($id) {
+      $user = self::find_by_id($id);
+      return $user ? $user->profile_image_url : null;
     }
 
     // Active display

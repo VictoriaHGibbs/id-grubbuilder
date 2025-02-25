@@ -75,7 +75,7 @@
     <label for="image">Upload: </label>
     <input type="file" id="image" name="image[0][image_url]" accept="image/*">
     <br>
-    <input type="button" value="Add Another Image" id="add-image">
+    <input type="submit" name="image" id="add-image" value="Add Another Image">
   </fieldset>
 
   <label for="youtube_url">YouTube Video Share Link:</label>
