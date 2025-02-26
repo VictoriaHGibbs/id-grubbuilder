@@ -48,6 +48,9 @@ class DatabaseObject
   static public function find_by_recipe_id($id) {
     $sql = "SELECT * FROM " . static::$table_name . " ";
     $sql .= "WHERE recipe_id='" . self::$database->escape_string($id) . "'";
+    if (static::$table_name == 'direction' || static::$table_name == 'ingredient' || static::$table_name == 'image') {
+      $sql .= "ORDER BY sort_order";
+    }
     $result = static::find_by_sql($sql);
     return $result;
   }

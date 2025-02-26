@@ -19,8 +19,8 @@ include(SHARED_PATH . '/user_header.php');
 <section>
     <section>
         <h2><?php echo h($recipe->recipe_title); ?></h2>
-        <p><?php echo h($recipe->user_info($recipe)) ?></p>
-        <!-- RECIPE IMAGES -->
+        <p><?php echo Recipe::user_info($recipe) ?></p>
+        <?php echo Recipe::images($recipe_id); ?>
         <!-- RATING  -->
         <p><?php echo h($recipe->description); ?></p>
         <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
@@ -31,7 +31,7 @@ include(SHARED_PATH . '/user_header.php');
         <!-- PRINTER FRIENDLY LINK -->
         <!-- ADD TO FAVORITES -->
         <!-- NUTRITION FACTS -->
-        <?php $link = h($recipe->get_video($recipe_id)); ?>
+        <?php $link = Recipe::get_video($recipe_id); ?>
 
 
     </section>

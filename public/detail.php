@@ -16,8 +16,8 @@ include(SHARED_PATH . '/public_header.php');
 <section>
   <section>
     <h2><?php echo h($recipe->recipe_title); ?></h2>
-    <p><?php echo h($recipe->user_info($recipe)) ?></p>
-    <!-- RECIPE IMAGES -->
+    <p><?php echo Recipe::user_info($recipe) ?></p>
+    <?php echo Recipe::images($id); ?>
     <!-- RATING  -->
     <p><?php echo h($recipe->description); ?></p>
     <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
@@ -27,7 +27,7 @@ include(SHARED_PATH . '/public_header.php');
     if ($recipe->yield > 1) echo "s"; ?> </p>
 
 
-    <?php $link = $recipe->get_video($id); ?>
+    <?php $link = Recipe::get_video($id); ?>
       
      
   </section>

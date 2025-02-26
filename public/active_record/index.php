@@ -37,10 +37,10 @@ if (is_post_request()) {
 <?php foreach($recipes as $recipe) { ?>
   <section class="recipe-card-preview">
     <a href="recipes/show.php?id=<?php echo $recipe->id; ?>">
+    <?php Recipe::first_image_only($recipe->id) ?>
     <h3><?php echo h($recipe->recipe_title); ?></h3>
     <p><?php echo h($recipe->description); ?></p>
     <p><?php echo find_value_from_lookup(h($recipe->visibility_id), 'visibility'); ?></p>
-    
     </a>
   </section>
 

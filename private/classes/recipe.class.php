@@ -71,6 +71,36 @@ class Recipe extends DatabaseObject {
     echo "</ol>";
   }
 
+// Retrieve associated images
+  static public function get_images($recipe_id) {
+    return Image::find_by_recipe_id($recipe_id);
+  }
+
+// Display images
+  static public function images($recipe_id) {
+    $images = Recipe::get_images($recipe_id);
+    echo "<div id=\"image-card\">";
+    foreach ($images as $image) {
+      echo "<img src=";
+      echo (IMAGE_PATH . h($image->image_url));
+      echo ">";
+    };
+    echo "</div>";
+  }
+
+// Display first image by sort_order
+static public function first_image_only($recipe_id) {
+  $images = Recipe::get_images($recipe_id);
+  if ($images){
+  $image = $images[0];
+  echo "<div id=\"image-card\">";
+  echo "<img src=";
+  echo (IMAGE_PATH . h($image->image_url));
+  echo ">";
+  echo "</div>";
+  }
+}
+
 // Retrieve user id 
   public function get_user_id() {
     return (int) $this->user_id;
@@ -92,7 +122,8 @@ class Recipe extends DatabaseObject {
     return parent::create();
   }
 
-  public function get_video($recipe_id) {
+  // Retrieves the stored youtube video link, puts it in the iframe and then displays it.
+  static public function get_video($recipe_id) {
     $sql = "SELECT youtube_url FROM video WHERE recipe_id='" . h($recipe_id) . "'";
     $result = parent::$database->query($sql);
 
