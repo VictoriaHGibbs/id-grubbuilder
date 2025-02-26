@@ -31,12 +31,12 @@ class Recipe extends DatabaseObject {
     $this->yield = $args['yield'] ?? '';
     $this->measurement_id = $args['measurement_id'] ?? '';
     $this->servings = $args['servings'] ?? '';
-    $this->visibility_id = $args['visibility_id'] ?? '';
+    $this->visibility_id = $args['visibility_id'] ?? 1;
   }
 
 // Display recipe info, TESTING PURPOSES
   public function display() {
-    return ("Recipe ID: " . h($this->id) . "<br>" . h($this->recipe_title) . "<br>" . h($this->description) . "<br>User ID:" . h($this->user_id) . "<br>");
+    return (h($this->recipe_title) . "<br>" . h($this->description) . "<br>");
   }
 
 // Retrieve associated ingredients

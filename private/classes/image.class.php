@@ -15,7 +15,7 @@ class Image extends DatabaseObject {
     $this->recipe_id = $args['recipe_id'] ?? '';
     $this->image_line_item = $args['image_line_item'] ?? '';
     $this->image_url = $args['image_url'] ?? '';
-    $this->sort_order = $args['sort_order'] ?? 0;
+    $this->sort_order = $args['sort_order'] ?? $this->image_line_item;
   }
 
   protected function validate()

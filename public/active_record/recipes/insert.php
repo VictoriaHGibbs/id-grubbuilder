@@ -35,13 +35,51 @@ try {
   }
 
 // Check if image
-  if (has_presence($_POST['image'])) {
+  if (!empty($_FILES['image']['name'][0])) {
 // Image Array Loop
-    foreach ($_POST['image'] as $index => $image_data) {
-        $image_data['recipe_id'] = $recipe_id;
-        $image_data['image_line_item'] = $index + 1;
-        $image = new Image($image_data);
-        $image->save();
+    foreach ($_FILES['image']['name'] as $index => $file_name) {
+      if (empty($file_name)) continue;
+        $recipe_id = $recipe_id ?? 0;
+        
+        $file_tmp_name = $_FILES['image']['tmp_name'][$index];
+        $file_size = $_FILES['image']['size'][$index];
+        $file_error = $_FILES['image']['error'][$index];
+
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+        // $file_actual_ext = ($file_ext);
+        $allowed = array('jpg', 'jpeg', 'png', 'webp');
+
+        if (in_array($file_ext, $allowed)) { 
+          if ($file_error === 0) {
+            if ($file_size < 2000000) {
+              $file_name_new =  "recipe_" . "$recipe_id" . "_" . "$index" . "." . $file_ext;
+              $file_destination = ('../../../uploads/') . $file_name_new;
+
+              if (move_uploaded_file($file_tmp_name, $file_destination)) {
+                $image_data = [
+                  'recipe_id' => $recipe_id,
+                  'image_line_item' => $index + 1,
+                  'image_url' => $file_name_new
+                ];
+
+                $image = new Image($image_data);
+                $image->save();
+
+              } else {
+                echo "Failed to move uploaded file.";
+              }
+            } else {
+              echo "Your file is too big!";
+            }
+          } else {
+            echo "There was an error uploading your file.";
+          }
+        } else {
+          echo "You cannot upload images of that type!";
+        }
+
+        
+        
     }
   }
 

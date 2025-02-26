@@ -87,7 +87,7 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     <legend>Images</legend>
     <div id="image-line">
       <label for="image">Upload: </label>
-      <input type="file" id="image" name="image[0][image_url]" accept="image/*">
+      <input type="file" id="image" name="image[]" accept="image/*">
       <br>
     </div>
     <input type="submit" name="image" id="add-image" value="Add Another Image">

@@ -58,8 +58,10 @@ function addAnotherDirection(event) {
   let newDirection = document.createElement("div");
   newDirection.classList.add("direction");
   newDirection.innerHTML = `
-  <label for="direction_text">Enter one at a time: </label>
+      <label for="direction_text">Enter one at a time: </label>
       <input type="text" id="direction_text" name="direction[${directionIndex}][direction_text]" >
+
+      <button type="button" class="remove">❌</button>
       <br>
   `;
   
@@ -75,8 +77,10 @@ function addAnotherImage(event) {
   let newImage = document.createElement("div");
   newImage.classList.add("image");
   newImage.innerHTML = `
-  <label for="image">Upload: </label>
-      <input type="file" id="image" name="image[${imageIndex}][image_url]" accept="image/*">
+      <label for="image">Upload: </label>
+      <input type="file" id="image" name="image[]" accept="image/*">
+      
+      <button type="button" class="remove">❌</button>
       <br>
   `;
   

@@ -15,7 +15,7 @@ class Rating extends DatabaseObject {
     $this->recipe_id = $args['recipe_id'] ?? '';
     $this->rater_user_id = $args['rater_user_id'] ?? '';
     $this->rating_level = $args['rating_level'] ?? '';
-    $this->created_at = $args['created_at'] ?? '';
+    $this->created_at = $args['created_at'] ?? date('Y-m-d H:i:s');
   }
 
   protected function validate()
