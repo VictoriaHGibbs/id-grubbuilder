@@ -14,7 +14,7 @@ class Image extends DatabaseObject {
   public function __construct($args = []) {
     $this->recipe_id = $args['recipe_id'] ?? '';
     $this->image_line_item = $args['image_line_item'] ?? '';
-    $this->image_url = $args['image_url'] ?? '';
+    $this->image_url = $args['image_url'] ?? 'default_recipe1.webp';
     $this->sort_order = $args['sort_order'] ?? $this->image_line_item;
   }
 

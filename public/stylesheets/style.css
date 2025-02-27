@@ -1,3 +1,14 @@
+/* @import url('');  GOOGLE FONTS*/
+
+:root {
+  --red: #d42828ff;
+  --yellow: #f6b22bff;
+  --brown: #3b1f13ff;
+  --green: #79c445ff;
+  --black: #212123ff;
+}
+ 
+
 * {
   box-sizing: border-box;
 }
