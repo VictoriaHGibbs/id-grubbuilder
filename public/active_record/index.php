@@ -30,7 +30,8 @@ if (is_post_request()) {
 <!-- CODE TO ADD IN NAME HERE -->
 
 <?php if ($recipes) { ?>
-<h2>All Your Recipes</h2>
+<h2>Your Recipes</h2>
+
 
 <section class="card-preview-container">
 

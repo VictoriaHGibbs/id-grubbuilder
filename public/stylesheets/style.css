@@ -1,42 +1,52 @@
 /* @import url('');  GOOGLE FONTS*/
 
 :root {
-  --red: #d42828ff;
-  --yellow: #f6b22bff;
-  --brown: #3b1f13ff;
-  --green: #79c445ff;
-  --black: #212123ff;
+  --red: #d42828;
+  --yellow: #f6b22b;
+  --brown: #3b1f13;
+  --green: #79c445;
+  --black: #212123;
 }
  
-
 * {
   box-sizing: border-box;
 }
 
 html {
-  font: 16px/1.5 'PT Sans', sans-serif;
+  font: 17px/1.5 'PT Sans', Verdana, Geneva, sans-serif;
 }
 
 body {
-  background-color: #e1d4c2;
-  margin: 3rem;
+  background-color: #ede8e2;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
 img {
   height: auto;
   max-width: 100%;
 }
-
 /********************* Header **********************/
 
-/* header nav {
+header {
+  background: var(--yellow);
+}
 
-} */
+h1 a {
+  color: var(--red);
+  font-size: 2.5rem;
+  text-decoration: none;
+}
 
 #header-top {
   align-items: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 #header-top form {
@@ -44,11 +54,15 @@ img {
   padding: 1rem;
 }
 
+#header-lower {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
 #header-lower nav ul {
-  justify-items: center;
+  justify-content: space-between;
   display: grid;
   grid-template-columns: repeat(6, auto);
-  
   padding: .75rem 0;
 }
 
@@ -57,10 +71,14 @@ header li {
 }
 
 header nav a {
+  background: var(--green);
   border: solid #333 1px;
+  border-radius: 30px;
   padding: .75rem 2rem;
   text-decoration: none;
 }
+
+/**************** Cards ***********************/
 
 .card-preview-container {
   border: solid green 3px;
@@ -84,7 +102,7 @@ table,
 th,
 tr,
 td {
-  border: solid #333 1px;
+  border: solid var(--black) 1px;
   border-collapse: collapse;
 }
 
@@ -95,16 +113,13 @@ td {
 }
 
 textarea {
-  border: solid red 1px;
-  height: 150px;
+  border: solid var(--black) 1px;
+  height: 250px;
   width: 350px;
 }
 
-h1,
-ul,
 form {
   text-transform: capitalize;
-  border: solid rgb(111, 0, 255) 1px;
 }
 
 

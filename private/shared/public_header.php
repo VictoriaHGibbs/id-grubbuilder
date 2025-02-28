@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grub Builder <?php if (isset($page_title)) {echo '- ' . htmlspecialchars($page_title);} ?></title>
+  <title>Grub Builder <?php if (isset($page_title)) {echo '- ' . h($page_title);} ?></title>
   <link rel="stylesheet" href="<?php echo url_for('/stylesheets/style.css'); ?>">
 </head>
 
@@ -15,7 +15,6 @@
     <section id="header-top">
       <h1><a href="<?php echo url_for('/index.php'); ?>">Grub Builder</a></h1>
       <form action="<?php echo (SHARED_PATH . '/forms/search.php'); ?>" method="post" role="form">
-        <!-- <label for="search"></label> -->
         <input type="text" id="search" name="search">
         <input id="search-submit" type="submit" value="Search">
       </form>

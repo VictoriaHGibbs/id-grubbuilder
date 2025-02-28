@@ -3,7 +3,7 @@ require_once('../../../private/initialize.php');
 
 $users = User::find_all();
 
-$page_title = 'All Users';
+$page_title = 'Admin Dashboard';
 
 include(SHARED_PATH . '/user_header.php');
 ?>
