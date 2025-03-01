@@ -73,12 +73,16 @@ class Recipe extends DatabaseObject {
 
 // Retrieve associated images
   static public function get_images($recipe_id) {
-    return Image::find_by_recipe_id($recipe_id);
+    $result = Image::find_by_recipe_id($recipe_id);
+    if ($result) {
+      return $result;
+    }
   }
 
 // Display images
   static public function images($recipe_id) {
     $images = Recipe::get_images($recipe_id);
+    if ($images) {
     echo "<div id=\"image-card\">";
     foreach ($images as $image) {
       echo "<img src=";
@@ -86,6 +90,7 @@ class Recipe extends DatabaseObject {
       echo ">";
     };
     echo "</div>";
+    }
   }
 
 // Display first image by sort_order

@@ -9,9 +9,8 @@ include(SHARED_PATH . '/public_header.php');
 
 <?php
 
-$id = 56;
+$id = 2;
 $recipe = Recipe::find_by_id($id);
-echo $recipe->display();
 echo Recipe::user_info($recipe);
 echo Recipe::images($id);
 echo Recipe::ingredients($id);
@@ -27,7 +26,7 @@ $recipes = Recipe::find_all();
     <a href="detail.php?id=<?php echo $recipe->id; ?>">
     <?php Recipe::first_image_only($recipe->id) ?>
     <h3><?php echo h($recipe->recipe_title); ?></h3>
-    <p><?php echo h($recipe->user_info($recipe)) ?></p>
+    <p><?php echo ($recipe->user_info($recipe)) ?></p>
     <p><?php echo h($recipe->description); ?></p>
     </a>
   </section>

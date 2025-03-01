@@ -69,7 +69,7 @@ class User extends DatabaseObject
         if ($file_error === 0) {
           if ($file_size < 15000) { // max file size in kb
             $file_name_new = "profile_" . $id . "." . $file_actual_ext;
-            $file_destination = (IMAGE_PATH . $file_name_new);
+            $file_destination = ('../../uploads/') . $file_name_new;
             move_uploaded_file($file_tmp_name, $file_destination);
             $sql = "UPDATE user SET profile_image_url='" . self::$database->escape_string($file_name_new) . "' WHERE id='" . $id . "';"; 
             parent::$database->query($sql);

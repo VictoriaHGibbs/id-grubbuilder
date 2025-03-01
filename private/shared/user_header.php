@@ -10,14 +10,13 @@ $id = $_SESSION['user_id'] ?? false;
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grub Builder <?php if (isset($page_title)) {echo '- ' . h($page_title);} ?></title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
   <link rel="stylesheet" href="<?php echo url_for('/stylesheets/style.css'); ?>">
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script> -->
-  <!-- <script src="<?php //echo url_for('/js/jquery-3.7.1.js'); ?>"></script> -->
-  <!-- <script src="<?php //echo url_for('/js/jquery.star_rating.js'); ?>"></script> -->
+  <script src="<?php echo (JS_PATH . 'jquery-3.7.1.js'); ?>"></script>
+  <script src="<?php echo (JS_PATH . 'jquery.star_rating.js'); ?>"></script>
   <?php
     if ($page_title == 'Create Recipe') { ?>
-      <script src="<?php echo url_for('/js/recipe_items.js'); ?>" defer></script>
+      <script src="<?php echo (JS_PATH . 'recipe_items.js'); ?>" defer></script>
   <?php } ?>
   
 </head>

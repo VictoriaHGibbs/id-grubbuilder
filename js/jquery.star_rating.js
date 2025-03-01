@@ -1,5 +1,5 @@
 'user strict';
-
+$(function() {
 var starRating = (function() {
 
   var starRating = function(args) {
@@ -23,22 +23,35 @@ var starRating = (function() {
         self.onRate = args.onRate;
       }
 
-      jQuery(`.` + self.starClass).on(`mouseover`, function() {
-        var percentWidth = 20 * jQuery(this).data(`stars`);
-        $(`.sr-star-bar` + self.containerId).css(`width`, percentWidth + `%`);
+      $( '.' + self.starClass ).on( 'mouseover', function() { // mouseover a star
+        // determine the percent width on mouseover of any star
+        var percentWidth = 20 * $( this ).data( 'stars' );
+
+        // set the percent width  of the star bar to the new mouseover width
+        $( '.sr-star-bar' + self.containerId ).css( 'width', percentWidth + '%' );
       });
 
-      jQuery(`.` + self.starClass).on(`mouseout`, function() {
-        jQuery(`.sr-star-bar` + self.containerID).css(`width`, self.ratingPercent);
+      $( '.' + self.starClass ).on( 'mouseout', function() { // mouseout of a star
+        // return the star rating system percent to its previous percent on mouse out of any star
+        $( '.sr-star-bar' + self.containerId ).css( 'width', self.ratingPercent );
       });
 
-      jQuery(`.` + self.starClass).on(`click`, function() {
-        self.newRating = jQuery(this).data(`stars`);
-        var percentWidth = 20 * jQuery(this).data(`stars`);
-        self.ratingPercent = percentWidth + `%`;
-        $(`.sr-star-bar` + self.containerID).css(`width`, percentWidth + `%`);
+      $( '.' + self.starClass ).on( 'click', function() { // click on a star
+        // ner rating set to the number of stars the user clicked on
+        self.newRating = $( this ).data( 'stars' );
+
+        // determine the percent width based on the stars clicked on
+        var percentWidth = 20 * $( this ).data( 'stars' );
+
+        // new rating percent is the number of stars clicked on
+        self.ratingPercent = percentWidth + '%';
+
+        // set new star bar percent width
+        $( '.sr-star-bar' + self.containerId ).css( 'width', percentWidth + '%' );
+
+        // run the on rate function passed in when the object was created
         self.onRate();
-      });
+      } );	
 
     }
   };
@@ -83,3 +96,4 @@ $( function() {
     }
   } );
 } );
+});
