@@ -111,14 +111,16 @@ static public function average_rating($recipe_id) {
   $ratings = Recipe::get_ratings($recipe_id);
   $rows = 0;
   $sum = 0;
-  if (has_presence($rows)) {
+  if ($ratings) {
     foreach ($ratings as $rating) {
       $sum += h($rating->rating_level);
       $rows += 1;
     }
+    $average = $sum / $rows;
+    echo "<p>Average Rating: " . $average . "/5</p>";
+  } else {
+    echo  "<p>No ratings yet!</p>";
   }
-  $average = $sum / $rows;
-  echo "<p>Average Rating: " . $average . "/5</p>";
 }
 
 // Retrieve user id 
