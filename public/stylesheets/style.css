@@ -14,6 +14,7 @@
 
 html {
   font: 17px/1.5 'PT Sans', Verdana, Geneva, sans-serif;
+  position: relative;
 }
 
 body {
@@ -33,6 +34,8 @@ img {
 
 header {
   background: var(--yellow);
+  position: sticky;
+  top: 0;
 }
 
 h1 a {

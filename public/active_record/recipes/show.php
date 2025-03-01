@@ -21,7 +21,7 @@ include(SHARED_PATH . '/user_header.php');
         <h2><?php echo h($recipe->recipe_title); ?></h2>
         <p><?php echo Recipe::user_info($recipe) ?></p>
         <?php echo Recipe::images($recipe_id); ?>
-        <!-- RATING  -->
+        <div id="star_rating"></div>
         <p><?php echo h($recipe->description); ?></p>
         <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
         <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
