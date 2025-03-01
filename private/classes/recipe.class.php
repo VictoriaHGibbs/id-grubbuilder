@@ -89,16 +89,36 @@ class Recipe extends DatabaseObject {
   }
 
 // Display first image by sort_order
-static public function first_image_only($recipe_id) {
-  $images = Recipe::get_images($recipe_id);
-  if ($images){
-  $image = $images[0];
-  echo "<div id=\"image-card\">";
-  echo "<img src=";
-  echo (IMAGE_PATH . h($image->image_url));
-  echo ">";
-  echo "</div>";
+  static public function first_image_only($recipe_id) {
+    $images = Recipe::get_images($recipe_id);
+    if ($images){
+    $image = $images[0];
+    echo "<div id=\"image-card\">";
+    echo "<img src=";
+    echo (IMAGE_PATH . h($image->image_url));
+    echo ">";
+    echo "</div>";
+    }
   }
+
+// Retrieve associated ratings
+  static public function get_ratings($recipe_id) {
+    return Rating::find_by_recipe_id($recipe_id);
+  }
+
+// Average and display ratings
+static public function average_rating($recipe_id) {
+  $ratings = Recipe::get_ratings($recipe_id);
+  $rows = 0;
+  $sum = 0;
+  if (has_presence($rows)) {
+    foreach ($ratings as $rating) {
+      $sum += h($rating->rating_level);
+      $rows += 1;
+    }
+  }
+  $average = $sum / $rows;
+  echo "<p>Average Rating: " . $average . "/5</p>";
 }
 
 // Retrieve user id 
