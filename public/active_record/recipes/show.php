@@ -22,17 +22,20 @@ include(SHARED_PATH . '/user_header.php');
     <p><?php echo Recipe::user_info($recipe) ?></p>
     <?php echo Recipe::images($recipe_id); ?>
     <?php echo Recipe::average_rating($recipe_id); ?>
-    <!-- option to leave rating if recipe user_id != session user_id -->
-    
-<!-- ---------------- Rating form starts here ---------------------------------- -->
-    <form action="<?php echo url_for('/active_record/recipes/submit_rating.php'); ?>" method="post">
-      
-      <?php include('../recipes/rating_form_fields.php'); ?>
+    <!-- option to leave rating if it is not their own recipe and they haven't already left a rating -->
+    <?php $rating_result = Recipe::check_if_user_submitted_rating($recipe_id, $id) ?>
+    <?php if ($recipe->user_id == $id ) { ?>
+      <p>This recipe is yours!</p>
 
-      <input type="submit" value="Submit Rating">
-    </form>
+    <?php } elseif ($rating_result) { ?>
+      <p>Thanks for rating this recipe <?php echo ($rating_result->rating_level); ?> <i class="fa-solid fa-drumstick-bite"></i>!</p>
+    <?php } else { ?>
+      <form action="<?php echo url_for('/active_record/recipes/submit_rating.php'); ?>" method="post">
+        <?php include('../recipes/rating_form_fields.php'); ?>
+        <input type="submit" value="Submit Rating">
+      </form>
+    <?php } ?>
 
-<!-- ---------------------------------------------------------------------------------- -->
     <p><?php echo h($recipe->description); ?></p>
     <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
     <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>

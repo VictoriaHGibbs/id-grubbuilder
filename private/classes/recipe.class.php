@@ -122,15 +122,22 @@ class Recipe extends DatabaseObject {
       $rows += 1;
     }
     $average = $sum / $rows;
-    echo "<p>Average Rating: " . $average . "/5</p>";
+    echo "<p>Average Rating: " . $average . "/5 <i class=\"fa-solid fa-drumstick-bite\"></i></p>";
   } else {
     echo  "<p>No ratings yet!</p>";
   }
 }
 
-// Allows the user to rate a recipe that is not their own and save it to the database
-  static public function save_rating($recipe_id) {
-    
+// Checks to see if the current user has already rated the recipe
+  static public function check_if_user_submitted_rating($recipe_id, $user_id) {
+    $ratings = Recipe::get_ratings($recipe_id);
+    if ($ratings) {
+      foreach ($ratings as $rating) {
+        if ($rating->rater_user_id == $user_id) {
+          return $rating;
+        }
+      }
+    }
   }
 
 // Retrieve user id 

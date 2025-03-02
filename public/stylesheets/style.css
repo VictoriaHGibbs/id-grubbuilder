@@ -154,6 +154,7 @@ input:not(:checked) ~ label:hover ~ label {
   cursor: pointer;
 }
 
+i,
 input:checked ~ label {
   color: var(--yellow);
 }
