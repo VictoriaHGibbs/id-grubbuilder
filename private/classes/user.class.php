@@ -189,15 +189,4 @@ class User extends DatabaseObject
       }
     }
 
-    // Check if a username exists
-    //   static public function username_exists($username) {
-    //     $sql = "SELECT COUNT(*) FROM " . static::$table_name . " WHERE username = ?";
-    //     $stmt = self::$database->prepare($sql);
-    //     $stmt->bind_param("s", $username);
-    //     $stmt->execute();
-    //     $stmt->bind_result($count);
-    //     $stmt->fetch();
-    //     return $count > 0;
-    //   }
-
 }

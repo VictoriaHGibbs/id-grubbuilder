@@ -5,7 +5,7 @@ var starRating = (function() {
   var starRating = function(args) {
     var self = this;
 
-    self.container = jQuery('#' + args.containerID);
+    self.container = $('#' + args.containerID);
     self.containerID = args.containerID;
     self.starClass = `sr-star` + self.containerID;
     self.starWidth = args.starWidth;

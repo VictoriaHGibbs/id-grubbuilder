@@ -17,36 +17,45 @@ include(SHARED_PATH . '/user_header.php');
 </ul>
 
 <section>
-    <section>
-        <h2><?php echo h($recipe->recipe_title); ?></h2>
-        <p><?php echo Recipe::user_info($recipe) ?></p>
-        <?php echo Recipe::images($recipe_id); ?>
-        <?php echo Recipe::average_rating($recipe_id); ?>
-        <div id="star_rating"></div>
-        <!-- option to leave rating if recipe user_id != session user_id -->
-        <p><?php echo h($recipe->description); ?></p>
-        <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
-        <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
-        <p>Servings: <?php echo h($recipe->servings); ?></p>
-        <p>Yield: <?php echo h(abs($recipe->yield)) . " " . h($recipe->get_measurement_name($recipe));
-                    if ($recipe->yield > 1) echo "s"; ?> </p>
-        <!-- PRINTER FRIENDLY LINK -->
-        <!-- ADD TO FAVORITES -->
-        <!-- NUTRITION FACTS -->
-        <?php $link = Recipe::get_video($recipe_id); ?>
+  <section>
+    <h2><?php echo h($recipe->recipe_title); ?></h2>
+    <p><?php echo Recipe::user_info($recipe) ?></p>
+    <?php echo Recipe::images($recipe_id); ?>
+    <?php echo Recipe::average_rating($recipe_id); ?>
+    <!-- option to leave rating if recipe user_id != session user_id -->
+    
+<!-- ---------------- Rating form starts here ---------------------------------- -->
+    <form action="<?php echo url_for('/active_record/recipes/submit_rating.php'); ?>" method="post">
+      
+      <?php include('../recipes/rating_form_fields.php'); ?>
+
+      <input type="submit" value="Submit Rating">
+    </form>
+
+<!-- ---------------------------------------------------------------------------------- -->
+    <p><?php echo h($recipe->description); ?></p>
+    <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
+    <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
+    <p>Servings: <?php echo h($recipe->servings); ?></p>
+    <p>Yield: <?php echo h(abs($recipe->yield)) . " " . h($recipe->get_measurement_name($recipe));
+                if ($recipe->yield > 1) echo "s"; ?> </p>
+    <!-- PRINTER FRIENDLY LINK -->
+    <!-- ADD TO FAVORITES -->
+    <!-- NUTRITION FACTS -->
+    <?php $link = Recipe::get_video($recipe_id); ?>
 
 
-    </section>
+  </section>
 
-    <section>
-        <h3>Ingredients</h3>
-        <?php echo Recipe::ingredients($recipe_id); ?>
-    </section>
+  <section>
+    <h3>Ingredients</h3>
+    <?php echo Recipe::ingredients($recipe_id); ?>
+  </section>
 
-    <section>
-        <h3>Directions</h3>
-        <?php echo Recipe::directions($recipe_id); ?>
-    </section>
+  <section>
+    <h3>Directions</h3>
+    <?php echo Recipe::directions($recipe_id); ?>
+  </section>
 
 </section>
 

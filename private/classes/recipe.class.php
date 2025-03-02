@@ -112,7 +112,7 @@ class Recipe extends DatabaseObject {
   }
 
 // Average and display ratings
-static public function average_rating($recipe_id) {
+  static public function average_rating($recipe_id) {
   $ratings = Recipe::get_ratings($recipe_id);
   $rows = 0;
   $sum = 0;
@@ -127,6 +127,11 @@ static public function average_rating($recipe_id) {
     echo  "<p>No ratings yet!</p>";
   }
 }
+
+// Allows the user to rate a recipe that is not their own and save it to the database
+  static public function save_rating($recipe_id) {
+    
+  }
 
 // Retrieve user id 
   public function get_user_id() {
