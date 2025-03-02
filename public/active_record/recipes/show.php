@@ -45,7 +45,7 @@ include(SHARED_PATH . '/user_header.php');
     <!-- PRINTER FRIENDLY LINK -->
     <!-- ADD TO FAVORITES -->
     <!-- NUTRITION FACTS -->
-    <?php $link = Recipe::get_video($recipe_id); ?>
+    <?php Recipe::video($recipe_id); ?>
 
 
   </section>

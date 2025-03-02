@@ -163,15 +163,18 @@ class Recipe extends DatabaseObject {
 
   // Retrieves the stored youtube video link, puts it in the iframe and then displays it.
   static public function get_video($recipe_id) {
-    $sql = "SELECT youtube_url FROM video WHERE recipe_id='" . h($recipe_id) . "'";
-    $result = parent::$database->query($sql);
+    $result =  Video::find_by_recipe_id($recipe_id);
+    if ($result) {
+      return $result;
+    }
+  }
 
-    if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-      $link = h($row["youtube_url"]);
-      if ($link) { ?>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo h($link); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-     <?php }
+  static public function video($recipe_id) {
+    $videos = Recipe::get_video($recipe_id);
+    if ($videos) {
+      foreach ($videos as $video) { ?>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo h($video->youtube_url); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <?php }
     }
   }
 

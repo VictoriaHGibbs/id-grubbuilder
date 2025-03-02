@@ -27,7 +27,7 @@ include(SHARED_PATH . '/public_header.php');
     if ($recipe->yield > 1) echo "s"; ?> </p>
 
 
-    <?php $link = Recipe::get_video($id); ?>
+    <?php $link = Recipe::video($id); ?>
       
      
   </section>
