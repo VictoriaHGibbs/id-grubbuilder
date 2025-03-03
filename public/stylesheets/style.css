@@ -1,11 +1,12 @@
 /* @import url('');  GOOGLE FONTS*/
 
 :root {
-  --red: #d42828;
-  --yellow: #f6b22b;
+  --red: #9b0404;
+  --yellow: #f5e1b7;
   --brown: #3b1f13;
-  --green: #79c445;
+  --green: #c4f4a2;
   --black: #212123;
+  --grey: #4a4a4a;
 }
  
 * {
@@ -14,11 +15,14 @@
 
 html {
   font: 17px/1.5 'PT Sans', Verdana, Geneva, sans-serif;
-  position: relative;
 }
 
 body {
   background-color: #ede8e2;
+  margin: 0;
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  position: relative;
 }
 
 main {
@@ -27,10 +31,16 @@ main {
 }
 
 img {
+  border: solid 1px var(--brown);
+  border-radius: 5px;
   height: auto;
   max-width: 100%;
 }
-/********************* Header **********************/
+
+a {
+  text-decoration: none;
+}
+/********************* Header and Footer **********************/
 
 header {
   background: var(--yellow);
@@ -38,13 +48,24 @@ header {
   top: 0;
 }
 
-h1 a {
-  color: var(--red);
-  font-size: 2.5rem;
-  text-decoration: none;
+footer {
+  background: var(--yellow);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
 }
 
-#header-top {
+h1 a,
+footer h2 a {
+  color: var(--red);
+  font-size: 2.5rem;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#header-top,
+footer section {
   align-items: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -63,41 +84,108 @@ h1 a {
 }
 
 #header-lower nav ul {
-  justify-content: space-between;
   display: grid;
   grid-template-columns: repeat(6, auto);
+  justify-content: space-between;
   padding: .75rem 0;
 }
 
-header li {
-  list-style: none;
-}
-
-header nav a {
+#header-lower nav a {
   background: var(--green);
   border: solid #333 1px;
   border-radius: 30px;
-  padding: .75rem 2rem;
-  text-decoration: none;
+  box-shadow: 2px 2px 5px var(--grey);
+  color: var(--black);
+  padding: .5rem 2rem;
 }
 
-/**************** Cards ***********************/
+#header-lower nav a:hover {
+  background: var(--black);
+  box-shadow: 5px 5px 10px var(--red);
+  color: var(--green);
+}
+
+header li,
+footer li {
+  list-style: none;
+}
+
+#social,
+footer h2 {
+  justify-self: center;
+}
+
+#social li {
+  display: inline;
+  font-size: 25px;
+}
+
+#social a,
+#footer-nav a {
+  color: var(--black);
+}
+
+/**************** Recipe Cards ***********************/
 
 .card-preview-container {
-  border: solid green 3px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
 }
 
 .recipe-card-preview {
-  border: solid blue 1px;
+  border: solid var(--black) 3px;
+  border-radius: 20px;
   padding: 2rem;
 }
 
 .recipe-card-preview a {
-  color: #222;
-  text-decoration: none;
+  color: var(--black);
 }
+
+/******************* Rating System ******************/
+
+.rating-container {
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rating-container .star-widget input {
+  display: none;
+}
+
+.star-widget label {
+  color: #444;
+  font-size: 30px;
+  float: right;
+  padding: 5px;
+  transition: all .2s ease;
+}
+
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label {
+  color: var(--yellow);
+  cursor: pointer;
+}
+
+i,
+input:checked ~ label {
+  color: var(--yellow);
+}
+
+/******************* Forms ******************/
+
+
+
+
+
+
+
+
+
+
 
 /******************* TEMP STYLING ******************/
 
@@ -123,44 +211,4 @@ textarea {
 
 /* form {
   text-transform: capitalize;
-} */
-
-
-/******************* RATING SYSTEM STYLING ******************/
-
-.rating-container {
-  display: flex;
-  /* align-content: center; */
-  align-items: start;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.rating-container .star-widget input {
-  display: none;
-}
-
-.star-widget label {
-  font-size: 30px;
-  color: #444;
-  padding: 5px;
-  float: right;
-  transition: all .2s ease;
-}
-
-input:not(:checked) ~ label:hover,
-input:not(:checked) ~ label:hover ~ label {
-  color: var(--yellow);
-  cursor: pointer;
-}
-
-i,
-input:checked ~ label {
-  color: var(--yellow);
-}
-
-/* this just gives a glow when 5 is selected
-input#rate-5:checked ~ label {
-  color: var(--yellow);
-  text-shadow: 0 0 20px #952;
 } */

@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grub Builder <?php if (isset($page_title)) {echo '- ' . h($page_title);} ?></title>
-  <link rel="stylesheet" href="<?php echo url_for('/stylesheets/style.css'); ?>">
   <script src="https://kit.fontawesome.com/11d6778b2f.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="<?php echo url_for('/stylesheets/style.css'); ?>">
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script> -->
   <!-- <script src="<?php //echo url_for('/js/jquery-3.7.1.js'); ?>"></script> -->
   <!-- <script src="<?php //echo url_for('/js/jquery.star_rating.js'); ?>"></script> -->

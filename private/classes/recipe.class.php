@@ -161,7 +161,7 @@ class Recipe extends DatabaseObject {
     return parent::create();
   }
 
-  // Retrieves the stored youtube video link, puts it in the iframe and then displays it.
+  // Retrieves the stored youtube video object
   static public function get_video($recipe_id) {
     $result =  Video::find_by_recipe_id($recipe_id);
     if ($result) {
@@ -169,6 +169,7 @@ class Recipe extends DatabaseObject {
     }
   }
 
+  // Displays the link by putting it in the iframe
   static public function video($recipe_id) {
     $videos = Recipe::get_video($recipe_id);
     if ($videos) {

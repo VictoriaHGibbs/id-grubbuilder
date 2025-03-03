@@ -1,7 +1,7 @@
 </main>
 
 <footer role="contentinfo">
-  <p>Grub Builder</p>
+<h2><a href="#">Grub Builder</a></h2>
 
   <nav role="navigation">
     <ul>
@@ -14,9 +14,12 @@
     </ul>
   </nav>
 
-  <ul>
-    <p>SOCIAL MEDIA ICONS GO HERE</p>
+  <ul id="socials">
+    <li> <a href="https://github.com/VictoriaHGibbs" target="_blank" class="fa-brands fa-github"></a></li>
+    <li> <a href="https://www.linkedin.com/in/victoriahgibbs/" target="_blank" class="fa-brands fa-linkedin"></a></li>
+    <li> <a href="https://discordapp.com/users/251824756049838080" target="_blank" class="fa-brands fa-discord"></a></li>
   </ul>
+
   <?php include(SHARED_PATH . '/copyright_disclaimer.php'); ?>
 </footer>
 
