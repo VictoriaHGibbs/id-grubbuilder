@@ -12,7 +12,7 @@ include(SHARED_PATH . '/user_header.php');
 ?>
 
 <img src="<?php echo ('../../uploads/') . "$profile_image" . "?" . mt_rand() ; ?>">
-<!-- CODE TO UPLOAD AN IMAGE HERE -->
+
 <form action="index.php" method="post" enctype="multipart/form-data">
   <label for="profile_image_url">Upload Profile Image: </label>
   <input type="file" id="profile_image_url"  name="profile_image_url">
