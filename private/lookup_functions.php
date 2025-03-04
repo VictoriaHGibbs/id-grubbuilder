@@ -20,22 +20,3 @@ function find_value_from_lookup($id, $table) {
     echo ucwords($row[$table]);
   }
 }
-
-// This one isnt working yet
-// function find_value_by_id($id, $table) {
-//   global $database;
-//   $sql = "SELECT * FROM " . $table . " ";
-//   $sql .=  "WHERE id='" . $id . "'";
-//   $result = mysqli_query($database, $sql);
-//   return $result;
-// }
-
-// Set measurement value from lookup table
-// function set_measurement($recipe) {
-//   global $database;
-//   $measurement_id = $recipe->get_measurement_id();
-//   $sql = "SELECT measurement FROM measurement WHERE measurement_id='" . $measurement_id . "'";
-//   $measurement = mysqli_query($database, $sql);
-//   return $measurement;
-// }
-
