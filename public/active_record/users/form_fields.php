@@ -17,7 +17,7 @@ if (!isset($user)) {
 <br>
 
 <label for="confirm_password">Confirm Password</label>
-<input type="password" id="confirm_password" name="user[confirm_password]" value=""> 
+<input type="password" id="confirm_password" name="user[confirm_password]" <?php if (!($session->is_admin_logged_in())): ?> required <?php endif; ?> value=""> 
 
 <?php if ($session->is_admin_logged_in()): ?>
 <fieldset>

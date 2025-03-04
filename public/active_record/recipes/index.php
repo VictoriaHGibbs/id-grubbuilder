@@ -17,12 +17,12 @@ include(SHARED_PATH . '/user_header.php');
 
 <?php foreach($recipes as $recipe) { ?>
   <section class="recipe-card-preview">
-    <a href="show.php?id=<?php echo $recipe->id; ?>">
+  <a href="show.php?id=<?php echo $recipe->id; ?>">
     <?php Recipe::first_image_only($recipe->id) ?>
     <h3><?php echo h($recipe->recipe_title); ?></h3>
     <p><?php echo ($recipe->user_info($recipe)) ?></p>
     <p><?php echo h($recipe->description); ?></p>
-    </a>
+  </a>
   </section>
 
 <?php } ?>

@@ -13,7 +13,7 @@ include(SHARED_PATH . '/user_header.php');
 
 <a href="<?php echo url_for('/active_record/users/index.php'); ?>">Return to List</a>
 
-<h2>Show User Details for: <?php echo h($user->username); ?></h2>
+<h2>Show Details for: <?php echo h($user->username); ?></h2>
 
 <dl>
     <dt>First Name:</dt>

@@ -1,7 +1,4 @@
-<?php
-// $active_id = $_SESSION['user_id'] ?? false;
 
-?>
 
 <!DOCTYPE html>
 <html lang="en">

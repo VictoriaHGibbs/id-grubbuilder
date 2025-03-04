@@ -16,7 +16,7 @@ try {
 
 // Get last inserted recipe_id
   $recipe_id = $recipe->id;
-  var_dump($recipe_id);
+
   
 // Ingredient Array Loop 
   foreach ($_POST['ingredient'] as $index => $ingredient_data) {
@@ -46,7 +46,7 @@ try {
         $file_error = $_FILES['image']['error'][$index];
 
         $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        // $file_actual_ext = ($file_ext);
+
         $allowed = array('jpg', 'jpeg', 'png', 'webp');
 
         if (in_array($file_ext, $allowed)) { 

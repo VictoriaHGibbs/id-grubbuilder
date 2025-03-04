@@ -165,14 +165,14 @@ footer h2 {
   transition: all .2s ease;
 }
 
-input:not(:checked) ~ label:hover,
-input:not(:checked) ~ label:hover ~ label {
+.star-widget input:not(:checked) ~ label:hover,
+.star-widget input:not(:checked) ~ label:hover ~ label {
   color: var(--yellow);
   cursor: pointer;
 }
 
 i,
-input:checked ~ label {
+.star-widget input:checked ~ label {
   color: var(--yellow);
 }
 

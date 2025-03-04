@@ -27,8 +27,6 @@ include(SHARED_PATH . '/user_header.php');
         <th>&nbsp;</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
-
-
     </tr>
 
     <?php foreach ($users as $user) { ?>
@@ -66,8 +64,6 @@ include(SHARED_PATH . '/user_header.php');
         <th>&nbsp;</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
-
-
     </tr>
 
     <?php foreach ($admins as $admin) { ?>
