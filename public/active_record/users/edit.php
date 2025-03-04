@@ -2,7 +2,7 @@
 
 require_once('../../../private/initialize.php');
 
-// require_admin_login();
+require_admin_login();
 
 if (!isset($_GET['id'])) {
     redirect_to(url_for('/active_record/users/index.php'));
@@ -47,7 +47,7 @@ if (is_post_request()) {
 
     <?php echo display_errors($user->errors); ?>
 
-    <form action="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($id))); ?>" method="post" enctype="multipart/form-data">
+    <form action="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($id))); ?>" method="post">
 
       <?php include('form_fields.php'); ?>
 

@@ -1,5 +1,5 @@
 <?php
-$id = $_SESSION['user_id'] ?? false;
+// $active_id = $_SESSION['user_id'] ?? false;
 
 ?>
 
@@ -12,11 +12,8 @@ $id = $_SESSION['user_id'] ?? false;
   <title>Grub Builder <?php if (isset($page_title)) {echo '- ' . h($page_title);} ?></title>
   <script src="https://kit.fontawesome.com/11d6778b2f.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="<?php echo url_for('/stylesheets/style.css'); ?>">
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script> -->
-  <!-- <script src="<?php // echo (JS_PATH . 'jquery-3.7.1.js'); ?>"></script> -->
-  <!-- <script src="<?php // echo (JS_PATH . 'jquery.star_rating.js'); ?>"></script> -->
   <?php
-    if ($page_title == 'Create Recipe') { ?>
+    if ($page_title == 'Create Recipe' ) { ?>
       <script src="<?php echo (JS_PATH . 'recipe_items.js'); ?>" defer></script>
   <?php } ?>
   
@@ -34,9 +31,11 @@ $id = $_SESSION['user_id'] ?? false;
         <input id="search-submit" type="submit" value="Search">
       </form>
         <ul>
-          <li><a href="<?php echo url_for('/active_record/users/index.php'); ?>">Manage Users</a></li><!-- will be for admin only  -->
-      
-          <li><a href="<?php echo url_for('/active_record/index.php'); ?>">My Profile</a></li>
+          <?php if($session->is_admin_logged_in()) { ?>
+          <li><a href="<?php echo url_for('/active_record/users/index.php'); ?>">Admin Dashboard</a></li>
+          <?php } ?>
+
+          <li><a href="<?php echo url_for('/active_record/index.php'); ?>"><?php echo h($session->username); ?>'s Profile</a></li>
           <li><a href="<?php echo url_for('/active_record/recipes/new.php'); ?>">Add Recipe</a></li>
           <li><a href="<?php echo url_for('/active_record/logout.php'); ?>">Logout</a></li>
         </ul>
@@ -58,4 +57,4 @@ $id = $_SESSION['user_id'] ?? false;
   </header>
   
   <main role="main" id="main-content" tabindex="-1">
-    <h2>Welcome back <?php echo h(User::get_username_by_id($id)); ?>!</h2>
+    <h2>Welcome back <?php echo h($session->username); ?>!</h2>

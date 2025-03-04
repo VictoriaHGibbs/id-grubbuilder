@@ -45,10 +45,10 @@ if (is_post_request()) {
 
   <form action="login.php" method="post">
     <label for="username">Username:</label>
-    <input type="text" id="username" name="username" value="<?php echo h($username); ?>">
+    <input type="text" id="username" name="username" value="<?php echo h($username); ?>" required>
     <br>
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" value="">
+    <input type="password" id="password" name="password" required>
     <br>
     <input type="submit" name="submit" value="Submit">
   </form>

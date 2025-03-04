@@ -1,7 +1,9 @@
 <?php
 
 require_once('../../../private/initialize.php');
-// require_login();
+require_login();
+
+$id = $_SESSION['user_id'] ?? false;
 
 if(is_post_request()) {
   include_once('insert.php');

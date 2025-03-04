@@ -21,7 +21,7 @@ body {
   background-color: #ede8e2;
   margin: 0;
   min-height: 100vh;
-  padding-bottom: 6rem;
+  padding-bottom: 275px;
   position: relative;
 }
 
@@ -40,6 +40,7 @@ img {
 a {
   text-decoration: none;
 }
+
 /********************* Header and Footer **********************/
 
 header {

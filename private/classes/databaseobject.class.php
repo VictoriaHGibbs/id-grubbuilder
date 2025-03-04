@@ -5,7 +5,7 @@ class DatabaseObject
   static protected $database;
   static protected $table_name = "";
   static protected $db_columns = [];
-  // static protected $id = "";
+  
   public $errors = [];
 
   static public function set_database($database) {
@@ -58,6 +58,13 @@ class DatabaseObject
   static public function find_by_user_id($id) {
     $sql = "SELECT * FROM " . static::$table_name . " ";
     $sql .= "WHERE user_id='" . self::$database->escape_string($id) . "'";
+    $result = static::find_by_sql($sql);
+    return $result;
+  }
+
+  static public function find_by_user_role($role_id) {
+    $sql = "SELECT * FROM " . static::$table_name . " ";
+    $sql .= "WHERE role_id='" . self::$database->escape_string($role_id) . "'";
     $result = static::find_by_sql($sql);
     return $result;
   }

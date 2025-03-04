@@ -39,6 +39,11 @@ class Session
     return $this->is_logged_in() && ($this->role_id == '2' || $this->role_id == '3');
   }
 
+  public function is_superadmin_logged_in()
+  {
+    return $this->is_logged_in() && $this->role_id == '3';
+  }
+
   public function logout()
   {
     unset($_SESSION['user_id']);

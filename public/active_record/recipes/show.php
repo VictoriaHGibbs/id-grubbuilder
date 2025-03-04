@@ -1,6 +1,8 @@
 <?php
 require_once('../../../private/initialize.php');
 
+$id = $_SESSION['user_id'] ?? false;
+
 $recipe_id = $_GET['id'] ?? false;
 
 $recipe = Recipe::find_by_id($recipe_id);
