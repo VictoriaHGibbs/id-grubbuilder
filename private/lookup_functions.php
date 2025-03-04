@@ -7,14 +7,14 @@ function all_from_lookup($table) {
   $sql .= "ORDER BY " . $table . " ASC";
   $result = mysqli_query($database, $sql);
   while($row = mysqli_fetch_assoc($result)) {
-    echo '<option value="' . $row[$table . "_id"] . '">'  . ucwords($row[$table]) . '</option>';
+    echo '<option value="' . $row["id"] . '">'  . ucwords($row[$table]) . '</option>';
   }
 }
 
 function find_value_from_lookup($id, $table) {
   global $database;
   $sql = "SELECT " . $table . " FROM " . $table . " ";
-  $sql .= "WHERE " . $table . "_id='" . $id . "'";
+  $sql .= "WHERE id='" . $id . "'";
   $result = mysqli_query($database, $sql);
   while($row = mysqli_fetch_assoc($result)) {
     echo ucwords($row[$table]);

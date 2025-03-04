@@ -3,6 +3,9 @@ require_once('../../../private/initialize.php');
 
 $users = User::find_by_user_role(1);
 $admins = User::find_by_user_role(2);
+$diets = Diet::find_all();
+$styles = Style::find_all();
+$mealtypes = MealType::find_all();
 
 $page_title = 'Admin Dashboard';
 
@@ -86,6 +89,8 @@ include(SHARED_PATH . '/user_header.php');
 <?php } ?>
 
 <!-- ADD IN MEAL TYPE, DIET AND STYLE TABLES HERE FOR EDITING  -->
+
+
 
 
 <?php include(SHARED_PATH . '/user_footer.php'); ?>
