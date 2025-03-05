@@ -34,6 +34,12 @@ class DatabaseObject
     return static::find_by_sql($sql);
   }
 
+  static public function find_all_sort() {
+    $sql = "SELECT * FROM " . static::$table_name . " ";
+    $sql .= "ORDER BY id";
+    return static::find_by_sql($sql);
+  }
+
   static public function find_by_id($id) {
     $sql = "SELECT * FROM " . static::$table_name . " ";
     $sql .= "WHERE id='" . self::$database->escape_string($id) . "'";

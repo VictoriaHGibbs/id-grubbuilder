@@ -3,9 +3,9 @@ require_once('../../../private/initialize.php');
 
 $users = User::find_by_user_role(1);
 $admins = User::find_by_user_role(2);
-$diets = Diet::find_all();
-$meal_types = MealType::find_all();
-$styles = Style::find_all();
+$diets = Diet::find_all_sort();
+$meal_types = MealType::find_all_sort();
+$styles = Style::find_all_sort();
 
 $page_title = 'Admin Dashboard';
 

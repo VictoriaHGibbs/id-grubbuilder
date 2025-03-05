@@ -33,7 +33,7 @@ if(is_post_request()) {
     <p>Are you sure you want to delete this diet?</p>
     <p><?php echo h($diet->diet); ?></p>
 
-    <form action="<?php echo url_for('/active_record/categories/delete.php?id=' . h(u($id))); ?>" method="post">
+    <form action="<?php echo url_for('/active_record/categories/diet_delete.php?id=' . h(u($id))); ?>" method="post">
 
         <input type="submit" name="commit" value="Delete Diet">
      
