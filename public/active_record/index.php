@@ -6,7 +6,7 @@ $id = $_SESSION['user_id'] ?? false;
 $recipes = Recipe::find_by_user_id($id);
 $profile_image = User::get_user_image($id);
 
-$page_title = 'User Menu/ Main Profile Page';
+$page_title = 'User Profile Page';
 
 include(SHARED_PATH . '/user_header.php');
 ?>

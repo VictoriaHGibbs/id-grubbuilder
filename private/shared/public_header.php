@@ -15,7 +15,7 @@
   <header>
     <section id="header-top">
       <h1><a href="<?php echo url_for('/index.php'); ?>">Grub Builder</a></h1>
-      <form action="<?php echo (SHARED_PATH . '/forms/search.php'); ?>" method="post" role="form">
+      <form action="<?php echo url_for('/search.php'); ?>" method="post" role="form">
         <input type="text" id="search" name="search">
         <input id="search-submit" type="submit" value="Search">
       </form>

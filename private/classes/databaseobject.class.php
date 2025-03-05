@@ -194,5 +194,21 @@ class DatabaseObject
       return $row["measurement"];
   }
 
+    // Search function
+    static public function search($search_term) {
+      $sql = "SELECT * FROM recipe WHERE MATCH (recipe_title, description) ";
+      $sql .= "AGAINST ('" . self::$database->escape_string($search_term) . "' IN NATURAL LANGUAGE MODE)";
+      $search_results = static::find_by_sql($sql);
+      return $search_results;
+      }
+  
+    // $sql = "SELECT * FROM recipe WHERE MATCH (recipe_title, description) ";
+    // $sql .= "AGAINST ('" . $search_term . "' IN NATURAL LANGUAGE MODE)"; //exact match
+  
+    // $sql = "SELECT * FROM recipe WHERE MATCH (recipe_title, description) ";
+    // $sql .= "AGAINST ('" . $search_term . "' WITH QUERY EXPANSION)"; //query expansion mode
+
+      
+
 }
 

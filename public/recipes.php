@@ -9,12 +9,10 @@ include(SHARED_PATH . '/public_header.php');
 
 <?php
 
-$id = 2;
-$recipe = Recipe::find_by_id($id);
+$recipe_id = 2;
+$recipe = Recipe::find_by_id($recipe_id);
 echo Recipe::user_info($recipe);
-echo Recipe::images($id);
-echo Recipe::ingredients($id);
-echo Recipe::directions($id);
+echo Recipe::images($recipe_id);
 
 $recipes = Recipe::find_all();
 ?>

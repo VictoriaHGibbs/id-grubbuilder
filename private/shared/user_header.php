@@ -21,8 +21,8 @@
   <a href="#main-content" id="skip-link">Jump to main content</a>
   <header>
     <section id="header-top">
-      <h1><a href="<?php echo url_for('/active_record/index.php'); ?>">Grub Builder</a></h1>
-      <form action="<?php echo (SHARED_PATH . '/forms/search.php'); ?>" method="post" role="form">
+      <h1><a href="<?php echo url_for('/index.php'); ?>">Grub Builder</a></h1>
+      <form action="<?php echo url_for('/search.php'); ?>" method="post" role="form">
         <label for="search"></label>
         <input type="text" id="search" name="search">
         <input id="search-submit" type="submit" value="Search">

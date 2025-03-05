@@ -8,7 +8,12 @@ $recipe = Recipe::find_by_id($id);
 $page_title = 'Detail: ' . $recipe->recipe_title;
 
 
-include(SHARED_PATH . '/public_header.php');
+if ($session->is_logged_in()) {
+  include(SHARED_PATH . '/user_header.php');
+} else {
+  include(SHARED_PATH . '/public_header.php');
+}
+
 ?>
 
 <a href="recipes.php">Return to List</a>
