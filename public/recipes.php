@@ -9,27 +9,12 @@ include(SHARED_PATH . '/public_header.php');
 
 <?php
 
-$recipe_id = 2;
-$recipe = Recipe::find_by_id($recipe_id);
-echo Recipe::user_info($recipe);
-echo Recipe::images($recipe_id);
-
 $recipes = Recipe::find_all();
 ?>
 
 <section class="card-preview-container">
 
-<?php foreach($recipes as $recipe) { ?>
-  <section class="recipe-card-preview">
-    <a href="detail.php?id=<?php echo $recipe->id; ?>">
-    <?php Recipe::first_image_only($recipe->id) ?>
-    <h3><?php echo h($recipe->recipe_title); ?></h3>
-    <p><?php echo ($recipe->user_info($recipe)) ?></p>
-    <p><?php echo h($recipe->description); ?></p>
-    </a>
-  </section>
-
-<?php } ?>
+<?php include(SHARED_PATH . '/recipe_card.php'); ?>
 
 </section>
 

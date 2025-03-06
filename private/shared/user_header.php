@@ -22,20 +22,22 @@
   <header>
     <section id="header-top">
       <h1><a href="<?php echo url_for('/index.php'); ?>">Grub Builder</a></h1>
+
       <form action="<?php echo url_for('/search.php'); ?>" method="post" role="form">
         <label for="search"></label>
         <input type="text" id="search" name="search">
         <input id="search-submit" type="submit" value="Search">
       </form>
-        <ul>
-          <?php if($session->is_admin_logged_in()) { ?>
-          <li><a href="<?php echo url_for('/active_record/users/index.php'); ?>">Admin Dashboard</a></li>
-          <?php } ?>
+      
+      <ul>
+        <?php if($session->is_admin_logged_in()) { ?>
+        <li><a href="<?php echo url_for('/active_record/users/index.php'); ?>"><i class="fa-solid fa-users"></i> Admin Dashboard</a></li>
+        <?php } ?>
 
-          <li><a href="<?php echo url_for('/active_record/index.php'); ?>"><?php echo h($session->username); ?>'s Profile</a></li>
-          <li><a href="<?php echo url_for('/active_record/recipes/new.php'); ?>">Add Recipe</a></li>
-          <li><a href="<?php echo url_for('/active_record/logout.php'); ?>">Logout</a></li>
-        </ul>
+        <li><a href="<?php echo url_for('/active_record/index.php'); ?>"><i class="fa-solid fa-user"></i> <?php echo h($session->username); ?>'s Profile</a></li>
+        <li><a href="<?php echo url_for('/active_record/recipes/new.php'); ?>"><i class="fa-solid fa-plus"></i> Add Recipe</a></li>
+        <li><a href="<?php echo url_for('/active_record/logout.php'); ?>"><i class="fa-solid fa-right-from-bracket"></i> Logout <?php echo h($session->username); ?></a></li>
+      </ul>
     </section>
     
     <section id="header-lower">

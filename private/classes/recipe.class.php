@@ -113,20 +113,29 @@ class Recipe extends DatabaseObject {
 
 // Average and display ratings
   static public function average_rating($recipe_id) {
-  $ratings = Recipe::get_ratings($recipe_id);
-  $rows = 0;
-  $sum = 0;
-  if ($ratings) {
-    foreach ($ratings as $rating) {
-      $sum += h($rating->rating_level);
-      $rows += 1;
+    $ratings = Recipe::get_ratings($recipe_id);
+    $rows = 0;
+    $sum = 0;
+    if ($ratings) {
+      foreach ($ratings as $rating) {
+        $sum += h($rating->rating_level);
+        $rows += 1;
+      }
+      $average = $sum / $rows;
+      return $average;
     }
-    $average = $sum / $rows;
-    echo "<p>Average Rating: " . $average . "/5 <i class=\"fa-solid fa-drumstick-bite\"></i></p>";
+  }
+
+// Display Average rating
+  static public function display_average_rating($recipe_id) {
+    $average = Recipe::average_rating($recipe_id);
+    if ($average) {
+      echo "<p class=\"rating-icon\">Average Rating: " . h($average) . "/5 <i class=\"fa-solid fa-drumstick-bite\"></i></p>";
   } else {
     echo  "<p>No ratings yet!</p>";
   }
-}
+  }
+
 
 // Checks to see if the current user has already rated the recipe
   static public function check_if_user_submitted_rating($recipe_id, $user_id) {

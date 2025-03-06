@@ -15,13 +15,15 @@
   <header>
     <section id="header-top">
       <h1><a href="<?php echo url_for('/index.php'); ?>">Grub Builder</a></h1>
+
       <form action="<?php echo url_for('/search.php'); ?>" method="post" role="form">
         <input type="text" id="search" name="search">
         <input id="search-submit" type="submit" value="Search">
       </form>
+
       <ul>
-        <li><a href="<?php echo url_for('/active_record/login.php') ?>">User Login</a></li>
-        <li><a href="<?php echo url_for('/active_record/signup.php') ?>">No account? Sign-up here!</a></li>
+        <li><a href="<?php echo url_for('/active_record/login.php') ?>"><i class="fa-regular fa-user"></i> User Login</a></li>
+        <li><a href="<?php echo url_for('/active_record/signup.php') ?>"><i class="fa-solid fa-user-plus"></i> No account? Sign-up here!</a></li>
       </ul>
     </section>
 
@@ -29,7 +31,7 @@
       <nav role="navigation" aria-label="main site">
         <ul>
           <li><a href="<?php echo url_for('/recipes.php') ?>">All Recipes</a></li>
-          <li><a href="<?php echo url_for('/.php') ?>">Popular</a></li>
+          <li><a href="<?php echo url_for('/popular.php') ?>">Popular</a></li>
           <li><a href="<?php echo url_for('/.php') ?>">Courses</a></li>
           <li><a href="<?php echo url_for('/.php') ?>">Diet</a></li>
           <li><a href="<?php echo url_for('/.php') ?>">Cuisine</a></li>

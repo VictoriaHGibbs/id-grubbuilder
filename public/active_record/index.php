@@ -30,24 +30,14 @@ if (is_post_request()) {
 <!-- CODE TO ADD IN NAME HERE -->
 
 <?php if ($recipes) { ?>
-<h2>Your Recipes</h2>
+  <h2>Your Recipes</h2>
 
+  <section class="card-preview-container">
+    
+    <?php include(SHARED_PATH . '/recipe_card.php'); ?>
 
-<section class="card-preview-container">
-
-<?php foreach($recipes as $recipe) { ?>
-  <section class="recipe-card-preview">
-    <a href="recipes/show.php?id=<?php echo $recipe->id; ?>">
-    <?php Recipe::first_image_only($recipe->id) ?>
-    <h3><?php echo h($recipe->recipe_title); ?></h3>
-    <p><?php echo h($recipe->description); ?></p>
-    <p><?php echo find_value_from_lookup(h($recipe->visibility_id), 'visibility'); ?></p>
-    </a>
   </section>
-
-<?php } ?>
-
-</section>
+  
 <?php } else { ?>
 
   <h2>Looks like you haven't added anything yet!</h2>

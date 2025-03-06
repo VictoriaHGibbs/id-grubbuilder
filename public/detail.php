@@ -18,7 +18,7 @@ if ($session->is_logged_in()) {
 
 <a href="recipes.php">Return to List</a>
 
-<section>
+<section class="recipe-card-large">
   <section>
     <h2><?php echo h($recipe->recipe_title); ?></h2>
     <p><?php echo Recipe::user_info($recipe) ?></p>
