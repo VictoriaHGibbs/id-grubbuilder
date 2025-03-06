@@ -23,7 +23,7 @@ if ($session->is_logged_in()) {
     <h2><?php echo h($recipe->recipe_title); ?></h2>
     <p><?php echo Recipe::user_info($recipe) ?></p>
     <?php echo Recipe::images($id); ?>
-    <?php echo Recipe::average_rating($id); ?>
+    <?php echo Recipe::display_average_rating($id); ?>
     <p><?php echo h($recipe->description); ?></p>
     <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
     <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>

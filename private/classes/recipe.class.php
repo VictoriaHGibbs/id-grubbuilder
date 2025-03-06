@@ -129,11 +129,11 @@ class Recipe extends DatabaseObject {
 // Display Average rating
   static public function display_average_rating($recipe_id) {
     $average = Recipe::average_rating($recipe_id);
-    if ($average) {
+    if (isset($average)) {
       echo "<p class=\"rating-icon\">Average Rating: " . h($average) . "/5 <i class=\"fa-solid fa-drumstick-bite\"></i></p>";
-  } else {
-    echo  "<p>No ratings yet!</p>";
-  }
+    } else {
+      echo  "<p>No ratings yet!</p>";
+    }
   }
 
 
