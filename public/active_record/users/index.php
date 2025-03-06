@@ -1,6 +1,8 @@
 <?php
 require_once('../../../private/initialize.php');
+require_admin_login();
 
+$id = $_SESSION['user_id'] ?? false;
 $users = User::find_by_user_role(1);
 $admins = User::find_by_user_role(2);
 $diets = Diet::find_all_sort();
@@ -12,9 +14,9 @@ $page_title = 'Admin Dashboard';
 include(SHARED_PATH . '/user_header.php');
 ?>
 
-<a href="<?php echo url_for('/active_record/users/new.php') ?>">Add User</a>
 
 <h2>Admin Dashboard</h2>
+<a href="<?php echo url_for('/active_record/users/new.php') ?>">Manually Add User</a>
 
 <section>
   <table>

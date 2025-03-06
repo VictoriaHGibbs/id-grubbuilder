@@ -3,7 +3,11 @@ require_once('../private/initialize.php');
 
 $page_title = 'Recipes';
 
-include(SHARED_PATH . '/public_header.php');
+if ($session->is_logged_in()) {
+  include(SHARED_PATH . '/user_header.php');
+} else {
+  include(SHARED_PATH . '/public_header.php');
+}
 ?>
 <h2>All the Recipes</h2>
 
@@ -18,4 +22,8 @@ $recipes = Recipe::find_all();
 
 </section>
 
-<?php include(SHARED_PATH . '/public_footer.php'); ?>
+<?php if ($session->is_logged_in()) {
+  include(SHARED_PATH . '/user_footer.php');
+} else {
+  include(SHARED_PATH . '/public_footer.php');
+} ?>

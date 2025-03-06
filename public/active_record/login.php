@@ -10,7 +10,6 @@ if (is_post_request()) {
   $username = $_POST['username'] ?? '';
   $password = $_POST['password'] ?? '';
 
-  // Validations
   if (is_blank($username)) {
     $errors[] = "Username cannot be blank.";
   }
@@ -18,17 +17,16 @@ if (is_post_request()) {
     $errors[] = "Password cannot be blank.";
   }
 
-  // if there were no errors, try to login
+
   if (empty($errors)) {
     $user = User::find_by_username($username);
-    // test if user found and password is correct
+
     if ($user != false && $user->verify_password($password)) {
-      // Mark user as logged in
       $session->login($user);
       redirect_to(url_for('/active_record/index.php'));
       echo "Login was successful!";
     } else {
-      // username not found or password does not match
+
       $errors[] = "Log in was unsuccessful.";
     }
   }

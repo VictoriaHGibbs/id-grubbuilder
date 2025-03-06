@@ -10,8 +10,7 @@ if ($session->is_logged_in()) {
 }
 ?>
 
-<p>Welcome</p>
-
+<img src="<?php echo url_for('assets/images/sushi01.webp');?>" >
 
   
 

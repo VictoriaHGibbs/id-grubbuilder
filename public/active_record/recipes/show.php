@@ -32,18 +32,20 @@ if ($session->is_logged_in()) {
     <?php echo Recipe::images($recipe_id); ?>
     <?php echo Recipe::display_average_rating($recipe_id); ?>
     <!-- option to leave rating if it is not their own recipe and they haven't already left a rating -->
-    <?php $rating_result = Recipe::check_if_user_submitted_rating($recipe_id, $id) ?>
-    <?php if ($recipe->user_id == $id ) { ?>
-      <p>This recipe is yours!</p>
-
-    <?php } elseif ($rating_result) { ?>
-      <p>Thanks for rating this recipe <?php echo ($rating_result->rating_level); ?> <i class="fa-solid fa-drumstick-bite"></i>!</p>
-    <?php } else { ?>
-      <form action="<?php echo url_for('/active_record/recipes/submit_rating.php'); ?>" method="post">
-        <?php include('../recipes/rating_form_fields.php'); ?>
-        <input type="submit" value="Submit Rating">
-      </form>
+    <?php if ($session->is_logged_in()) { ?>
+      <?php $rating_result = Recipe::check_if_user_submitted_rating($recipe_id, $id) ?>
+      <?php if ($recipe->user_id == $id ) { ?>
+        <p>This recipe is yours!</p>
+      <?php } elseif ($rating_result) { ?>
+        <p class="rating-icon">Thanks for rating this recipe <?php echo ($rating_result->rating_level); ?> <i class="fa-solid fa-drumstick-bite"></i>!</p>
+      <?php } else { ?>
+        <form action="<?php echo url_for('/active_record/recipes/submit_rating.php'); ?>" method="post">
+          <?php include('../recipes/rating_form_fields.php'); ?>
+          <input type="submit" value="Submit Rating">
+        </form>
+      <?php } ?>
     <?php } ?>
+
 
     <p><?php echo h($recipe->description); ?></p>
     <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>

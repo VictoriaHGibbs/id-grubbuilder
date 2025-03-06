@@ -1,6 +1,6 @@
 <?php
 require_once('../../../private/initialize.php');
-
+require_admin_login();
 $id = $_GET['id'] ?? false;
 
 $user = User::find_by_id($id);
