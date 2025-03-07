@@ -22,7 +22,7 @@ body {
   background-color: #ede8e2;
   margin: 0;
   min-height: 100vh;
-  padding-bottom: 275px;
+  padding-bottom: 200px;
   position: relative;
 }
 
@@ -59,7 +59,13 @@ footer {
   width: 100%;
 }
 
-h1 a,
+.fa-linkedin,
+.fa-github,
+.fa-discord {
+  font-size: 25px;
+}
+
+/* h1 a,
 footer h2 a {
   color: var(--red);
   font-size: 2.5rem;
@@ -126,7 +132,7 @@ footer h2 {
 #social a,
 #footer-nav a {
   color: var(--black);
-}
+} */
 
 /**************** Recipe Cards ***********************/
 

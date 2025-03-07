@@ -9,6 +9,13 @@ if (!isset($_GET['id'])) {
 }
 $id = $_GET['id'];
 $user = User::find_by_id($id);
+
+if ($user->role_id == 2 || $user->role_id == 3 ) {
+  require_superadmin_login();
+} else {
+  require_admin_login();  
+}
+
 if ($user == false) {
     redirect_to(url_for('/active_record/users/index.php'));
 }

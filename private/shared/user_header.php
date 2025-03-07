@@ -56,4 +56,4 @@
   </header>
   
   <main role="main" id="main-content" tabindex="-1">
-    <h2>Welcome back <?php echo h($session->username); ?>!</h2>
+    <h2>Welcome back <?php echo ($session->username); ?>!</h2>

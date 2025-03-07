@@ -34,11 +34,6 @@ class Recipe extends DatabaseObject {
     $this->visibility_id = $args['visibility_id'] ?? 1;
   }
 
-// Display recipe info, TESTING PURPOSES
-  public function display() {
-    return (h($this->recipe_title) . "<br>" . h($this->description) . "<br>");
-  }
-
 // Retrieve associated ingredients
   static public function get_ingredients($recipe_id) {
     return Ingredient::find_by_recipe_id($recipe_id);

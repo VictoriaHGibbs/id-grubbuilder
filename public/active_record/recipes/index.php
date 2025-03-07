@@ -4,8 +4,13 @@ require_once('../../../private/initialize.php');
 $recipes = Recipe::find_all();
 
 $page_title = 'All Recipes';
+require_login();
 
-include(SHARED_PATH . '/user_header.php');
+if ($session->is_logged_in()) {
+  include(SHARED_PATH . '/user_header.php');
+} else {
+  include(SHARED_PATH . '/public_header.php');
+}
 ?>
 
 <a href="<?php echo url_for('/active_record/recipes/new.php') ?>">Add Recipe</a>
@@ -19,4 +24,9 @@ include(SHARED_PATH . '/user_header.php');
 
 </section>
 
-<?php include(SHARED_PATH . '/user_footer.php'); ?>
+<?php if ($session->is_logged_in()) {
+  include(SHARED_PATH . '/user_footer.php');
+} else {
+  include(SHARED_PATH . '/public_footer.php');
+}
+?>

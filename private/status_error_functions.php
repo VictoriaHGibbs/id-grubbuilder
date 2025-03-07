@@ -4,7 +4,7 @@ function require_login()
 {
   global $session;
   if (!$session->is_logged_in()) {
-    redirect_to(url_for('/active-record/login.php'));
+    redirect_to(url_for('/active_record/login.php'));
   } else {
     // Do nothing, let the rest of the page proceed
   }
@@ -14,7 +14,7 @@ function require_admin_login()
 {
   global $session;
   if (!$session->is_logged_in()) {
-    redirect_to(url_for('/active-record/login.php'));
+    redirect_to(url_for('/active_record/login.php'));
   } elseif (!$session->is_admin_logged_in()) {
     redirect_to(url_for('/index.php'));
   } else {
@@ -26,9 +26,9 @@ function require_superadmin_login()
 {
   global $session;
   if (!$session->is_logged_in()) {
-    redirect_to(url_for('/active-record/login.php'));
+    redirect_to(url_for('/active_record/login.php'));
   } elseif (!$session->is_superadmin_logged_in()) {
-    redirect_to(url_for('/index.php'));
+    redirect_to(url_for('/active_record/users/index.php'));
   } else {
     // do nothing
   }

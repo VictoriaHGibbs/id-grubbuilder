@@ -1,9 +1,14 @@
 <?php
 require_once('../../../private/initialize.php');
-require_admin_login();
 $id = $_GET['id'] ?? false;
 
 $user = User::find_by_id($id);
+
+if ($user->role_id == 2 || $user->role_id == 3 ) {
+  require_superadmin_login();
+} else {
+  require_admin_login();  
+}
 
 $page_title = 'Show User: ' . $user->username;
 

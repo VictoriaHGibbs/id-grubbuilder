@@ -73,4 +73,9 @@ if ($session->is_logged_in()) {
 </section>
 
 
-<?php include(SHARED_PATH . '/user_footer.php'); ?>
+<?php if ($session->is_logged_in()) {
+  include(SHARED_PATH . '/user_footer.php');
+} else {
+  include(SHARED_PATH . '/public_footer.php');
+}
+?>
