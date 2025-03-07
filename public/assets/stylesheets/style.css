@@ -3,7 +3,7 @@
 :root {
   --red: #9b0404;
   --yellow: #f9da96;
-  --yellow-bright: rgb(255, 255, 0);
+  --yellow-dark: #fcc247;
   --brown: #3b1f13;
   --green: #c4f4a2;
   --black: #212123;
@@ -101,11 +101,11 @@ footer {
 }
 
 .star-widget input:checked ~ label {
-  color: var(--yellow);
+  color: var(--yellow-dark);
 }
 
 .rating-icon i {
-  color: var(--yellow);
+  color: var(--yellow-dark);
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
@@ -125,13 +125,15 @@ footer {
 }
 
 .btn-primary {
-  background-color: #ff8800;
-  border-color: #ff8800;
+  background-color: var(--yellow);
+  border-color: var(--yellow-dark);
+  color: var(--black);
 }
 
 .btn-primary:hover {
-  background-color: #ff7700;
-  border-color: #ff7700;
+  background-color: var(--yellow-dark);
+  border-color: var(--yellow-dark);
+  color: var(--black);
 }
 
 /******************* Signup Form *****************/
@@ -150,16 +152,37 @@ footer {
 }
 
 .btn-primary {
-  background-color: #ff8800;
-  border-color: #ff8800;
+  background-color: var(--yellow);
+  border-color: var(--yellow-dark);
+  color: var(--black);
 }
 
 .btn-primary:hover {
-  background-color: #ff7700;
-  border-color: #ff7700;
+  background-color: var(--yellow-dark);
+  border-color: var(--yellow-dark);
+  color: var(--black);
 }
 
+/******************* Admin Dashboard tables *****************/
 
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: #333;
+  color: white;
+}
+
+.table-hover tbody tr:hover {
+  background-color: var(--yellow-dark);
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.875rem;
+}
 
 
 

@@ -15,56 +15,15 @@ include(SHARED_PATH . '/user_header.php');
 ?>
 
 
-<h2>Admin Dashboard</h2>
-<a href="<?php echo url_for('/active_record/users/new.php') ?>">Manually Add User</a>
+<h2 class="text-center mb-4">Admin User Dashboard</h2>
 
-<section>
-  <table>
-    <legend>Users</legend>
-      <tr>
-          <th>ID</th>
-          <th>Username</th>
-          <th>First Name</th>
-          <th>Last Name </th>
-          <th>Email</th>
-          <th>User Level</th>
-          <th>Active</th>
-          <th>Date Joined</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-      </tr>
-  
-      <?php foreach ($users as $user) { ?>
-          <tr>
-              <td><?php echo h($user->id); ?></td>
-              <td><?php echo h($user->username); ?></td>
-              <td><?php echo h($user->f_name); ?></td>
-              <td><?php echo h($user->l_name); ?></td>
-              <td><?php echo h($user->email_address); ?></td>
-              <td><?php echo find_value_from_lookup(h($user->role_id), 'role'); ?></td>
-              <td><?php echo h($user->active_display()); ?></td>
-              <td><?php echo h($user->joined_at); ?></td>
-  
-              <td><a href="<?php echo url_for('/active_record/users/show.php?id=' . h(u($user->id))); ?>">View</a></td>
-              <td><a href="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($user->id))); ?>">Edit</a></td>
-              <td><a href="<?php echo url_for('/active_record/users/delete.php?id=' . h(u($user->id))); ?>">Delete</a></td>
-          </tr>
-      <?php } ?>
-  </table>
-</section>
-
-<!-- ****************************** SUPER ADMIN ONLY  ********************* -->
-<?php if($session->is_superadmin_logged_in()) { ?>
-
-  <section>
-    <table>
-      <legend>Admins</legend>
+<section class="table-responsive">
+  <table class="table table-striped table-hover align-middle shadow-sm">
+    <legend class="mb-3">Users</legend>
+      <thead class="table-dark">
         <tr>
             <th>ID</th>
             <th>Username</th>
-            <th>First Name</th>
-            <th>Last Name </th>
             <th>Email</th>
             <th>User Level</th>
             <th>Active</th>
@@ -73,92 +32,159 @@ include(SHARED_PATH . '/user_header.php');
             <th>&nbsp;</th>
             <th>&nbsp;</th>
         </tr>
-        <?php foreach ($admins as $admin) { ?>
+      </thead>
+  
+      <tbody>
+        <?php foreach ($users as $user) { ?>
             <tr>
-                <td><?php echo h($admin->id); ?></td>
-                <td><?php echo h($admin->username); ?></td>
-                <td><?php echo h($admin->f_name); ?></td>
-                <td><?php echo h($admin->l_name); ?></td>
-                <td><?php echo h($admin->email_address); ?></td>
-                <td><?php echo find_value_from_lookup(h($admin->role_id), 'role'); ?></td>
-                <td><?php echo h($admin->active_display()); ?></td>
-                <td><?php echo h($admin->joined_at); ?></td>
-                <td><a href="<?php echo url_for('/active_record/users/show.php?id=' . h(u($admin->id))); ?>">View</a></td>
-                <td><a href="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($admin->id))); ?>">Edit</a></td>
-                <td><a href="<?php echo url_for('/active_record/users/delete.php?id=' . h(u($admin->id))); ?>">Delete</a></td>
+                <td><?php echo h($user->id); ?></td>
+                <td><?php echo h($user->username); ?></td>
+                <td><?php echo h($user->email_address); ?></td>
+                <td><?php echo find_value_from_lookup(h($user->role_id), 'role'); ?></td>
+                <td><?php echo h($user->active_display()); ?></td>
+                <td><?php echo h($user->joined_at); ?></td>
+                <td><a href="<?php echo url_for('/active_record/users/show.php?id=' . h(u($user->id))); ?>" class="btn btn-warning btn-sm">View</a></td>
+                <td><a href="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($user->id))); ?>" class="btn btn-warning btn-sm">Edit</a></td>
+                <td><a href="<?php echo url_for('/active_record/users/delete.php?id=' . h(u($user->id))); ?>" class="btn btn-warning btn-sm">Delete</a></td>
             </tr>
         <?php } ?>
+      </tbody>
+  </table>
+  <div class="text-start mb-3">
+  <a href="<?php echo url_for('/active_record/users/new.php') ?>" class="btn btn-warning">Manually Add User</a>
+</div>
+</section>
+
+<!-- ****************************** SUPER ADMIN ONLY  ********************* -->
+<?php if($session->is_superadmin_logged_in()) { ?>
+
+  <section class="table-responsive">
+    <table class="table table-striped table-hover align-middle shadow-sm">
+      <legend class="mb-3">Admins</legend>
+        <thead class="table-dark">
+          <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>User Level</th>
+              <th>Active</th>
+              <th>Date Joined</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <?php foreach ($admins as $admin) { ?>
+              <tr>
+                  <td><?php echo h($admin->id); ?></td>
+                  <td><?php echo h($admin->username); ?></td>
+                  <td><?php echo h($admin->email_address); ?></td>
+                  <td><?php echo find_value_from_lookup(h($admin->role_id), 'role'); ?></td>
+                  <td><?php echo h($admin->active_display()); ?></td>
+                  <td><?php echo h($admin->joined_at); ?></td>
+                  <td><a href="<?php echo url_for('/active_record/users/show.php?id=' . h(u($admin->id))); ?>" class="btn btn-warning btn-sm">View</a></td>
+                  <td><a href="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($admin->id))); ?>" class="btn btn-warning btn-sm">Edit</a></td>
+                  <td><a href="<?php echo url_for('/active_record/users/delete.php?id=' . h(u($admin->id))); ?>" class="btn btn-warning btn-sm">Delete</a></td>
+              </tr>
+          <?php } ?>
+        </tbody>
     </table>
   </section>
 <?php } ?>
 
-<section>
-  <a href="<?php echo url_for('/active_record/categories/diet_new.php') ?>">Add New Diet</a>
-  
-  <table>
-    <legend>Diets</legend>
-    <tr>
-      <th>ID</th>
-      <th>Diet</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-    </tr>
-  
-    <?php foreach ($diets as $diet) { ?>
+
+<h2 class="text-center mb-4">Recipe Category Management</h2>
+
+<section class="table-responsive">
+
+  <table class="table table-striped table-hover align-middle shadow-sm">
+    <legend class="mb-3">Diets</legend>
+    <thead class="table-dark">
       <tr>
-        <td><?php echo h($diet->id); ?></td>
-        <td><?php echo h($diet->diet); ?></td>
-        <td><a href="<?php echo url_for('/active_record/categories/diet_edit.php?id=' . h(u($diet->id))); ?>">Edit</a></td>
-        <td><a href="<?php echo url_for('/active_record/categories/diet_delete.php?id=' . h(u($diet->id))); ?>">Delete</a></td>
+        <th>ID</th>
+        <th>Diet</th>
+        <th>Actions</th>
       </tr>
+    </thead>
+  
+    <tbody>
+      <?php foreach ($diets as $diet) { ?>
+        <tr>
+          <td><?php echo h($diet->id); ?></td>
+          <td><?php echo h($diet->diet); ?></td>
+          <td>
+            <a href="<?php echo url_for('/active_record/categories/diet_edit.php?id=' . h(u($diet->id))); ?>" class="btn btn-warning btn-sm">Edit</a>
+            <a href="<?php echo url_for('/active_record/categories/diet_delete.php?id=' . h(u($diet->id))); ?>" class="btn btn-warning btn-sm">Delete</a>
+          </td>
+        </tr>
       <?php } ?>
+    </tbody>
   </table>
+  <div class="text-start mb-3">
+    <a href="<?php echo url_for('/active_record/categories/diet_new.php') ?>" class="btn btn-warning">Add New Diet</a>
+  </div>
 </section>
 
-<section>
-  <a href="<?php echo url_for('/active_record/categories/meal_type_new.php') ?>">Add New Meal Type</a>
+<section class="table-responsive">
   
-  <table>
-    <legend>Meal Types</legend>
-    <tr>
-      <th>ID</th>
-      <th>Meal Type</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-    </tr>
-  
-    <?php foreach ($meal_types as $meal_type) { ?>
+  <table class="table table-striped table-hover align-middle shadow-sm">
+    <legend class="mb-3">Meal Types</legend>
+    <thead class="table-dark">
       <tr>
-        <td><?php echo h($meal_type->id); ?></td>
-        <td><?php echo h($meal_type->meal_type); ?></td>
-        <td><a href="<?php echo url_for('/active_record/categories/meal_type_edit.php?id=' . h(u($meal_type->id))); ?>">Edit</a></td>
-        <td><a href="<?php echo url_for('/active_record/categories/meal_type_delete.php?id=' . h(u($meal_type->id))); ?>">Delete</a></td>
+        <th>ID</th>
+        <th>Meal Type</th>
+        <th>Actions</th>
       </tr>
+    </thead>
+  
+    <tbody>
+      <?php foreach ($meal_types as $meal_type) { ?>
+        <tr>
+          <td><?php echo h($meal_type->id); ?></td>
+          <td><?php echo h($meal_type->meal_type); ?></td>
+          <td>
+            <a href="<?php echo url_for('/active_record/categories/meal_type_edit.php?id=' . h(u($meal_type->id))); ?>" class="btn btn-warning btn-sm">Edit</a>
+            <a href="<?php echo url_for('/active_record/categories/meal_type_delete.php?id=' . h(u($meal_type->id))); ?>" class="btn btn-warning btn-sm">Delete</a>
+          </td>
+        </tr>
       <?php } ?>
+    </tbody>
   </table>
+  <div class="text-start mb-3">
+    <a href="<?php echo url_for('/active_record/categories/meal_type_new.php') ?>" class="btn btn-warning">Add New Meal Type</a>
+  </div>
 </section>
 
-<section>
-  <a href="<?php echo url_for('/active_record/categories/style_new.php') ?>">Add New Style</a>
+<section class="table-responsive">
   
-  <table>
-    <legend>Styles</legend>
-    <tr>
-      <th>ID</th>
-      <th>Style</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-    </tr>
-  
-    <?php foreach ($styles as $style) { ?>
+  <table class="table table-striped table-hover align-middle shadow-sm">
+    <legend class="mb-3">Styles</legend>
+    <thead class="table-dark">
       <tr>
-        <td><?php echo h($style->id); ?></td>
-        <td><?php echo h($style->style); ?></td>
-        <td><a href="<?php echo url_for('/active_record/categories/style_edit.php?id=' . h(u($style->id))); ?>">Edit</a></td>
-        <td><a href="<?php echo url_for('/active_record/categories/style_delete.php?id=' . h(u($style->id))); ?>">Delete</a></td>
+        <th>ID</th>
+        <th>Style</th>
+        <th>Actions</th>
       </tr>
+    </thead>
+  
+    <tbody>
+      <?php foreach ($styles as $style) { ?>
+        <tr>
+          <td><?php echo h($style->id); ?></td>
+          <td><?php echo h($style->style); ?></td>
+          <td>
+            <a href="<?php echo url_for('/active_record/categories/style_edit.php?id=' . h(u($style->id))); ?>" class="btn btn-warning btn-sm">Edit</a>
+            <a href="<?php echo url_for('/active_record/categories/style_delete.php?id=' . h(u($style->id))); ?>" class="btn btn-warning btn-sm">Delete</a>
+          </td>
+        </tr>
       <?php } ?>
+    </tbody>
   </table>
+  <div class="text-start mb-3">
+    <a href="<?php echo url_for('/active_record/categories/style_new.php') ?>" class="btn btn-warning">Add New Style</a>
+  </div>
 </section>
 
 <?php include(SHARED_PATH . '/user_footer.php'); ?>
