@@ -1,21 +1,20 @@
 </main>
 
-<div class="container justify-content-center">
-  <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 px-5 mt-4 border-top"  style="height: 100px;">
-    <div class="col-md-4 d-flex justify-content-beginning">
-      <a href="<?php echo url_for('/index.php'); ?>" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-      </a>
-      <span class="mb-3 mb-md-0 text-body-secondary"><?php include(SHARED_PATH . '/copyright_disclaimer.php'); ?></span>
+<div class="container-fluid">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 px-3 px-md-5 mt-4 border-top">
+
+    <div class="col-12 col-md-4 d-flex justify-content-start align-items-center mb-2 mb-md-0">
+      <span class="text-body-secondary small"><?php include(SHARED_PATH . '/copyright_disclaimer.php'); ?></span>
     </div>
 
-    <ul class="nav col-md-4 justify-content-center">
+    <ul class="nav col-12 col-md-4 justify-content-center mb-2 mb-md-0">
       <li class="nav-item"><a href="<?php echo url_for('/index.php') ?>" class="nav-link px-2 text-body-secondary">Home</a></li>
       <li class="nav-item"><a href="<?php echo url_for('/recipes.php') ?>" class="nav-link px-2 text-body-secondary">All Recipes</a></li>
       <li class="nav-item"><a href="<?php echo url_for('/popular.php') ?>" class="nav-link px-2 text-body-secondary">Popular</a></li>
       <li class="nav-item"><a href="<?php echo url_for('/about.php') ?>" class="nav-link px-2 text-body-secondary">About us</a></li>
     </ul>
 
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+    <ul class="nav col-12 col-md-4 justify-content-center justify-content-md-end list-unstyled d-flex">
       <li class="ms-3"><a class="text-body-secondary" href="https://github.com/VictoriaHGibbs" target="_blank"><i class="fa-brands fa-github"></i></a></li>
       <li class="ms-3"><a class="text-body-secondary" href="https://www.linkedin.com/in/victoriahgibbs/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
       <li class="ms-3"><a class="text-body-secondary" href="https://discordapp.com/users/251824756049838080" target="_blank"><i class="fa-brands fa-discord"></i></a></li>

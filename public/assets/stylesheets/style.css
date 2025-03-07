@@ -8,6 +8,9 @@
   --green: #c4f4a2;
   --black: #212123;
   --grey: #4a4a4a;
+  --grey-dark: #333;
+  --background: #ede8e2;
+  --white: #fff;
 }
  
 * {
@@ -19,7 +22,7 @@ html {
 }
 
 body {
-  background-color: #ede8e2;
+  background-color: var(--background);
   margin: 0;
   min-height: 100vh;
   padding-bottom: 200px;
@@ -40,6 +43,27 @@ img {
 
 a {
   text-decoration: none;
+}
+
+/********************* Skip Link **********************/
+
+#skip-link {
+  position: absolute;
+  top: -50px; 
+  left: 50px;
+  background: var(--yellow-dark);
+  color: var(--black); 
+  padding: 10px 15px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: top 0.3s ease-in-out;
+  z-index: 2000; 
+}
+
+#skip-link:focus {
+  top: 10px; 
+  outline: 3px solid var(--black); 
 }
 
 /********************* Header and Footer **********************/
@@ -106,7 +130,7 @@ footer {
 
 .rating-icon i {
   color: var(--yellow-dark);
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
 
 /******************* Login Form *****************/
@@ -114,14 +138,14 @@ footer {
 .login-form {
   max-width: 400px;
   margin: 0 auto;
-  background: #fff;
+  background: var(--white);
   border-radius: 8px;
 }
 
 .login-form h2 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #333;
+  color: var(--black);
 }
 
 .btn-primary {
@@ -141,14 +165,14 @@ footer {
 .signup-form {
   max-width: 400px;
   margin: 0 auto;
-  background: #fff;
+  background: var(--white);
   border-radius: 8px;
 }
 
 .signup-form h2 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #333;
+  color: var(--grey-dark);
 }
 
 .btn-primary {
@@ -171,8 +195,8 @@ footer {
 }
 
 .table thead {
-  background-color: #333;
-  color: white;
+  background-color: var(--grey-dark);
+  color: var(--white);
 }
 
 .table-hover tbody tr:hover {
@@ -184,32 +208,6 @@ footer {
   font-size: 0.875rem;
 }
 
-
-
-
-
 /******************* TEMP STYLING ******************/
 
-/* table,
-th,
-tr,
-td {
-  border: solid var(--black) 1px;
-  border-collapse: collapse;
-}
 
-th,
-td {
-  padding: 1rem;
-  text-align: center;
-}
-
-textarea {
-  border: solid var(--black) 1px;
-  height: 250px;
-  width: 350px;
-} */
-
-/* form {
-  text-transform: capitalize;
-} */
