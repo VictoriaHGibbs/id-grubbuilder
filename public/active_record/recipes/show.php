@@ -17,7 +17,7 @@ if ($session->is_logged_in()) {
 }
 ?>
 
-<ul>
+<ul class="breadcrumb">
   <li><a href="<?php echo url_for('/active_record/recipes/index.php'); ?>">All Recipes</a></li>
 
   <?php if($session->is_logged_in()) { ?>
@@ -25,52 +25,71 @@ if ($session->is_logged_in()) {
   <?php } ?>
 </ul>
 
-<section>
-  <section>
-    <h2><?php echo h($recipe->recipe_title); ?></h2>
-    <p><?php echo Recipe::user_info($recipe) ?></p>
-    <?php echo Recipe::images($recipe_id); ?>
-    <?php echo Recipe::display_average_rating($recipe_id); ?>
-    <!-- option to leave rating if it is not their own recipe and they haven't already left a rating -->
-    <?php if ($session->is_logged_in()) { ?>
-      <?php $rating_result = Recipe::check_if_user_submitted_rating($recipe_id, $id) ?>
-      <?php if ($recipe->user_id == $id ) { ?>
-        <p>This recipe is yours!</p>
-      <?php } elseif ($rating_result) { ?>
-        <p class="rating-icon">Thanks for rating this recipe <?php echo ($rating_result->rating_level); ?> <i class="fa-solid fa-drumstick-bite"></i>!</p>
-      <?php } else { ?>
-        <form action="<?php echo url_for('/active_record/recipes/submit_rating.php'); ?>" method="post">
-          <?php include('../recipes/rating_form_fields.php'); ?>
-          <input type="submit" value="Submit Rating">
-        </form>
+<div class="container my-4">
+  <div class="row">
+    <div class="col-lg-8">
+      <h2 class="mb-2"><?php echo h($recipe->recipe_title); ?></h2>
+      <p class="text-muted"><?php echo Recipe::user_info($recipe) ?></p>
+      
+      <div class="recipe-image">
+        <?php echo Recipe::images($recipe_id); ?>
+      </div>
+      
+      <div class="rating my-3">
+        <?php echo Recipe::display_average_rating($recipe_id); ?>
+      </div>
+
+      <!-- option to leave rating if it is not their own recipe and they haven't already left a rating -->
+      <?php if ($session->is_logged_in()) { ?>
+        <?php $rating_result = Recipe::check_if_user_submitted_rating($recipe_id, $id) ?>
+        <?php if ($recipe->user_id == $id ) { ?>
+          <p>This recipe is yours!</p>
+        <?php } elseif ($rating_result) { ?>
+          <p class="rating-icon">Thanks for rating this recipe <?php echo ($rating_result->rating_level); ?> <i class="fa-solid fa-drumstick-bite"></i>!</p>
+        <?php } else { ?>
+          <form action="<?php echo url_for('/active_record/recipes/submit_rating.php'); ?>" method="post" class="my-2">
+            <?php include('../recipes/rating_form_fields.php'); ?>
+            <input type="submit" class="btn btn-primary mt-2" value="Submit Rating">
+          </form>
+        <?php } ?>
       <?php } ?>
-    <?php } ?>
 
+      <p class="lead"><?php echo h($recipe->description); ?></p>
 
-    <p><?php echo h($recipe->description); ?></p>
-    <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
-    <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
-    <p>Servings: <?php echo h($recipe->servings); ?></p>
-    <p>Yield: <?php echo h(abs($recipe->yield)) . " " . h($recipe->get_measurement_name($recipe));
-                if ($recipe->yield > 1) echo "s"; ?> </p>
-    <!-- PRINTER FRIENDLY LINK -->
-    <!-- NUTRITION FACTS -->
-    <?php Recipe::video($recipe_id); ?>
+      <div class="recipe-details p-3 mb-4 border rounded bg-light">
+        <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
+        <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
+        <p>Servings: <?php echo h($recipe->servings); ?></p>
+        <p>Yield: <?php echo h(abs($recipe->yield)) . " " . h($recipe->get_measurement_name($recipe));
+                    if ($recipe->yield > 1) echo "s"; ?> </p>
+      </div>
+      <!-- PRINTER FRIENDLY LINK -->
+      
+      <!-- <div class="nutrition">
+      NUTRITION FACTS
+      </div> -->
+    </div>
 
+    <div class="col-lg-4">
+      <section class="mb-4">
+        <h3>Ingredients</h3>
+        <div class="ingredients-list p-3 border rounded">
+          <?php echo Recipe::ingredients($recipe_id); ?>
+        </div>
+      </section>
+      
+      <section>
+        <h3>Directions</h3>
+        <div class="directions-list p-3 border rounded">
+          <?php echo Recipe::directions($recipe_id); ?>
+        </div>
+      </section>
+    </div>
 
-  </section>
+      <?php Recipe::video($recipe_id); ?>
 
-  <section>
-    <h3>Ingredients</h3>
-    <?php echo Recipe::ingredients($recipe_id); ?>
-  </section>
-
-  <section>
-    <h3>Directions</h3>
-    <?php echo Recipe::directions($recipe_id); ?>
-  </section>
-
-</section>
+  </div>
+</div>
 
 
 <?php if ($session->is_logged_in()) {

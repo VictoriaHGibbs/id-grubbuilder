@@ -78,13 +78,25 @@ class Recipe extends DatabaseObject {
   static public function images($recipe_id) {
     $images = Recipe::get_images($recipe_id);
     if ($images) {
-    echo "<div id=\"image-card\">";
-    foreach ($images as $image) {
-      echo "<img src=";
-      echo (IMAGE_PATH . h($image->image_url));
-      echo ">";
-    };
-    echo "</div>";
+      echo '<div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">';
+      echo '<div class="carousel-inner">';
+      
+      $first = true;
+      foreach ($images as $image) {
+        echo '<div class="carousel-item' . ($first ? ' active' : '') . '">';
+        echo '<img src="' . IMAGE_PATH . h($image->image_url) . '" class="d-block w-100" alt="Recipe Image">';
+        echo '</div>';
+        $first = false;
+      };
+
+      echo '</div>';
+        echo '<button class="carousel-control-prev" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              </button>';
+        echo '<button class="carousel-control-next" type="button" data-bs-target="#recipeCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </button>';
+        echo '</div>';
     }
   }
 
@@ -178,7 +190,11 @@ class Recipe extends DatabaseObject {
     $videos = Recipe::get_video($recipe_id);
     if ($videos) {
       foreach ($videos as $video) { ?>
+
+      <div class="video-container">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo h($video->youtube_url); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>  
+
     <?php }
     }
   }
