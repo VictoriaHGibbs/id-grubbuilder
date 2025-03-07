@@ -8,7 +8,7 @@ if (!isset($user)) {
   
   <div class="mb-3">
   <label for="username" class="form-label">Username: </label>
-  <input type="text" id="username" name="user[username]" class="form-control" value="<?php echo h($user->username); ?>" required>
+  <input type="text" id="username" name="user[username]" class="form-control" value="<?php echo h($user->username); ?>" required <?php if (!($session->is_admin_logged_in())): ?> autofocus <?php endif; ?>>
   <br>
   </div>
   

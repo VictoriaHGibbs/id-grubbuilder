@@ -15,9 +15,9 @@
     </ul>
 
     <ul class="nav col-12 col-md-4 justify-content-center justify-content-md-end list-unstyled d-flex">
-      <li class="ms-3"><a class="text-body-secondary" href="https://github.com/VictoriaHGibbs" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-      <li class="ms-3"><a class="text-body-secondary" href="https://www.linkedin.com/in/victoriahgibbs/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
-      <li class="ms-3"><a class="text-body-secondary" href="https://discordapp.com/users/251824756049838080" target="_blank"><i class="fa-brands fa-discord"></i></a></li>
+      <li class="ms-3"><a class="text-body-secondary" href="https://github.com/VictoriaHGibbs" target="_blank"><i class="fa-brands fa-github fa-lg"></i></a></li>
+      <li class="ms-3"><a class="text-body-secondary" href="https://www.linkedin.com/in/victoriahgibbs/" target="_blank"><i class="fa-brands fa-linkedin fa-lg"></i></a></li>
+      <li class="ms-3"><a class="text-body-secondary" href="https://discordapp.com/users/251824756049838080" target="_blank"><i class="fa-brands fa-discord fa-lg"></i></a></li>
     </ul>
   </footer>
 </div>
