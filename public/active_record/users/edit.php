@@ -54,7 +54,7 @@ if (is_post_request()) {
 
     <?php echo display_errors($user->errors); ?>
 
-    <form action="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($id))); ?>" method="post">
+    <form action="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($id))); ?>" method="post" class="signup-form container p-4 shadow-sm bg-white rounded">
 
       <?php include('form_fields.php'); ?>
 

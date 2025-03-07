@@ -37,18 +37,23 @@ if (is_post_request()) {
 <?php $page_title = 'Log in'; ?>
 <?php include(SHARED_PATH . '/public_header.php'); ?>
 
-  <h2>Login</h2>
+<h2 class="text-center mb-4">Login</h2>
 
   <?php echo display_errors($errors); ?>
 
-  <form action="login.php" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" value="<?php echo h($username); ?>" required>
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <br>
-    <input type="submit" name="submit" value="Submit">
+  <form action="login.php" method="post" class="login-form container p-4 shadow-sm bg-white rounded">
+
+  <div class="mb-3">
+    <label for="username" class="form-label">Username:</label>
+    <input type="text" id="username" name="username" class="form-control" value="<?php echo h($username); ?>" required>
+  </div>
+    
+  <div class="mb-3">
+    <label for="password" class="form-label">Password:</label>
+    <input type="password" id="password" name="password" class="form-control" required>
+  </div>
+
+    <input type="submit" name="submit" value="Submit"  class="btn btn-primary w-100">
   </form>
 
   <p>Not a member yet? <a href="<?php echo url_for('/active_record/signup.php')?>">Sign-up here!</a></p>

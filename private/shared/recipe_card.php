@@ -1,12 +1,32 @@
+
+<div class="container mt-4">
+
+  <div class="row">
 <?php foreach($recipes as $recipe) { ?>
-        <section class="recipe-card-preview">
-          <a href="<?php echo url_for('active_record/recipes/show.php?id=' . h(u($recipe->id))); ?>">
-            <?php Recipe::first_image_only($recipe->id) ?>
-            <h3><?php echo h($recipe->recipe_title); ?></h3>
-            <p><?php echo ($recipe->user_info($recipe)) ?></p>
-            <p><?php echo h($recipe->description); ?></p>
-            <p><?php Recipe::display_average_rating($recipe->id) ?></p>
-          </a>
-        </section>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm border-0 rounded-3 d-flex flex-column">
+            <a href="<?php echo url_for('active_record/recipes/show.php?id=' . h(u($recipe->id))); ?>" class="text-dark text-decoration-none">
+
+              <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 180px;">
+                <?php Recipe::first_image_only($recipe->id) ?>
+              </div>
+
+              <div class="card-body d-flex flex-column"> 
+                <h3 class="card-title fw-bold"><?php echo h($recipe->recipe_title); ?></h3>
+                <p class="text-muted"><?php echo ($recipe->user_info($recipe)) ?></p>
+                <p class="card-text flex-grow-1"><?php echo h($recipe->description); ?></p>
+                <p class="fw-bold text-warning"><?php Recipe::display_average_rating($recipe->id) ?></p>
+              </div>
+
+            </a>
+          </div>
+        </div>
 
 <?php } ?>
+
+</div>
+</div>
+
+
+
+  

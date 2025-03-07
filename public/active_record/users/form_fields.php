@@ -4,39 +4,63 @@ if (!isset($user)) {
 }
 ?>
 
-<label for="username">Username: </label>
-<input type="text" id="username" name="user[username]" value="<?php echo h($user->username); ?>" required>
-<br>
+<fieldset class="mb-3">
+  
+  <div class="mb-3">
+  <label for="username" class="form-label">Username: </label>
+  <input type="text" id="username" name="user[username]" class="form-control" value="<?php echo h($user->username); ?>" required>
+  <br>
+  </div>
+  
+  <div class="mb-3">
+  <label for="email_address" class="form-label">Email Address: </label>
+  <input type="email" id="email_address" name="user[email_address]" class="form-control" value="<?php echo h($user->email_address); ?>" required>
+  <br>
+  </div>
+  
+  
+  <div class="mb-3">
+  <label for="password" class="form-label">Password</label>
+  <input type="password" id="password" name="user[password]" class="form-control" <?php if (!($session->is_admin_logged_in())): ?> required <?php endif; ?> value="">
+  <br>
+  </div>
+  
+  
+  <div class="mb-3">
+  <label for="confirm_password" class="form-label">Confirm Password</label>
+  <input type="password" id="confirm_password" name="user[confirm_password]" class="form-control" <?php if (!($session->is_admin_logged_in())): ?> required <?php endif; ?> value="">
+  </div>
+</fieldset>
 
-<label for="email_address">Email Address: </label>
-<input type="email" id="email_address" name="user[email_address]" value="<?php echo h($user->email_address); ?>" required>
-<br>
-
-<label for="password">Password</label>
-<input type="password" id="password" name="user[password]" <?php if (!($session->is_admin_logged_in())): ?> required <?php endif; ?> value="">
-<br>
-
-<label for="confirm_password">Confirm Password</label>
-<input type="password" id="confirm_password" name="user[confirm_password]" <?php if (!($session->is_admin_logged_in())): ?> required <?php endif; ?> value=""> 
 
 <?php if ($session->is_admin_logged_in()): ?>
-<fieldset>
-    <legend>Active</legend> 
-    <input type="radio" id="active" name="user[active]" value="1">
-    <label for="active">Active</label>
+<fieldset class="mb-3">
+    <legend class="form-label">Active</legend>
 
-    <input type="radio" id="inactive" name="user[active]" value="0">
-    <label for="inactive">Inactive</label>
+    <div class="form-check">
+      <input type="radio" id="active" name="user[active]" value="1" class="form-check-input">
+      <label for="active" class="form-check-label">Active</label>
+    </div>
+
+    <div class="form-check">
+      <input type="radio" id="inactive" name="user[active]" value="0" class="form-check-input">
+      <label for="inactive" class="form-check-label">Inactive</label>
+    </div>
 </fieldset>
 <?php endif; ?>
 
 <?php if ($session->is_superadmin_logged_in()): ?>
-<fieldset>
-    <legend>User Level</legend> 
-    <input type="radio" id="user" name="user[role_id]" value="1">
-    <label for="user">User</label>
+<fieldset class="mb-3">
+    <legend class="form-label">User Level</legend>
 
-    <input type="radio" id="admin" name="user[role_id]" value="2">
-    <label for="admin">Admin</label>
+    <div class="form-check">
+      <input type="radio" id="user" name="user[role_id]" value="1" class="form-check-input">
+      <label for="user" class="form-check-label">User</label>
+    </div>
+
+    <div class="form-check">
+      <input type="radio" id="admin" name="user[role_id]" value="2" class="form-check-input">
+      <label for="admin" class="form-check-label">Admin</label>
+    </div>
 </fieldset>
 <?php endif; ?>

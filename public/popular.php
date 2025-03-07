@@ -21,12 +21,9 @@ if ($session->is_logged_in()) {
 
 
   if ($recipes) { ?>
-    <section class="card-preview-container">
 
     <?php include(SHARED_PATH . '/recipe_card.php'); ?>
 
-    </section>
-  
   <?php } ?>
 
 

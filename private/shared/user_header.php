@@ -20,40 +20,42 @@
 <body>
 
   <a href="#main-content" id="skip-link">Jump to main content</a>
-  <nav class="py-2 bg-body-tertiary border-bottom">
-    <div class="container d-flex flex-wrap">
-      <ul class="nav me-auto">
-        <li class="nav-item"><a href="<?php echo url_for('/recipes.php') ?>" class="nav-link link-body-emphasis px-2 active" aria-current="page">All Recipes</a></li>
-        <li class="nav-item"><a href="<?php echo url_for('/popular.php') ?>" class="nav-link link-body-emphasis px-2">Most Popular</a></li>
-        <li class="nav-item"><a href="<?php echo url_for('/about.php') ?>" class="nav-link link-body-emphasis px-2">About</a></li>
-      </ul>
-      <div class="flex-shrink-0 dropdown">
-          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <span><i class="fa-solid fa-user"></i> <?php echo ($session->username); ?></span>
-          </a>
-          <ul class="dropdown-menu text-small shadow">
-            <li><a class="dropdown-item" href="<?php echo url_for('/active_record/index.php'); ?>"><i class="fa-solid fa-user"></i> <?php echo ($session->username); ?>'s Profile</a></li>
-            <li><a class="dropdown-item" href="<?php echo url_for('/active_record/recipes/new.php'); ?>"><i class="fa-solid fa-plus"></i> Add Recipe</a></li>
-            <li><a class="dropdown-item" href="<?php echo url_for('/active_record/logout.php'); ?>"><i class="fa-solid fa-right-from-bracket"></i> Logout <?php echo ($session->username); ?></a></li>
-
-            <?php if($session->is_admin_logged_in()) { ?>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="<?php echo url_for('/active_record/users/index.php'); ?>"><i class="fa-solid fa-users"></i> Admin Dashboard</a></li>
-            <?php } ?>
-          </ul>
-        </div>
-    </div>
-  </nav>
-  <header class="py-3 mb-4 border-bottom">
-    <div class="container d-flex flex-wrap justify-content-center">
-      <a href="<?php echo url_for('/index.php'); ?>" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
-        <span class="fs-4">Grub Builder</span>
-      </a>
-      <form action="<?php echo url_for('/search.php'); ?>" method="post" class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="search" name="search">
-      </form>
-    </div>
-  </header>
+  <div class="sticky-top">
+    <nav class="py-2 bg-body-tertiary border-bottom">
+      <div class="container d-flex flex-wrap">
+        <ul class="nav me-auto">
+          <li class="nav-item"><a href="<?php echo url_for('/recipes.php') ?>" class="nav-link link-body-emphasis px-2 active" aria-current="page">All Recipes</a></li>
+          <li class="nav-item"><a href="<?php echo url_for('/popular.php') ?>" class="nav-link link-body-emphasis px-2">Most Popular</a></li>
+          <li class="nav-item"><a href="<?php echo url_for('/about.php') ?>" class="nav-link link-body-emphasis px-2">About</a></li>
+        </ul>
+        <div class="flex-shrink-0 dropdown">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <span><i class="fa-solid fa-user"></i> <?php echo ($session->username); ?></span>
+            </a>
+            <ul class="dropdown-menu text-small shadow">
+              <li><a class="dropdown-item" href="<?php echo url_for('/active_record/index.php'); ?>"><i class="fa-solid fa-user"></i> <?php echo ($session->username); ?>'s Profile</a></li>
+              <li><a class="dropdown-item" href="<?php echo url_for('/active_record/recipes/new.php'); ?>"><i class="fa-solid fa-plus"></i> Add Recipe</a></li>
+              <li><a class="dropdown-item" href="<?php echo url_for('/active_record/logout.php'); ?>"><i class="fa-solid fa-right-from-bracket"></i> Logout <?php echo ($session->username); ?></a></li>
+              <?php if($session->is_admin_logged_in()) { ?>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="<?php echo url_for('/active_record/users/index.php'); ?>"><i class="fa-solid fa-users"></i> Admin Dashboard</a></li>
+              <?php } ?>
+            </ul>
+          </div>
+      </div>
+    </nav>
+    
+    <header class="py-3 mb-4 border-bottom">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <a href="<?php echo url_for('/index.php'); ?>" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+          <span class="fs-4">Grub Builder</span>
+        </a>
+        <form action="<?php echo url_for('/search.php'); ?>" method="post" class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="search" name="search">
+        </form>
+      </div>
+    </header>
+  </div>
   
   <main role="main" id="main-content" tabindex="-1">
     <h2>Welcome back <?php echo ($session->username); ?>!</h2>

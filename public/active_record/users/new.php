@@ -28,7 +28,7 @@ if (is_post_request()) {
 <?php $page_title = 'Create User'; ?>
 <?php include(SHARED_PATH . '/user_header.php'); ?>
 
-<a href="<?php echo url_for('/active_record/users/index.php'); ?>">&laquo; Back to User List</a>
+<a href="<?php echo url_for('/active_record/users/index.php'); ?>"> Back to User List</a>
 
 
 <h1>Create User</h1>
@@ -36,7 +36,7 @@ if (is_post_request()) {
 <?php echo display_errors($user->errors);
 ?>
 
-<form action="<?php echo url_for('/active_record/users/new.php'); ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo url_for('/active_record/users/new.php'); ?>" method="post" class="signup-form container p-4 shadow-sm bg-white rounded">
 
     <?php include('form_fields.php'); ?>
 
