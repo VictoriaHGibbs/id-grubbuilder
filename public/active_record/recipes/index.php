@@ -14,7 +14,7 @@ if ($session->is_logged_in()) {
 ?>
 
 
-<h2>All the Recipes</h2>
+<h2 class="text-center fw-bold mb-4">All the Recipes</h2>
 
 <?php include(SHARED_PATH . '/recipe_card.php'); ?>
 

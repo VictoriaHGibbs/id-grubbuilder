@@ -32,18 +32,20 @@ if(is_post_request()) {
   <a class="back-link" href="<?php echo url_for('/active_record/recipes/index.php'); ?>">Back to List</a>
 
   
-    <h2>Create Recipe</h2>
+    <h2 class="text-center fw-bold mb-4">Create Recipe</h2>
+    <small class="text-center mb-4">Fields marked with * required</small>
 
     <?php // echo display_errors($recipe->errors); ?>
     <?php // echo display_errors($ingredient->errors); ?>
     <?php // echo display_errors($direction->errors); ?>
 
-    <form action="<?php echo url_for('/active_record/recipes/new.php'); ?>" method="post" enctype="multipart/form-data">
+    <form action="<?php echo url_for('/active_record/recipes/new.php'); ?>" method="post" enctype="multipart/form-data" class="container mt-4">
 
       <?php include('form_fields.php'); ?>
-
       
-      <input type="submit" value="Create Recipe">
+      <div class="mt-4">
+        <input type="submit" value="Create Recipe" class="btn btn-warning">
+      </div>
       
     </form>
 

@@ -2,12 +2,12 @@
 <div class="container mt-4">
 
   <div class="row">
-<?php foreach($recipes as $recipe) { ?>
-        <div class="col-md-4 mb-4">
+    <?php foreach($recipes as $recipe) { ?>
+        <div class="col-12 col-sm-6 col-md-4 mb-4">
           <div class="card h-100 shadow-sm border-0 rounded-3 d-flex flex-column">
             <a href="<?php echo url_for('active_record/recipes/show.php?id=' . h(u($recipe->id))); ?>" class="text-dark text-decoration-none">
 
-              <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 180px;">
+              <div class="card-img-top bg-light d-flex align-items-center justify-content-center" >
                 <?php Recipe::first_image_only($recipe->id) ?>
               </div>
 
@@ -22,9 +22,9 @@
           </div>
         </div>
 
-<?php } ?>
+    <?php } ?>
 
-</div>
+  </div>
 </div>
 
 

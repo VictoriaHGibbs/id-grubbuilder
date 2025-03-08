@@ -14,6 +14,9 @@
     if ($page_title == 'Create Recipe' ) { ?>
       <script src="<?php echo (JS_PATH . 'recipe_items.js'); ?>" defer></script>
   <?php } ?>
+  <meta
+      name="description"
+      content="A recipe sharing site.">
   
 </head>
 
@@ -48,7 +51,7 @@
     <header class="py-3 mb-4 border-bottom">
       <div class="container d-flex flex-wrap justify-content-center">
         <a href="<?php echo url_for('/index.php'); ?>" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
-          <span class="fs-4">Grub Builder</span>
+          <h1 class="fs-4">Grub Builder</h1>
         </a>
         <form action="<?php echo url_for('/search.php'); ?>" method="post" class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
           <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="search" name="search">

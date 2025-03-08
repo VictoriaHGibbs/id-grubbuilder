@@ -30,20 +30,26 @@ addImageBtn.addEventListener("click", addAnotherImage);
     let newIngredient = document.createElement("div");
     newIngredient.classList.add("ingredient");
     newIngredient.innerHTML = `
+    <div class="row">
+    <div class="col-md-4">
     <label for="quantity">Quantity: </label>
-    <input type="number" name="ingredient[${ingredientIndex}][quantity]">
-    
+    <input type="number" name="ingredient[${ingredientIndex}][quantity]" class="form-control">
+    </div>
+
+    <div class="col-md-4">
     <label for="ing_measurement_id">Select Unit: </label>
-    <select name="ingredient[${ingredientIndex}][measurement_id]">
+    <select name="ingredient[${ingredientIndex}][measurement_id]" class="form-select">
     <option value="">Units</option>
-    ${measurementOptions}  <!-- Injecting pre-fetched options here -->
+    ${measurementOptions} 
     </select>
+    </div>
     
+    <div class="col-md-4">
     <label for="ingredient_name">Ingredient: </label>
-    <input type="text" name="ingredient[${ingredientIndex}][ingredient_name]">
-    
-    <button type="button" class="remove">❌</button>
-    <br>
+    <input type="text" name="ingredient[${ingredientIndex}][ingredient_name]" class="form-control">
+    <button type="button" class="btn remove">❌</button>
+    </div>
+    </div>
     `;
     
     ingredientContainer.appendChild(newIngredient);
@@ -58,11 +64,11 @@ function addAnotherDirection(event) {
   let newDirection = document.createElement("div");
   newDirection.classList.add("direction");
   newDirection.innerHTML = `
+    <div id="direction-line">
       <label for="direction_text">Enter one at a time: </label>
-      <input type="text" id="direction_text" name="direction[${directionIndex}][direction_text]" >
-
-      <button type="button" class="remove">❌</button>
-      <br>
+      <input type="text" id="direction_text" name="direction[${directionIndex}][direction_text]" class="form-control">
+    </div>
+      <button type="button" class="btn remove">❌</button>
   `;
   
   directionContainer.appendChild(newDirection);
@@ -77,11 +83,11 @@ function addAnotherImage(event) {
   let newImage = document.createElement("div");
   newImage.classList.add("image");
   newImage.innerHTML = `
+    <div id="image-line" class="mb-3">
       <label for="image">Upload: </label>
-      <input type="file" id="image" name="image[]" accept="image/*">
-      
-      <button type="button" class="remove">❌</button>
-      <br>
+      <input type="file" id="image" name="image[]" accept="image/*" class="form-control">
+    </div>
+      <button type="button" class="btn remove">❌</button>
   `;
   
   imageContainer.appendChild(newImage);

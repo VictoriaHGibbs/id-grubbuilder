@@ -11,7 +11,7 @@ if ($session->is_logged_in()) {
 }
 ?>
 
-<h2>Popular Recipes</h2>
+<h2 class="text-center fw-bold mb-4">Popular Recipes</h2>
 <?php 
   $recipes = Recipe::find_all();
 

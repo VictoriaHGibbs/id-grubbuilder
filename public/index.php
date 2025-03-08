@@ -10,9 +10,15 @@ if ($session->is_logged_in()) {
 }
 ?>
 
-<img src="<?php echo url_for('assets/images/sushi01.webp');?>" >
+<section class="container text-center my-5">
+  <h2 class="display-4 fw-bold text-dark">Welcome to Grub Builder</h2>
+  <p class="lead">Find, customize, and enjoy recipes tailored to your taste and dietary needs.</p>
+  <a href="<?php echo url_for('/recipes.php') ?>" class="btn btn-lg btn-warning">Explore Recipes</a>
+</section>
 
-  
+<div class="container text-center mt-4">
+  <img src="<?php echo url_for('assets/images/sushi01.webp');?>" class="img-fluid rounded shadow-lg" alt="A large colorful plate of sushi." >
+</div>
 
 
 
