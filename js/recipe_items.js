@@ -47,8 +47,8 @@ addImageBtn.addEventListener("click", addAnotherImage);
     <div class="col-md-4">
     <label for="ingredient_name">Ingredient: </label>
     <input type="text" name="ingredient[${ingredientIndex}][ingredient_name]" class="form-control">
-    <button type="button" class="btn remove">❌</button>
     </div>
+    <button type="button" class="btn remove">❌</button>
     </div>
     `;
     

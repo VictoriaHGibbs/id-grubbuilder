@@ -14,13 +14,18 @@ include(SHARED_PATH . '/user_header.php');
 <img src="<?php echo ('../../uploads/') . "$profile_image" . "?" . mt_rand() ; ?>">
 
 <form action="index.php" method="post" enctype="multipart/form-data">
-  <label for="profile_image_url">Upload Profile Image: </label>
-  <input type="file" id="profile_image_url"  name="profile_image_url">
-  <button type="submit" name="submit">Upload</button>
+  <fieldset>
+    <legend></legend>
+    <small>File must be smaller than 75mb</small>
+    <br>
+    <label for="profile_image_url">Upload Profile Image: </label>
+    <input type="file" id="profile_image_url"  name="profile_image_url">
+    <button type="submit" name="image">Upload</button>
+  </fieldset>
 </form>
 <?php
 if (is_post_request()) {
-  if (isset($_POST['submit'])) {
+  if (isset($_POST['image'])) {
     User::set_profile_image($id);
   }
 }

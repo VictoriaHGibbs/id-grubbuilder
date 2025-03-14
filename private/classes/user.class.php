@@ -67,7 +67,7 @@ class User extends DatabaseObject
 
       if (in_array($file_actual_ext, $allowed)) { // checking if uploaded extension is allowed
         if ($file_error === 0) {
-          if ($file_size < 15000) { // max file size in kb
+          if ($file_size < 75000) { // max file size in kb
             $file_name_new = "profile_" . $id . "." . $file_actual_ext;
             $file_destination = ('../../uploads/') . $file_name_new;
             move_uploaded_file($file_tmp_name, $file_destination);

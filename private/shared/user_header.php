@@ -36,7 +36,7 @@
               <span><i class="fa-solid fa-user"></i> <?php echo ($session->username); ?></span>
             </a>
             <ul class="dropdown-menu text-small shadow">
-              <li><a class="dropdown-item" href="<?php echo url_for('/active_record/index.php'); ?>"><i class="fa-solid fa-user"></i> <?php echo ($session->username); ?>'s Profile</a></li>
+              <li><a class="dropdown-item" href="<?php echo url_for('/active_record/index.php'); ?>"><i class="fa-solid fa-user"></i> Profile</a></li>
               <li><a class="dropdown-item" href="<?php echo url_for('/active_record/recipes/new.php'); ?>"><i class="fa-solid fa-plus"></i> Add Recipe</a></li>
               <li><a class="dropdown-item" href="<?php echo url_for('/active_record/logout.php'); ?>"><i class="fa-solid fa-right-from-bracket"></i> Logout <?php echo ($session->username); ?></a></li>
               <?php if($session->is_admin_logged_in()) { ?>

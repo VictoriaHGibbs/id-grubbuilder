@@ -7,6 +7,11 @@ if (!isset($user)) {
 <fieldset class="mb-3">
   
   <div class="mb-3">
+  <small>
+    <ul class="list-unstyled">
+      <li>Username must be between 5 and 20 characters</li>
+    </ul>
+  </small>
   <label for="username" class="form-label">Username: </label>
   <input type="text" id="username" name="user[username]" class="form-control" value="<?php echo h($user->username); ?>" required <?php if (!($session->is_admin_logged_in())): ?> autofocus <?php endif; ?>>
   <br>
@@ -20,6 +25,19 @@ if (!isset($user)) {
   
   
   <div class="mb-3">
+  <small>
+    <ul class="list-unstyled">
+      <li>Password must contain:
+        <ul>
+          <li>12 or more characters</li>
+          <li>At least 1 uppercase letter</li>
+          <li>At least 1 lowercase letter</li>
+          <li>At least 1 number</li>
+          <li>At least 1 symbol</li>
+        </ul>
+      </li>
+    </ul>
+  </small>
   <label for="password" class="form-label">Password</label>
   <input type="password" id="password" name="user[password]" class="form-control" <?php if (!($session->is_admin_logged_in())): ?> required <?php endif; ?> value="">
   <br>

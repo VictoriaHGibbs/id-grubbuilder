@@ -11,7 +11,7 @@ if ($session->is_logged_in()) {
 }
 ?>
 
-<h2>Search Results</h2>
+<h2 class="text-center fw-bold mb-4">Search Results</h2>
 
 <?php if (is_post_request()) {
   $search_term = $_POST['search'];

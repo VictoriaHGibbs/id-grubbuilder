@@ -23,7 +23,7 @@
         </ul>
         <ul class="nav">
           <li class="nav-item"><a href="<?php echo url_for('/active_record/login.php') ?>" class="nav-link link-body-emphasis px-2"><i class="fa-regular fa-user"></i> Login</a></li>
-          <li class="nav-item"><a href="<?php echo url_for('/active_record/signup.php') ?>" class="nav-link link-body-emphasis px-2"><i class="fa-solid fa-user-plus"></i> No account? Sign-up here!</a></li>
+          <li class="nav-item"><a href="<?php echo url_for('/active_record/signup.php') ?>" class="nav-link link-body-emphasis px-2"><i class="fa-solid fa-user-plus"></i> Sign-up here!</a></li>
         </ul>
       </div>
     </nav>
@@ -33,7 +33,7 @@
           <h1 class="fs-4">Grub Builder</h1>
         </a>
         <form action="<?php echo url_for('/search.php'); ?>" method="post" class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="search" name="search">
         </form>
       </div>
     </header>

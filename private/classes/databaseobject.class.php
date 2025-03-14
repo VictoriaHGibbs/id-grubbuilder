@@ -188,7 +188,7 @@ class DatabaseObject
   // Retrieves measurement name, takes object
   static public function get_measurement_name($object) {
     $measurement_id = $object->get_measurement_id();
-    $sql = "SELECT measurement FROM measurement WHERE measurement_id='" . $measurement_id . "'";
+    $sql = "SELECT measurement FROM measurement WHERE id='" . $measurement_id . "'";
     $result = self::$database->query($sql);
     $row = $result->fetch_assoc();
       return $row["measurement"];
@@ -197,18 +197,11 @@ class DatabaseObject
     // Search function
     static public function search($search_term) {
       $sql = "SELECT * FROM recipe WHERE MATCH (recipe_title, description) ";
-      $sql .= "AGAINST ('" . self::$database->escape_string($search_term) . "' IN NATURAL LANGUAGE MODE)";
+      $sql .= "AGAINST ('" . self::$database->escape_string((string)$search_term) . "' IN NATURAL LANGUAGE MODE)";
       $search_results = static::find_by_sql($sql);
       return $search_results;
       }
   
-    // $sql = "SELECT * FROM recipe WHERE MATCH (recipe_title, description) ";
-    // $sql .= "AGAINST ('" . $search_term . "' IN NATURAL LANGUAGE MODE)"; //exact match
-  
-    // $sql = "SELECT * FROM recipe WHERE MATCH (recipe_title, description) ";
-    // $sql .= "AGAINST ('" . $search_term . "' WITH QUERY EXPANSION)"; //query expansion mode
-
-      
 
 }
 
