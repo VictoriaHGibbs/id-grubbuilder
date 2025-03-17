@@ -33,7 +33,7 @@ addImageBtn.addEventListener("click", addAnotherImage);
     <div class="row">
     <div class="col-md-4">
     <label for="quantity">Quantity: </label>
-    <input type="number" name="ingredient[${ingredientIndex}][quantity]" class="form-control">
+    <input type="number" step="any" name="ingredient[${ingredientIndex}][quantity]" class="form-control">
     </div>
 
     <div class="col-md-4">
