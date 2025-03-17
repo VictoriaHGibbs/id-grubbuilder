@@ -18,8 +18,11 @@ include(SHARED_PATH . '/user_header.php');
 <h2 class="text-center mb-4">Admin User Dashboard</h2>
 
 <section class="table-responsive">
-  <table class="table table-striped table-hover align-middle shadow-sm">
-    <legend class="mb-3">Users</legend>
+  <table class="table table-warning table-hover align-middle shadow-sm">
+    <h3 class="text-center mb-3">List of Users</h3>
+    <div class="mb-3">
+      <a href="<?php echo url_for('/active_record/users/new.php') ?>" class="btn btn-warning ">Manually Add User</a>
+    </div>
       <thead class="table-dark">
         <tr>
             <th>ID</th>
@@ -50,17 +53,14 @@ include(SHARED_PATH . '/user_header.php');
         <?php } ?>
       </tbody>
   </table>
-  <div class="text-start mb-3">
-  <a href="<?php echo url_for('/active_record/users/new.php') ?>" class="btn btn-warning">Manually Add User</a>
-</div>
 </section>
 
 <!-- ****************************** SUPER ADMIN ONLY  ********************* -->
 <?php if($session->is_superadmin_logged_in()) { ?>
 
   <section class="table-responsive">
-    <table class="table table-striped table-hover align-middle shadow-sm">
-      <legend class="mb-3">Admins</legend>
+    <table class="table table-warning table-hover align-middle shadow-sm">
+      <h3 class="text-center mb-3">List of Admins</h3>
         <thead class="table-dark">
           <tr>
               <th>ID</th>
@@ -99,8 +99,8 @@ include(SHARED_PATH . '/user_header.php');
 
 <section class="table-responsive">
 
-  <table class="table table-striped table-hover align-middle shadow-sm">
-    <legend class="mb-3">Diets</legend>
+  <table class="table table-warning table-hover align-middle shadow-sm">
+    <h3 class="text-center mb-3">Diets</h3>
     <thead class="table-dark">
       <tr>
         <th>ID</th>
@@ -129,8 +129,8 @@ include(SHARED_PATH . '/user_header.php');
 
 <section class="table-responsive">
   
-  <table class="table table-striped table-hover align-middle shadow-sm">
-    <legend class="mb-3">Meal Types</legend>
+  <table class="table table-warning table-hover align-middle shadow-sm">
+    <h3 class="text-center mb-3">Meal Types</h3>
     <thead class="table-dark">
       <tr>
         <th>ID</th>
@@ -159,8 +159,8 @@ include(SHARED_PATH . '/user_header.php');
 
 <section class="table-responsive">
   
-  <table class="table table-striped table-hover align-middle shadow-sm">
-    <legend class="mb-3">Styles</legend>
+  <table class="table table-warning table-hover align-middle shadow-sm">
+    <h3 class="text-center mb-3">Styles</h3>
     <thead class="table-dark">
       <tr>
         <th>ID</th>

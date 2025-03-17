@@ -37,6 +37,7 @@ if ($session->is_logged_in()) {
       
       <div class="rating my-3">
         <?php echo Recipe::display_average_rating($recipe_id); ?>
+        <?php echo Recipe::display_total_raters($recipe_id); ?>
       </div>
 
       <!-- option to leave rating if it is not their own recipe and they haven't already left a rating -->

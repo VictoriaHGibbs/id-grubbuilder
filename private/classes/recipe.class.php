@@ -106,7 +106,7 @@ class Recipe extends DatabaseObject {
     if ($images){
     $image = $images[0];
     echo "<div id=\"image-card\">";
-    echo "<img src=";
+    echo "<img class=\"small-card\" src=";
     echo (IMAGE_PATH . h($image->image_url));
     echo ">";
     echo "</div>";
@@ -143,6 +143,12 @@ class Recipe extends DatabaseObject {
     }
   }
 
+// Display the number of people who have rated the recipe
+  static public function display_total_raters($recipe_id) {
+    Recipe::get_ratings($recipe_id);
+    $total = parent::$database->affected_rows;
+    echo "<p>" . h($total) . " people have rated this recipe! </p>";
+  }
 
 // Checks to see if the current user has already rated the recipe
   static public function check_if_user_submitted_rating($recipe_id, $user_id) {
