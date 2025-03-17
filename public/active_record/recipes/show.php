@@ -39,7 +39,7 @@ if ($session->is_logged_in()) {
         <p class="lead"><?php echo h($recipe->description); ?></p>
       </div>
       
-      <div class="rating my-3">
+      <div class="rating p-3 my-4 border rounded bg-light">
         <?php echo Recipe::display_average_rating($recipe_id); ?>
         <?php echo Recipe::display_total_raters($recipe_id); ?>
         <!-- option to leave rating if it is not their own recipe and they haven't already left a rating -->
