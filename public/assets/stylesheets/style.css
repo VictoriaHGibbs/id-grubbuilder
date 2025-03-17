@@ -167,8 +167,8 @@ footer {
   padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height:width) */
   height: 0;
   overflow: hidden;
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .video-container iframe {
