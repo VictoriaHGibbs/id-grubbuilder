@@ -22,10 +22,8 @@ if ($session->is_logged_in()) {
   
   <?php include(SHARED_PATH . '/recipe_card.php'); ?>
 
-  <?php  
-  $url = url_for('/recipes.php');
-  echo $pagination->page_links($url);
-  ?>
+  <?php $url = url_for('/recipes.php');
+  echo $pagination->page_links($url); ?>
 
 <?php if ($session->is_logged_in()) {
   include(SHARED_PATH . '/user_footer.php');

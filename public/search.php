@@ -13,16 +13,17 @@ if ($session->is_logged_in()) {
 
 <h2 class="text-center fw-bold mb-4">Search Results</h2>
 
-<?php if (is_post_request()) {
-  $search_term = $_POST['search'];
-  $recipes = Recipe::search($search_term);
-
+<?php 
+  if (is_get_request()) {
+  $search_term = $_GET['search'];
   $current_page = $_GET['page'] ?? 1;
-  $per_page = 1;
-  $total_count = Recipe::row_counter();
-  var_dump($total_count);
 
+  $per_page = 12;
+  $total_count = Recipe::search_row_counter($search_term);
+  
   $pagination = new Pagination($current_page, $per_page, $total_count);
+
+  $recipes = Recipe::search($search_term, $per_page, $pagination);
 
   if ($recipes) { ?>
 
@@ -32,10 +33,8 @@ if ($session->is_logged_in()) {
 
     </section>
 
-    <?php  
-    $url = url_for('/search.php');
-    echo $pagination->page_links($url);
-    ?>
+    <?php $url = url_for('/search.php?search=' . urlencode($search_term));
+    echo $pagination->page_links($url); ?>
 
   <?php } else { ?>
           <p>Ooops! There doesn't seem to be any results for <?php echo $search_term ?> at this time!</p>
@@ -43,8 +42,6 @@ if ($session->is_logged_in()) {
 
 
 <?php } ?>
-
-
 
 
 <?php if ($session->is_logged_in()) {

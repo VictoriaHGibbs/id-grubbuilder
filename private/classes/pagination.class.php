@@ -32,7 +32,7 @@ class Pagination {
   public function previous_link($url="") {
     $link = "";
     if($this->previous_page() != false) {
-      $link .= "<a href=\"{$url}?page={$this->previous_page()}\" class=\"mx-2\">";
+      $link .= "<a href=\"{$url}page={$this->previous_page()}\" class=\"mx-2\">";
       $link .= "&laquo; Previous page </a>";
     }
     return $link;
@@ -41,7 +41,7 @@ class Pagination {
   public function next_link($url="") {
     $link = "";
     if($this->next_page() != false) {
-      $link .= "<a href=\"{$url}?page={$this->next_page()}\" class=\"mx-2\">";
+      $link .= "<a href=\"{$url}page={$this->next_page()}\" class=\"mx-2\">";
       $link .= " Next page &raquo;</a>";
     }
     return $link;
@@ -53,7 +53,7 @@ class Pagination {
       if($i == $this->current_page) {
         $output .= "<span class=\"selected mx-2 fw-bold border border-black px-1\">{$i}</span>";
       } else {
-        $output .= "<a href=\"{$url}?page={$i}\" class=\"mx-2\">{$i}</a>";
+        $output .= "<a href=\"{$url}page={$i}\" class=\"mx-2\">{$i}</a>";
       }
     }
     return $output;
@@ -63,9 +63,10 @@ class Pagination {
     $output = "";
     if($this->total_pages() > 1) { 
       $output .= "<div class=\"pagination container my-3 text-center\">";
-      $output .= $this->previous_link($url);
-      $output .= $this->number_links($url);
-      $output .= $this->next_link($url);
+      $query_separator = (strpos($url, '?') === False) ? '?' : '&';
+      $output .= $this->previous_link($url . $query_separator);
+      $output .= $this->number_links($url . $query_separator);
+      $output .= $this->next_link($url . $query_separator);
       $output .= "</div>";
     } 
     return $output;

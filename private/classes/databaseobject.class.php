@@ -207,18 +207,22 @@ class DatabaseObject
       return $row["measurement"];
   }
 
-    // Search function
-    static public function search($search_term) {
-      $sql = "SELECT * FROM recipe WHERE MATCH (recipe_title, description) ";
-      $sql .= "AGAINST ('" . self::$database->escape_string((string)$search_term) . "' IN NATURAL LANGUAGE MODE)";
-      $search_results = static::find_by_sql($sql);
-      return $search_results;
-      }
+  // Search function
+  static public function search($search_term, $per_page, $pagination) {
+    $sql = "SELECT * FROM recipe WHERE MATCH (recipe_title, description) ";
+    $sql .= "AGAINST ('" . self::$database->escape_string((string)$search_term) . "' IN NATURAL LANGUAGE MODE)";
+    $sql .= " LIMIT " . $pagination->offset() . ", " . $per_page . ";";
+    $search_results = static::find_by_sql($sql);
+    return $search_results;
+  }
   
   // Affected rows counter
-  static public function row_counter() {
-    $rows = self::$database->affected_rows;
-    return $rows;
+  static public function search_row_counter($search_term) {
+    $sql = "SELECT COUNT(*) FROM recipe WHERE MATCH (recipe_title, description) ";
+    $sql .= "AGAINST ('" . self::$database->escape_string((string)$search_term) . "' IN NATURAL LANGUAGE MODE)";
+    $result_set = self::$database->query($sql);
+    $row = $result_set->fetch_array();
+    return array_shift($row);
   }
 
 }

@@ -12,12 +12,20 @@ if ($session->is_logged_in()) {
 ?>
 
 <h2 class="text-center fw-bold mb-4">Popular Recipes</h2>
+
 <?php 
+
   $all_recipes = Recipe::find_all();
 
   $recipes = array_filter($all_recipes, function($recipe) {
-    return $recipe->average_rating($recipe->id) >= 4;
-  });
+    return $recipe->average_rating($recipe->id) >= 3;
+    });
+
+  $current_page = $_GET['page'] ?? 1;
+  $per_page = 2;
+  $total_count = count($recipes);
+
+  $pagination = new Pagination($current_page, $per_page, $total_count);
 
   usort($recipes, function($a, $b) {
     return $b->average_rating($b->id) <=> $a->average_rating($a->id);
@@ -27,6 +35,9 @@ if ($session->is_logged_in()) {
   if ($recipes) { ?>
 
     <?php include(SHARED_PATH . '/recipe_card.php'); ?>
+
+    <?php $url = url_for('/popular.php');
+    echo $pagination->page_links($url); ?>
 
   <?php } ?>
 
