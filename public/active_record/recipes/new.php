@@ -29,7 +29,7 @@ if(is_post_request()) {
 
 
 
-  <a class="back-link" href="<?php echo url_for('/active_record/recipes/index.php'); ?>">Back to List</a>
+  <a class="back-link" href="<?php echo url_for('/recipes.php'); ?>">Back to List</a>
 
   
     <h2 class="text-center fw-bold mb-4">Create Recipe</h2>

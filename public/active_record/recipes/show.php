@@ -18,7 +18,7 @@ if ($session->is_logged_in()) {
 ?>
 
 <ul class="breadcrumb">
-  <li><a href="<?php echo url_for('/active_record/recipes/index.php'); ?>">All Recipes</a></li>
+  <li><a href="<?php echo url_for('/recipes.php'); ?>">All Recipes</a></li>
 
   <?php if($session->is_logged_in()) { ?>
     <li><a href="<?php echo url_for('/active_record/index.php'); ?>">Your Recipes</a></li>
@@ -49,10 +49,18 @@ if ($session->is_logged_in()) {
             <p>This recipe is yours!</p>
           <?php } elseif ($rating_result) { ?>
             <p class="rating-icon">Thanks for rating this recipe <?php echo ($rating_result->rating_level); ?> <i class="fa-solid fa-drumstick-bite"></i>!</p>
+
+  <!-- code to update or delete the rating already left -->
+
+            <form action="<?php echo url_for('/active_record/ratings/delete_rating.php'); ?>" method="post" class="my-2">
+            <input type="hidden" name="rating_id" value="<?php echo $rating_result->id ?>" >
+              <input type="submit" class="btn btn-warning mt-2" value="Change Rating">
+            </form>
+
           <?php } else { ?>
-            <form action="<?php echo url_for('/active_record/recipes/submit_rating.php'); ?>" method="post" class="my-2">
-              <?php include('../recipes/rating_form_fields.php'); ?>
-              <input type="submit" class="btn btn-primary mt-2" value="Submit Rating">
+            <form action="<?php echo url_for('/active_record/ratings/submit_rating.php'); ?>" method="post" class="my-2">
+              <?php include_once('../ratings/rating_form_fields.php'); ?>
+              <input type="submit" class="btn btn-warning mt-2" value="Submit Rating">
             </form>
           <?php } ?>
         <?php } ?>
