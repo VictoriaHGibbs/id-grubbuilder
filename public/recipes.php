@@ -1,9 +1,15 @@
 <?php 
 require_once('../private/initialize.php');
 
-$page_title = 'Recipes';
+$current_page = $_GET['page'] ?? 1;
+$per_page = 12;
+$total_count = Recipe::count_all();
 
-$recipes = Recipe::find_all();
+$pagination = new Pagination($current_page, $per_page, $total_count);
+
+$recipes = Recipe::find_all_paginated($per_page, $pagination);
+
+$page_title = 'All Recipes';
 
 if ($session->is_logged_in()) {
   include(SHARED_PATH . '/user_header.php');
@@ -16,6 +22,10 @@ if ($session->is_logged_in()) {
   
   <?php include(SHARED_PATH . '/recipe_card.php'); ?>
 
+  <?php  
+  $url = url_for('/recipes.php');
+  echo $pagination->page_links($url);
+  ?>
 
 <?php if ($session->is_logged_in()) {
   include(SHARED_PATH . '/user_footer.php');

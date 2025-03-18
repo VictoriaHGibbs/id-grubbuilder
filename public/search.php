@@ -17,6 +17,13 @@ if ($session->is_logged_in()) {
   $search_term = $_POST['search'];
   $recipes = Recipe::search($search_term);
 
+  $current_page = $_GET['page'] ?? 1;
+  $per_page = 1;
+  $total_count = Recipe::row_counter();
+  var_dump($total_count);
+
+  $pagination = new Pagination($current_page, $per_page, $total_count);
+
   if ($recipes) { ?>
 
     <section class="card-preview-container">
@@ -24,9 +31,16 @@ if ($session->is_logged_in()) {
     <?php include(SHARED_PATH . '/recipe_card.php'); ?>
 
     </section>
+
+    <?php  
+    $url = url_for('/search.php');
+    echo $pagination->page_links($url);
+    ?>
+
   <?php } else { ?>
           <p>Ooops! There doesn't seem to be any results for <?php echo $search_term ?> at this time!</p>
     <?php } ?>
+
 
 <?php } ?>
 

@@ -1,7 +1,13 @@
 <?php 
 require_once('../../../private/initialize.php');
 
-$recipes = Recipe::find_all();
+$current_page = $_GET['page'] ?? 1;
+$per_page = 6;
+$total_count = Recipe::count_all();
+
+$pagination = new Pagination($current_page, $per_page, $total_count);
+
+$recipes = Recipe::find_all_paginated($per_page, $pagination);
 
 $page_title = 'All Recipes';
 

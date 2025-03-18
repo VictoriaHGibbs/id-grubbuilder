@@ -34,6 +34,19 @@ class DatabaseObject
     return static::find_by_sql($sql);
   }
 
+  static public function find_all_paginated($per_page, $pagination) {
+    $sql = "SELECT * FROM " . static::$table_name;
+    $sql .= " LIMIT " . $pagination->offset() . ", " . $per_page . ";";
+    return static::find_by_sql($sql);
+  }
+
+  static public function count_all() {
+    $sql = "SELECT COUNT(*) FROM " . static::$table_name;
+    $result_set = self::$database->query($sql);
+    $row = $result_set->fetch_array();
+    return array_shift($row);
+  }
+
   static public function find_all_sort() {
     $sql = "SELECT * FROM " . static::$table_name . " ";
     $sql .= "ORDER BY id";
@@ -202,6 +215,11 @@ class DatabaseObject
       return $search_results;
       }
   
+  // Affected rows counter
+  static public function row_counter() {
+    $rows = self::$database->affected_rows;
+    return $rows;
+  }
 
 }
 
