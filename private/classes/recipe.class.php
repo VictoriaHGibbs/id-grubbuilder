@@ -46,7 +46,7 @@ class Recipe extends DatabaseObject {
     foreach ($ingredients as $ingredient) {
       $measurement = $ingredient->get_measurement_name($ingredient);
       if ($ingredient->quantity > 1) $measurement .= "s";
-      echo  "<li>" . abs($ingredient->quantity) . " " . h($measurement) . " " . h($ingredient->ingredient_name) . "</li>";
+      echo  "<li><span class=\"quantity\">" . abs($ingredient->quantity) . "</span> " . h($measurement) . " " . h($ingredient->ingredient_name) . "</li>";
     };
     echo "</ul>";
   }

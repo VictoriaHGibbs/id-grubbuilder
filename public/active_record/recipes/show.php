@@ -49,9 +49,6 @@ if ($session->is_logged_in()) {
             <p>This recipe is yours!</p>
           <?php } elseif ($rating_result) { ?>
             <p class="rating-icon">Thanks for rating this recipe <?php echo ($rating_result->rating_level); ?> <i class="fa-solid fa-drumstick-bite"></i>!</p>
-
-  <!-- code to update or delete the rating already left -->
-
             <form action="<?php echo url_for('/active_record/ratings/delete_rating.php'); ?>" method="post" class="my-2">
             <input type="hidden" name="rating_id" value="<?php echo $rating_result->id ?>" >
               <input type="submit" class="btn btn-warning mt-2" value="Change Rating">
@@ -69,14 +66,15 @@ if ($session->is_logged_in()) {
       <div class="recipe-details p-3 mb-4 border rounded bg-light">
         <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
         <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
-        <p>Servings: <?php echo h($recipe->servings); ?></p>
-        <p>Yield: <?php echo h(abs($recipe->yield)) . " " . h($recipe->get_measurement_name($recipe));
-                    if ($recipe->yield > 1) echo "s"; ?> </p>
+        <p>Servings: <span class="quantity"><?php echo h($recipe->servings); ?></span></p>
+        <p>Yield: <span class="quantity"><?php echo h(abs($recipe->yield)) . "</span> " . h($recipe->get_measurement_name($recipe));
+                    if ($recipe->yield > 1) echo "s"; ?></p>
       </div>
 
       <div>
         <section class="mb-4">
           <h3>Ingredients</h3>
+          <?php include_once('../recipes/recipe_size_fields.php'); ?>
           <div class="ingredients-list p-3 border rounded">
             <?php echo Recipe::ingredients($recipe_id); ?>
           </div>
