@@ -20,7 +20,9 @@ if ($session->is_logged_in()) {
 
   <h2 class="text-center fw-bold mb-4">All the Recipes</h2>
   
-  <?php include(SHARED_PATH . '/recipe_card.php'); ?>
+  <div id="preview" class="container text-center mt-4 p-4 rounded border border-1 border-dark">
+    <?php include(SHARED_PATH . '/recipe_card.php'); ?>
+  </div>
 
   <?php $url = url_for('/recipes.php');
   echo $pagination->page_links($url); ?>

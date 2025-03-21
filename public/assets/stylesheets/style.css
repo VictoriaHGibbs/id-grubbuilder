@@ -34,7 +34,7 @@
   --black: #212123;
   --grey: #4a4a4a;
   --grey-dark: #333;
-  --background: #ede8e2;
+  --background: #f8f9fa;
   --white: #fff;
 }
  
@@ -110,6 +110,13 @@ footer {
   position: absolute;
   right: 0;
   width: 100%;
+}
+
+/**************** Home Page ***********************/
+
+#welcome, 
+#preview {
+  background-color: var(--yellow);
 }
 
 /**************** Recipe Cards ***********************/

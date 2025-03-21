@@ -29,8 +29,9 @@ if ($session->is_logged_in()) {
 
     <section class="card-preview-container">
 
-    <?php include(SHARED_PATH . '/recipe_card.php'); ?>
-
+    <div id="preview" class="container text-center mt-4 p-4 rounded border border-1 border-dark">
+      <?php include(SHARED_PATH . '/recipe_card.php'); ?>
+    </div>
     </section>
 
     <?php $url = url_for('/search.php?search=' . urlencode($search_term));
