@@ -42,13 +42,14 @@ class Recipe extends DatabaseObject {
 // Display ingredients
   static public function ingredients($recipe_id) {
     $ingredients = Recipe::get_ingredients($recipe_id);
-    echo "<ul>";
+    $html = "<ul>";
     foreach ($ingredients as $ingredient) {
       $measurement = $ingredient->get_measurement_name($ingredient);
       if ($ingredient->quantity > 1) $measurement .= "s";
-      echo  "<li><span class=\"quantity\">" . abs($ingredient->quantity) . "</span> " . h($measurement) . " " . h($ingredient->ingredient_name) . "</li>";
+      $html .= "<li><span class=\"quantity\">" . abs($ingredient->quantity) . "</span> " . h($measurement) . " " . h($ingredient->ingredient_name) . "</li>";
     };
-    echo "</ul>";
+    $html .= "</ul>";
+    return $html;
   }
   
 // Retrieve associated directions
@@ -59,11 +60,12 @@ class Recipe extends DatabaseObject {
 // Display directions
   static public function directions($recipe_id) {
     $directions = Recipe::get_directions($recipe_id);
-    echo "<ol>";
+    $html = "<ol>";
     foreach ($directions as $direction) {
-      echo "<li>" . h($direction->direction_text) . "</li>";
+      $html .= "<li>" . h($direction->direction_text) . "</li>";
     };
-    echo "</ol>";
+    $html .= "</ol>";
+    return $html;
   }
 
 // Retrieve associated images

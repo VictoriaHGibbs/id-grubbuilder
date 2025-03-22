@@ -61,6 +61,11 @@ if ($session->is_logged_in()) {
             </form>
           <?php } ?>
         <?php } ?>
+      <!-- Printing button -->
+      <div class="text-end my-4">
+        <a href="<?php echo url_for('/active_record/recipes/generate_pdf.php?id=' . h($recipe_id)); ?>" class="btn btn-primary" target="_blank">Print Recipe</a>
+      </div>
+
       </div>
 
       <div class="recipe-details p-3 mb-4 border rounded bg-light">
@@ -68,7 +73,7 @@ if ($session->is_logged_in()) {
         <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
         <p>Servings: <span class="quantity"><?php echo h($recipe->servings); ?></span></p>
         <p>Yield: <span class="quantity"><?php echo h(abs($recipe->yield)) . "</span> " . h($recipe->get_measurement_name($recipe));
-                    if ($recipe->yield > 1) echo "s"; ?></p>
+                  ($recipe->yield > 1 ? "s" : ""); ?></p>
       </div>
 
       <div>
@@ -88,7 +93,6 @@ if ($session->is_logged_in()) {
         </section>
       </div>
 
-      <!-- PRINTER FRIENDLY LINK -->
       
       <!-- <div class="nutrition">
       NUTRITION FACTS
