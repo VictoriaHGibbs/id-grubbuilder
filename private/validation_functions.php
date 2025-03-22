@@ -125,14 +125,18 @@ function set_video($string) {
   $substring2 = "tu.be/";
 
   if (substr_count($string, $substring) > 0) {
-  $position = stripos($string,"watch?v=");
-  $start = $position + 8;
+    $position = stripos($string,"watch?v=");
+    $start = $position + 8;
+    $end = stripos($string, "&");
+    $length = $end - $start;
+    $storage_link = substr($string, $start, $length);
+
   } elseif (substr_count($string, $substring2) > 0) {
-  $position = stripos($string,"tu.be/");
-  $start = $position + 5;
+    $position = stripos($string,"tu.be/");
+    $start = $position + 5;
+    $storage_link = substr($string, $start);
   } else {
-  echo "Not a valid Youtube link.";
+   echo "Not a valid Youtube link.";
   }
-  $storage_link = substr($string, $start);
   return $storage_link;
 }

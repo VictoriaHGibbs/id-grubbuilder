@@ -193,6 +193,13 @@ class DatabaseObject
     // calling $user->delete().
   }
 
+  public static function delete_all($recipe_id) {
+    $sql = "DELETE FROM " . static::$table_name . " ";
+    $sql .= "WHERE recipe_id='" . self::$database->escape_string($recipe_id) . "' ";
+    $result = self::$database->query($sql);
+    return $result;
+  }
+
   // Retrieve measurement id
   public function get_measurement_id() {
     return $this->measurement_id;

@@ -36,6 +36,7 @@ if (is_post_request()) {
 
 <?php if ($recipes) { ?>
   <h2>Your Recipes</h2>
+  <p><a href="<?php echo url_for('/active_record/recipes/new.php'); ?>">Add another recipe</a></p>
 
   <section class="card-preview-container">
     

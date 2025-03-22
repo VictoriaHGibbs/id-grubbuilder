@@ -47,6 +47,8 @@ if ($session->is_logged_in()) {
           <?php $rating_result = Recipe::check_if_user_submitted_rating($recipe_id, $id) ?>
           <?php if ($recipe->user_id == $id ) { ?>
             <p>This recipe is yours!</p>
+            <!-- DELETE BUTTON  -->
+            <a class="btn btn-primary" href="<?php echo url_for('/active_record/recipes/delete.php?id=' . h(u($recipe->id))); ?>">Delete Recipe</a>
           <?php } elseif ($rating_result) { ?>
             <p class="rating-icon">Thanks for rating this recipe <?php echo ($rating_result->rating_level); ?> <i class="fa-solid fa-drumstick-bite"></i>!</p>
             <form action="<?php echo url_for('/active_record/ratings/delete_rating.php'); ?>" method="post" class="my-2">
@@ -62,7 +64,7 @@ if ($session->is_logged_in()) {
           <?php } ?>
         <?php } ?>
       <!-- Printing button -->
-      <div class="text-end my-4">
+      <div class="text-start my-4">
         <a href="<?php echo url_for('/active_record/recipes/generate_pdf.php?id=' . h($recipe_id)); ?>" class="btn btn-primary" target="_blank">Print Recipe</a>
       </div>
 

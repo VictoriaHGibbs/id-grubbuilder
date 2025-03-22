@@ -29,9 +29,8 @@ if(is_post_request()) {
 
 
 
-  <a class="back-link" href="<?php echo url_for('/recipes.php'); ?>">Back to List</a>
+  <a class="back-link" href="<?php echo url_for('/active_record/index.php'); ?>">Back to Profile</a>
 
-  
     <h2 class="text-center fw-bold mb-4">Create Recipe</h2>
     <small class="text-center mb-4">Fields marked with * required</small>
 

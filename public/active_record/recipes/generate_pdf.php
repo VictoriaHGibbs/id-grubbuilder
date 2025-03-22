@@ -33,6 +33,10 @@ $html = "
       margin-bottom: 10px; 
     }
 
+    li {
+      line-height: 2;
+    }
+
   </style>
 </head>
 

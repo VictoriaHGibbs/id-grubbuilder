@@ -10,3 +10,7 @@ h1 {
 section {
   margin-bottom: 20px;
 }
+
+li {
+  line-height: 2;
+}
