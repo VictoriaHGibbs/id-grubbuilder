@@ -17,23 +17,23 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
 
   <div class="mb-3 p-3">
     <label for="recipe_title" class="form-label">*Recipe Title: </label>
-    <input type="text" id="recipe_title" name="recipe[recipe_title]" maxlength="100" value="<?php echo h($recipe->recipe_title); ?>" class="form-control" required>
+    <input type="text" id="recipe_title" name="recipe[recipe_title]" maxlength="100" value="<?php echo isset($recipe->recipe_title) ? h($recipe->recipe_title) : ''; ?>" class="form-control" required>
   </div>
   
   <div class="mb-3 p-3">
     <label for="description" class="form-label">*Description: </label>
-    <textarea id="description" name="recipe[description]" maxlength="255" class="form-control" value="<?php echo h($recipe->description); ?>" required></textarea>
+    <textarea id="description" name="recipe[description]" maxlength="255" class="form-control" required><?php echo isset($recipe->description) ? h($recipe->description) : ''; ?></textarea>
   </div>
 
   <div class="row p-3">
     <div class="col-md-6 mb-3">
       <label for="prep_time_minutes" class="form-label">*Preparation time (minutes): </label>
-      <input type="number" step="any" id="prep_time_minutes" name="recipe[prep_time_minutes]" value="<?php echo h($recipe->prep_time_minutes); ?>" class="form-control"  required>
+      <input type="number" step="any" id="prep_time_minutes" name="recipe[prep_time_minutes]" value="<?php echo isset($recipe->prep_time_minutes) ? h($recipe->prep_time_minutes) : ''; ?>" class="form-control"  required>
     </div>
     
     <div class="col-md-6 mb-3">
       <label for="cook_time_minutes" class="form-label">*Cooking time (minutes): </label>
-      <input type="number" step="any" id="cook_time_minutes" name="recipe[cook_time_minutes]" value="<?php echo h($recipe->cook_time_minutes); ?>" class="form-control"  required>
+      <input type="number" step="any" id="cook_time_minutes" name="recipe[cook_time_minutes]" value="<?php echo isset($recipe->cook_time_minutes) ? h($recipe->cook_time_minutes) : ''; ?>" class="form-control"  required>
     </div>
   </div>
   
@@ -43,20 +43,20 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
       
       <div class="col-md-4 mb-3">
         <label for="yield" class="form-label">*Yield: </label>
-        <input type="number" step="any" id="yield" name="recipe[yield]" value="<?php echo h($recipe->yield); ?>" class="form-control"  required>
+        <input type="number" step="any" id="yield" name="recipe[yield]" value="<?php echo isset($recipe->yield) ? h($recipe->yield) : ''; ?>" class="form-control"  required>
       </div>
   
       <div class="col-md-4 mb-3">
         <label for="measurement_id" class="form-label">*Select Unit:</label>
         <select id="measurement_id" name="recipe[measurement_id]" class="form-select" required>
           <option value="">Units</option>
-          <?php all_from_lookup('measurement');?>
+          <?php all_from_lookup('measurement', isset($recipe->measurement_id) ? $recipe->measurement_id : null); ?>
         </select>
       </div>
   
       <div class="col-md-4 mb-3">
         <label for="servings" class="form-label">*Servings</label>
-        <input type="number" step="any" id="servings" name="recipe[servings]" value="<?php echo h($recipe->servings); ?>" class="form-control"  required>
+        <input type="number" step="any" id="servings" name="recipe[servings]" value="<?php echo isset($recipe->servings) ? h($recipe->servings) : ''; ?>" class="form-control"  required>
       </div>
     </div>
     
@@ -66,7 +66,7 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     <label for="visibility_id" class="form-label">*Who would you like to share this recipe with?</label>
     <select id="visibility_id" name="recipe[visibility_id]" class="form-select" required>
       <option value="">Visibility Options</option>
-      <?php all_from_lookup('visibility');?>
+      <?php all_from_lookup('visibility', isset($recipe->visibility_id) ? $recipe->visibility_id : null ); ?>
     </select>
   </div>
 

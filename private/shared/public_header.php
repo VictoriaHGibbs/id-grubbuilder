@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="<?php echo url_for('assets/stylesheets/style.css'); ?>">
   <script src="<?php echo (JS_PATH . 'recipe_size.js'); ?>" defer></script>
 
+  <meta
+      name="description"
+      content="A recipe sharing site.">
+
 </head>
 
 <body>

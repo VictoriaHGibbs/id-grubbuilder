@@ -1,13 +1,14 @@
 <?php
 
 // Takes a lookup table name and creates the options for a dynamic drop down list
-function all_from_lookup($table) {
+function all_from_lookup($table, $selected_value = null) {
   global $database;
   $sql = "SELECT * FROM " . $table . " ";
   $sql .= "ORDER BY " . $table . " ASC";
   $result = mysqli_query($database, $sql);
   while($row = mysqli_fetch_assoc($result)) {
-    echo '<option value="' . $row["id"] . '">'  . ucwords($row[$table]) . '</option>';
+    $selected = ($selected_value == $row["id"]) ? 'selected' : '';
+    echo '<option value="' . $row["id"] . '" ' . $selected . '>'  . ucwords($row[$table]) . '</option>';
   }
 }
 

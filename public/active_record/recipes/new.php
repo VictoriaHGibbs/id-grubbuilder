@@ -18,8 +18,8 @@ if(is_post_request()) {
 } else {
   // display the form
   $recipe = new Recipe;
-  $ingredient = new Ingredient;
-  $direction = new Direction;
+  // $ingredient = new Ingredient;
+  // $direction = new Direction;
 }
 
 ?>
