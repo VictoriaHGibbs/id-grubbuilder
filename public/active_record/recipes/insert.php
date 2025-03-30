@@ -76,11 +76,17 @@ try {
           }
         } else {
           echo "You cannot upload images of that type!";
-        }
-
-        
-        
+        }        
     }
+  } else {
+    $image_data = [
+      'recipe_id' => $recipe_id,
+      'image_line_item' => $index + 1,
+      'image_url' => 'default_recipe1.webp'
+    ];
+
+    $image = new Image($image_data);
+    $image->save();
   }
 
 // Check if video
