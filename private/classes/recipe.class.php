@@ -86,7 +86,7 @@ class Recipe extends DatabaseObject {
       $first = true;
       foreach ($images as $image) {
         echo '<div class="carousel-item' . ($first ? ' active' : '') . '">';
-        echo '<img src="' . IMAGE_PATH . h($image->image_url) . '" class="d-block w-100" alt="Recipe Image">';
+        echo '<img src="' . IMAGE_PATH . h($image->image_url) . '" class="d-block w-100" alt="Recipe Image.">';
         echo '</div>';
         $first = false;
       };
@@ -107,11 +107,9 @@ class Recipe extends DatabaseObject {
     $images = Recipe::get_images($recipe_id);
     if ($images){
     $image = $images[0];
-    echo "<div id=\"image-card\">";
-    echo "<img class=\"small-card\" src=";
-    echo (IMAGE_PATH . h($image->image_url));
-    echo ">";
-    echo "</div>";
+    echo '<div id="image-card">';
+    echo '<img class="small-card" src="' .IMAGE_PATH . h($image->image_url) . '"  alt="Recipe Image." >';
+    echo '</div>';
     }
   }
 
