@@ -20,8 +20,13 @@ $html = "
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 
   <style>
-    body { 
-      padding: 20px; 
+    @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+    body h1,
+    body h2,
+    body section,
+    body p { 
+      font-family: 'Atkinson Hyperlegible', Verdana, Geneva, sans-serif; 
     }
 
     h1 {
@@ -59,7 +64,7 @@ $html = "
     <div>" . Recipe::ingredients($recipe_id) . "</div>
   </section>
   
-    <section>
+  <section>
     <h2>Directions</h2>
     <div>" . Recipe::directions($recipe_id) . "</div>
   </section>

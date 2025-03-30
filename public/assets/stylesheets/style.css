@@ -1,42 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
-/* Will delete out later, saving this for styling purposes */
-/* .atkinson-hyperlegible-regular {
-  font-family: "Atkinson Hyperlegible", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.atkinson-hyperlegible-bold {
-  font-family: "Atkinson Hyperlegible", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.atkinson-hyperlegible-regular-italic {
-  font-family: "Atkinson Hyperlegible", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.atkinson-hyperlegible-bold-italic {
-  font-family: "Atkinson Hyperlegible", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-} */
-
-:root {
-  --red: #9b0404;
-  --yellow: #f9da96;
-  --yellow-dark: #fcc247;
-  --brown: #3b1f13;
-  --green: #c4f4a2;
-  --black: #212123;
-  --grey: #4a4a4a;
-  --grey-dark: #333;
-  --background: #f8f9fa;
-  --white: #fff;
-}
  
 * {
   box-sizing: border-box;
@@ -47,7 +9,7 @@ html body {
 }
 
 body {
-  background-color: var(--background);
+  background-color: #f8f9fa;
   margin: 0;
   min-height: 100vh;
   padding-bottom: 200px;
@@ -60,7 +22,7 @@ main {
 }
 
 img {
-  border: solid 1px var(--brown);
+  border: solid 1px #3b1f13;
   border-radius: 5px;
   height: auto;
   max-width: 100%;
@@ -80,8 +42,8 @@ a {
   position: absolute;
   top: -50px; 
   left: 50px;
-  background: var(--yellow-dark);
-  color: var(--black); 
+  background: #fcc247;
+  color: #212123; 
   padding: 10px 15px;
   font-weight: bold;
   text-decoration: none;
@@ -92,19 +54,19 @@ a {
 
 #skip-link:focus {
   top: 10px; 
-  outline: 3px solid var(--black); 
+  outline: 3px solid #212123; 
 }
 
 /********************* Header and Footer **********************/
 
 header {
-  background: var(--yellow);
+  background: #f9da96;
   position: sticky;
   top: 0;
 }
 
 footer {
-  background: var(--yellow);
+  background: #f9da96;
   bottom: 0;
   left: 0;
   position: absolute;
@@ -116,7 +78,7 @@ footer {
 
 #welcome, 
 #preview {
-  background-color: var(--yellow);
+  background-color: #f9da96;
 }
 
 /**************** Recipe Cards ***********************/
@@ -210,16 +172,16 @@ footer {
 
 .star-widget input:not(:checked) ~ label:hover,
 .star-widget input:not(:checked) ~ label:hover ~ label {
-  color: var(--yellow);
+  color: #f9da96;
   cursor: pointer;
 }
 
 .star-widget input:checked ~ label {
-  color: var(--yellow-dark);
+  color: #fcc247;
 }
 
 .rating-icon i {
-  color: var(--yellow-dark);
+  color: #fcc247;
   text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
 
@@ -228,26 +190,26 @@ footer {
 .login-form {
   max-width: 400px;
   margin: 0 auto;
-  background: var(--white);
+  background: #fff;
   border-radius: 8px;
 }
 
 .login-form h2 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: var(--black);
+  color: #212123;
 }
 
 .btn-primary {
-  background-color: var(--yellow);
-  border-color: var(--yellow-dark);
-  color: var(--black);
+  background-color: #f9da96;
+  border-color: #fcc247;
+  color: #212123;
 }
 
 .btn-primary:hover {
-  background-color: var(--yellow-dark);
-  border-color: var(--yellow-dark);
-  color: var(--black);
+  background-color: #fcc247;
+  border-color: #fcc247;
+  color: #212123;
 }
 
 /******************* Signup Form *****************/
@@ -255,26 +217,26 @@ footer {
 .signup-form {
   max-width: 400px;
   margin: 0 auto;
-  background: var(--white);
+  background: #fff;
   border-radius: 8px;
 }
 
 .signup-form h2 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: var(--grey-dark);
+  color: #333;
 }
 
 .btn-primary {
-  background-color: var(--yellow);
-  border-color: var(--yellow-dark);
-  color: var(--black);
+  background-color: #f9da96;
+  border-color: #fcc247;
+  color: #212123;
 }
 
 .btn-primary:hover {
-  background-color: var(--yellow-dark);
-  border-color: var(--yellow-dark);
-  color: var(--black);
+  background-color: #fcc247;
+  border-color: #fcc247;
+  color: #212123;
 }
 
 /******************* Admin Dashboard tables *****************/
@@ -285,12 +247,12 @@ footer {
 }
 
 .table thead {
-  background-color: var(--grey-dark);
-  color: var(--white);
+  background-color: #333;
+  color: #fff;
 }
 
 .table-hover tbody tr:hover {
-  background-color: var(--yellow-dark);
+  background-color: #fcc247;
 }
 
 .btn-sm {
