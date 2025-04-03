@@ -123,18 +123,25 @@ function has_unique_username($username, $current_id = "0")
 function set_video($string) {
   $substring = "watch?v=";
   $substring2 = "tu.be/";
+  $shorts = "shorts/";
 
   if (substr_count($string, $substring) > 0) {
-    $position = stripos($string,"watch?v=");
+    $position = stripos($string, $substring);
     $start = $position + 8;
     $end = stripos($string, "&");
     $length = $end - $start;
     $storage_link = substr($string, $start, $length);
 
   } elseif (substr_count($string, $substring2) > 0) {
-    $position = stripos($string,"tu.be/");
+    $position = stripos($string, $substring2);
     $start = $position + 5;
     $storage_link = substr($string, $start);
+
+  } elseif (substr_count($string, $shorts) > 0) {
+    $position = stripos($string, $shorts);
+    $start = $position + 7;
+    $storage_link = substr($string, $start);
+
   } else {
    echo "Not a valid Youtube link.";
   }
