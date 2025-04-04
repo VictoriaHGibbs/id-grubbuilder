@@ -41,9 +41,10 @@ if (is_post_request()) {
 
 <h2 class="text-center mb-4">Login</h2>
 
-  <?php echo display_errors($errors); ?>
 
-  <form action="login.php" method="post" class="login-form container p-4 shadow-sm bg-white rounded">
+<form action="login.php" method="post" class="login-form container p-4 shadow-sm bg-white rounded">
+  
+  <?php echo display_errors($errors); ?>
 
   <div class="mb-3">
     <label for="username" class="form-label">Username:</label>
@@ -55,8 +56,11 @@ if (is_post_request()) {
     <input type="password" id="password" name="password" class="form-control" required>
   </div>
 
-    <input type="submit" name="submit" value="Submit"  class="btn btn-primary w-100">
-  </form>
-
-  <p>Not a member yet? <a href="<?php echo url_for('/active_record/signup.php')?>">Sign-up here!</a></p>
+  <input type="submit" name="submit" value="Submit"  class="btn btn-primary w-100 mb-3">
+    
+  <div class="mb-3">
+    <p>Not a member yet? <a href="<?php echo url_for('/active_record/signup.php')?>">Sign-up here!</a></p>
+  </div>
+</form>
+    
 <?php include(SHARED_PATH . '/public_footer.php'); ?>
