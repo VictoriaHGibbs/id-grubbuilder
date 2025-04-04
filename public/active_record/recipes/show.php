@@ -28,7 +28,7 @@ if ($session->is_logged_in()) {
 <div class="container my-4">
   <div class="row">
     <div class="col-lg-8">
-      <h2 class="mb-2"><?php echo h($recipe->recipe_title); ?></h2>
+      <h2 class="mb-2"><?php echo ucwords(h($recipe->recipe_title)); ?></h2>
       <p class="text-muted"><?php echo Recipe::user_info($recipe) ?></p>
       
       <div class="recipe-image">
@@ -36,7 +36,7 @@ if ($session->is_logged_in()) {
       </div>
 
       <div class="p-3 my-4 border rounded bg-light">
-        <p class="lead"><?php echo h($recipe->description); ?></p>
+        <p class="lead"><?php echo ucfirst(h($recipe->description)); ?></p>
       </div>
       
       <div class="rating p-3 my-4 border rounded bg-light">
@@ -74,8 +74,13 @@ if ($session->is_logged_in()) {
         <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
         <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
         <p>Servings: <span class="quantity"><?php echo h($recipe->servings); ?></span></p>
-        <p>Yield: <span class="quantity"><?php echo h(abs($recipe->yield)) . "</span> " . h($recipe->get_measurement_name($recipe));
-                  ($recipe->yield > 1 ? "s" : ""); ?></p>
+        <p>Yield: <span class="quantity"><?php echo h(abs($recipe->yield));?> </span> 
+        <?php if ($recipe->yield > 1) {
+          h($recipe->get_measurement_name($recipe)) . "s" ;
+        } else {
+          h($recipe->get_measurement_name($recipe));
+        }
+         ;"</p>" ?>
       </div>
 
       <div>

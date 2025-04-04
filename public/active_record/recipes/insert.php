@@ -51,7 +51,7 @@ try {
 
         if (in_array($file_ext, $allowed)) { 
           if ($file_error === 0) {
-            if ($file_size < 2000000) {
+            if ($file_size < 2000001) {
               $file_name_new =  "recipe_" . "$recipe_id" . "_" . "$index" . "." . $file_ext;
               $file_destination = ('../../../uploads/') . $file_name_new;
 

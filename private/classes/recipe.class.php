@@ -44,9 +44,10 @@ class Recipe extends DatabaseObject {
     $ingredients = Recipe::get_ingredients($recipe_id);
     $html = "<ul>";
     foreach ($ingredients as $ingredient) {
+      $measurement_id = $ingredient->get_measurement_id();
       $measurement = $ingredient->get_measurement_name($ingredient);
-      if ($ingredient->quantity > 1) $measurement .= "s";
-      $html .= "<li><span class=\"quantity\">" . abs($ingredient->quantity) . "</span> " . h($measurement) . " " . h($ingredient->ingredient_name) . "</li>";
+      if ($ingredient->quantity > 1 && $measurement_id != 16) $measurement .= "s";
+      $html .= "<li><span class=\"quantity\">" . abs($ingredient->quantity) . "</span> " . h($measurement) . " " . ucfirst(h($ingredient->ingredient_name)) . "</li>";
     };
     $html .= "</ul>";
     return $html;
@@ -62,7 +63,7 @@ class Recipe extends DatabaseObject {
     $directions = Recipe::get_directions($recipe_id);
     $html = "<ol>";
     foreach ($directions as $direction) {
-      $html .= "<li>" . h($direction->direction_text) . "</li>";
+      $html .= "<li>" . ucfirst(h($direction->direction_text)) . "</li>";
     };
     $html .= "</ol>";
     return $html;
@@ -139,9 +140,9 @@ class Recipe extends DatabaseObject {
     
     if (isset($average)) {
       if (!is_int($average)) $average = number_format($average, 1);
-      echo "<p class=\"rating-icon\">Average Rating: " . h($average) . "/5 <i class=\"fa-solid fa-drumstick-bite\"></i></p>";
+      echo "<p class=\"rating-icon\">Average Rating: " . h($average) . "/5 <i class=\"fa-solid fa-drumstick-bite\"></i>";
     } else {
-      echo  "<p>No ratings yet!</p>";
+      echo  "<p>No ratings yet!";
     }
   }
 
@@ -149,7 +150,7 @@ class Recipe extends DatabaseObject {
   static public function display_total_raters($recipe_id) {
     Recipe::get_ratings($recipe_id);
     $total = parent::$database->affected_rows;
-    echo "<p>" . h($total) . " people have rated this recipe! </p>";
+    return " (" . h($total) . " contributors)</p>";
   }
 
 // Checks to see if the current user has already rated the recipe

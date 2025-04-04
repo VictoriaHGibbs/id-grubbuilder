@@ -21,7 +21,8 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
   </div>
   
   <div class="mb-3 p-3">
-    <label for="description" class="form-label">*Description: </label>
+    <label for="description" class="form-label">*Description: </label><br>
+    <small>255 character limit</small>
     <textarea id="description" name="recipe[description]" maxlength="255" class="form-control" required><?php echo isset($recipe->description) ? h($recipe->description) : ''; ?></textarea>
   </div>
 
@@ -72,7 +73,8 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
 
   <fieldset class="border p-3 mb-4">
     <legend class="h5">*Ingredients</legend>
-    <p>Be sure to select a unit of measurement if one is needed!</p>
+    <small>If a unit of measurement is not needed, select "Not Needed" from the drop-down.</small>
+    <small>Example: "2 eggs"</small>
     <div id="ingredient-line" class="mb-3">
       <div class="row">
   
@@ -110,6 +112,8 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
   
   <fieldset class="border p-3 mb-4">
     <legend class="h5">Images</legend>
+    <small>Must be jpg, jpeg, png, or webp.</small><br>
+    <small>Must be less than 2MB</small>
     <div id="image-line" class="mb-3">
       <label for="image" class="form-label">Upload: </label>
       <input type="file" id="image" name="image[]" accept="image/*" class="form-control">

@@ -8,7 +8,11 @@ function all_from_lookup($table, $selected_value = null) {
   $result = mysqli_query($database, $sql);
   while($row = mysqli_fetch_assoc($result)) {
     $selected = ($selected_value == $row["id"]) ? 'selected' : '';
-    echo '<option value="' . $row["id"] . '" ' . $selected . '>'  . ucwords($row[$table]) . '</option>';
+    if ($row["id"] == 16) {
+      echo '<option value="' . $row["id"] . '" ' . $selected . '>Not Needed</option>';
+    } else {
+      echo '<option value="' . $row["id"] . '" ' . $selected . '>'  . ucwords($row[$table]) . '</option>';
+    }
   }
 }
 

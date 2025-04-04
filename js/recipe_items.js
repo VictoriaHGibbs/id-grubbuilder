@@ -2,7 +2,7 @@
 
 const ingredientContainer = document.getElementById("ingredient-line");
 const addIngredientBtn = document.getElementById("add-ingredient");
-var ingredientIndex = 1; // Start from 1 since 0 is already used
+var ingredientIndex = 1; 
 
 const directionContainer = document.getElementById("direction-line");
 const addDirectionBtn = document.getElementById("add-direction");
@@ -31,24 +31,27 @@ addImageBtn.addEventListener("click", addAnotherImage);
     newIngredient.classList.add("ingredient");
     newIngredient.innerHTML = `
     <div class="row">
-    <div class="col-md-4">
-    <label for="quantity">Quantity: </label>
-    <input type="number" step="any" name="ingredient[${ingredientIndex}][quantity]" class="form-control">
-    </div>
+      <div class="col-md-4">
+        <label for="quantity">Quantity: </label>
+        <input type="number" step="any" name="ingredient[${ingredientIndex}][quantity]" class="form-control" autofocus>
+      </div>
 
-    <div class="col-md-4">
-    <label for="ing_measurement_id">Select Unit: </label>
-    <select name="ingredient[${ingredientIndex}][measurement_id]" class="form-select">
-    <option value="">Units</option>
-    ${measurementOptions} 
-    </select>
-    </div>
-    
-    <div class="col-md-4">
-    <label for="ingredient_name">Ingredient: </label>
-    <input type="text" name="ingredient[${ingredientIndex}][ingredient_name]" class="form-control">
-    </div>
-    <button type="button" class="btn remove">❌</button>
+      <div class="col-md-4">
+        <label for="ing_measurement_id">Select Unit: </label>
+        <select name="ingredient[${ingredientIndex}][measurement_id]" class="form-select">
+        <option value="">Units</option>
+        ${measurementOptions} 
+        </select>
+      </div>
+      
+      <div class="col-md-4">
+        <label for="ingredient_name">Ingredient: </label>
+        <input type="text" name="ingredient[${ingredientIndex}][ingredient_name]" class="form-control">
+      </div>
+
+      <div class="col-md-4">
+        <button type="button" class="btn btn-warning remove"><i class="fa-solid fa-xmark"></i> Remove Ingredient</button>
+      </div>
     </div>
     `;
     
@@ -65,10 +68,10 @@ function addAnotherDirection(event) {
   newDirection.classList.add("direction");
   newDirection.innerHTML = `
     <div id="direction-line">
-      <label for="direction_text">Enter one at a time: </label>
-      <input type="text" id="direction_text" name="direction[${directionIndex}][direction_text]" class="form-control">
+      <label for="direction_text">Next Direction: </label>
+      <input type="text" id="direction_text" name="direction[${directionIndex}][direction_text]" class="form-control" autofocus>
     </div>
-      <button type="button" class="btn remove">❌</button>
+      <button type="button" class="btn btn-warning remove"><i class="fa-solid fa-xmark"></i> Remove Direction</button>
   `;
   
   directionContainer.appendChild(newDirection);
@@ -87,7 +90,7 @@ function addAnotherImage(event) {
       <label for="image">Upload: </label>
       <input type="file" id="image" name="image[]" accept="image/*" class="form-control">
     </div>
-      <button type="button" class="btn remove">❌</button>
+      <button type="button" class="btn btn-warning remove"><i class="fa-solid fa-xmark"></i> Remove Image</button>
   `;
   
   imageContainer.appendChild(newImage);
