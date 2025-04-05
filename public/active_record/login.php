@@ -43,15 +43,15 @@ if (is_post_request()) {
 
 
 <form action="login.php" method="post" class="login-form container p-4 shadow-sm bg-white rounded">
-  
+
   <?php echo display_errors($errors); ?>
 
-  <div class="mb-3">
+  <div class="mb-3 login-group">
     <label for="username" class="form-label">Username:</label>
     <input type="text" id="username" name="username" class="form-control" value="<?php echo h($username); ?>" required autofocus>
   </div>
     
-  <div class="mb-3">
+  <div class="mb-3 login-group">
     <label for="password" class="form-label">Password:</label>
     <input type="password" id="password" name="password" class="form-control" required>
   </div>

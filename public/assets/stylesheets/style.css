@@ -239,6 +239,11 @@ footer {
   color: #212123;
 }
 
+.min-height-error {
+  min-height: 20px;
+  display: inline-block;
+}
+
 /******************* Admin Dashboard tables *****************/
 
 .table {
