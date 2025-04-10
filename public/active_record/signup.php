@@ -11,8 +11,10 @@ if (is_post_request()) {
 
 
   if ($result === true) {
-    $new_id = $user->id;
-    redirect_to(url_for('/active_record/login.php'));
+    // $new_id = $user->id;
+    $session->login($user);
+      if ($user->role_id == 1) redirect_to(url_for('/active_record/index.php'));
+      if ($user->role_id == 2 || $user->role_id == 3) redirect_to(url_for('/active_record/users/index.php'));
   } else {
     // show errors
   }
