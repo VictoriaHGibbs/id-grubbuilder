@@ -139,6 +139,14 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
   </fieldset>
   
 
+
+
+
+
+
+
+
+
   <fieldset class="border p-3 mb-4">
     <legend class="h5">Images</legend>
     <small>Must be jpg, jpeg, png, or webp.</small><br>
@@ -146,21 +154,21 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
 
     <div id="image-line" class="mb-3">
       <?php 
-      // Load existing images from the database or sticky fields from $_POST
-      $images = $_POST['image'] ?? Recipe::get_images($recipe->id) ?? [];
+      // Check if images are set in the session or from the database
+      $images = $_SESSION['uploaded_images'] ?? Recipe::get_images($recipe->id) ?? [];
+
+      var_dump($images); 
+
       if (!empty($images)) {
         foreach ($images as $index => $image) :
-          $image_url = is_array($image) ? $image['image_url'] : $image->image_url; // Handle both $_POST and object cases
+          $image_url = is_array($image) ? $image['image_url'] : $image->image_url; 
       ?>
         <div class="row mb-2">
           <div class="col-md-10">
             <label for="image_<?php echo $index; ?>" class="form-label">Uploaded Image:</label>
-            <input type="text" id="image_<?php echo $index; ?>" name="image[<?php echo $index; ?>][image_url]" 
-                  value="<?php echo h($image_url); ?>" class="form-control" readonly>
+            <input type="text" id="image_<?php echo $index; ?>" name="image[<?php echo $index; ?>][image_url]" value="<?php echo h($image_url); ?>" class="form-control" readonly>
           </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-danger remove w-100 mt-4">Remove</button>
-          </div>
+          <button type="button" class="btn btn-warning remove w-25 ms-3 mt-3 md-4"><i class="fa-solid fa- xmark"></i> Remove Image</button>
         </div>
       <?php endforeach; } ?>
 
@@ -174,6 +182,8 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
 
     <input type="button" name="image" id="add-image" value="Add Another Image" class="btn btn-warning">
   </fieldset>
+
+
 
 
 

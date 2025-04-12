@@ -5,6 +5,9 @@
 $database->begin_transaction();
 
 try {
+// Holding array for uploaded images for sticky fields
+  $uploaded_images = [];
+
 // Insert into RECIPE table
   $stmt1 = $_POST['recipe'];
   $recipe = new Recipe($stmt1);
@@ -17,26 +20,9 @@ try {
 // Get last inserted recipe_id
   $recipe_id = $recipe->id;
 
-  
-// Ingredient Array Loop 
-  foreach ($_POST['ingredient'] as $index => $ingredient_data) {
-    $ingredient_data['recipe_id'] = $recipe_id;
-    $ingredient_data['ingredient_line_item'] = $index + 1;
-    $ingredient = new Ingredient($ingredient_data);
-    $ingredient->save();
-  }
-
-// Direction Array Loop
-  foreach ($_POST['direction'] as $index => $direction_data) {
-    $direction_data['recipe_id'] = $recipe_id;
-    $direction_data['direction_line_item'] = $index + 1;
-    $direction = new Direction($direction_data);
-    $direction->save();
-  }
-
-// Check if image
+// Check if new image
   if (!empty($_FILES['image']['name'][0])) {
-// Image Array Loop
+    // Image Array Loop
     foreach ($_FILES['image']['name'] as $index => $file_name) {
       if (empty($file_name)) continue;
         $recipe_id = $recipe_id ?? 0;
@@ -62,6 +48,11 @@ try {
                   'image_url' => $file_name_new
                 ];
 
+                $uploaded_images[] = [
+                  'image_url' => $file_name_new,
+                  'image_line_item' => $index + 1,
+                ];
+
                 $image = new Image($image_data);
                 $image->save();
 
@@ -78,7 +69,18 @@ try {
           echo "You cannot upload images of that type!";
         }        
     }
-  } else {
+  } 
+  
+  // Pulling from $_SESSION if no new image uploaded
+  if (!empty($_SESSION['image'])) {
+    foreach ($_SESSION['image'] as $index => $image_data) {
+      $image_data['recipe_id'] = $recipe_id;
+      $image = new Image($image_data);
+      $image->save();
+    }
+  } 
+  
+  if (empty($_FILES['image']['name'][0]) && empty($_SESSION['image'])) {
     $image_data = [
       'recipe_id' => $recipe_id,
       'image_line_item' => $index + 1,
@@ -87,6 +89,26 @@ try {
 
     $image = new Image($image_data);
     $image->save();
+    
+  }
+
+// Save uploaded images to session for sticky fields
+  $_SESSION['uploaded_images'] = $uploaded_images;
+
+// Ingredient Array Loop 
+  foreach ($_POST['ingredient'] as $index => $ingredient_data) {
+    $ingredient_data['recipe_id'] = $recipe_id;
+    $ingredient_data['ingredient_line_item'] = $index + 1;
+    $ingredient = new Ingredient($ingredient_data);
+    $ingredient->save();
+  }
+
+// Direction Array Loop
+  foreach ($_POST['direction'] as $index => $direction_data) {
+    $direction_data['recipe_id'] = $recipe_id;
+    $direction_data['direction_line_item'] = $index + 1;
+    $direction = new Direction($direction_data);
+    $direction->save();
   }
 
 // Check if video
@@ -126,6 +148,7 @@ try {
 
 // Commit transaction
   $database->commit();
+  unset($_SESSION['uploaded_images']);
   echo "Recipe creation successful!";
   $result = true;
   return $recipe_id;
@@ -133,6 +156,10 @@ try {
 } catch (Exception $error) {
   // Rollback transaction if error
   $database->rollback();
+
+  // Save uploaded images to session for sticky fields
+  $_SESSION['uploaded_images'] = $uploaded_images;
+
   $result = false;
   echo "Recipe not created! :( ";
   echo "Error: " . $error->getMessage();
