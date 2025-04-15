@@ -18,8 +18,14 @@ if ($session->is_logged_in()) {
 }
 ?>
 
-  <h2 class="text-center fw-bold mb-4">All the Recipes</h2>
-  
+  <h2 class="text-center fw-bold mb-4 py-4">All the Recipes</h2>
+
+  <form action="<?php echo url_for('/recipes.php'); ?>" method="post">
+
+  <?php include(SHARED_PATH . '/recipe_sort.php'); ?>
+
+  </form>
+
   <div id="preview" class="container text-center mt-4 p-4 rounded border border-1 border-dark">
     <?php include(SHARED_PATH . '/recipe_card.php'); ?>
   </div>

@@ -92,6 +92,7 @@ footer {
 /**************** Full Recipe ***********************/
 
 .recipe-details {
+  background-color: #f9da96;
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -108,8 +109,12 @@ footer {
   border-radius: 8px;
 }
 
-.ingredients-list, .directions-list {
-  background-color: #f8f9fa;
+.ingredients-list, 
+.directions-list,
+.recipe-description,
+.rating,
+.categories {
+  background-color: #f9da96;
   padding: 15px;
   border-radius: 8px;
 }

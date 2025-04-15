@@ -11,7 +11,13 @@ if ($session->is_logged_in()) {
 }
 ?>
 
-<h2 class="text-center fw-bold mb-4">Search Results</h2>
+<h2 class="text-center fw-bold mb-4 py-4">Search Results</h2>
+
+<form action="<?php echo url_for('/recipes.php'); ?>" method="post">
+
+  <?php include(SHARED_PATH . '/recipe_sort.php'); ?>
+
+</form>
 
 <?php 
   if (is_get_request()) {

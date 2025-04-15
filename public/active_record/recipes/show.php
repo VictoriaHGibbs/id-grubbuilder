@@ -35,11 +35,11 @@ if ($session->is_logged_in()) {
         <?php echo Recipe::images($recipe_id); ?>
       </div>
 
-      <div class="p-3 my-4 border rounded bg-light">
+      <div class="recipe-description p-3 my-4 border rounded border-1 border-dark">
         <p class="lead"><?php echo ucfirst(h($recipe->description)); ?></p>
       </div>
       
-      <div class="rating p-3 my-4 border rounded bg-light">
+      <div class="rating p-3 my-4 border rounded border-1 border-dark">
         <?php echo Recipe::display_average_rating($recipe_id); ?>
         <?php echo Recipe::display_total_raters($recipe_id); ?>
         <!-- option to leave rating if it is not their own recipe and they haven't already left a rating -->
@@ -65,12 +65,12 @@ if ($session->is_logged_in()) {
         <?php } ?>
       <!-- Printing button -->
       <div class="text-start my-4">
-        <a href="<?php echo url_for('/active_record/recipes/generate_pdf.php?id=' . h($recipe_id)); ?>" class="btn btn-primary" target="_blank">Print Recipe</a>
+        <a href="<?php echo url_for('/active_record/recipes/generate_pdf.php?id=' . h($recipe_id)); ?>" class="btn btn-warning border-1 border-dark" target="_blank">Print Recipe</a>
       </div>
 
       </div>
 
-      <div class="recipe-details p-3 mb-4 border rounded bg-light">
+      <div class="recipe-details p-3 mb-4 border rounded border-1 border-dark">
         <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
         <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
         <p>Servings: <span class="quantity"><?php echo h($recipe->servings); ?></span></p>
@@ -87,14 +87,14 @@ if ($session->is_logged_in()) {
         <section class="mb-4">
           <h3>Ingredients</h3>
           <?php include_once('../recipes/recipe_size_fields.php'); ?>
-          <div class="ingredients-list p-3 border rounded">
+          <div class="ingredients-list p-3 border rounded border-1 border-dark">
             <?php echo Recipe::ingredients($recipe_id); ?>
           </div>
         </section>
         
         <section class="mb-4">
           <h3>Directions</h3>
-          <div class="directions-list p-3 border rounded">
+          <div class="directions-list p-3 border rounded border-1 border-dark">
             <?php echo Recipe::directions($recipe_id); ?>
           </div>
         </section>
