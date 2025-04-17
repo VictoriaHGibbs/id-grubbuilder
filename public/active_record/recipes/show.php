@@ -17,13 +17,17 @@ if ($session->is_logged_in()) {
 }
 ?>
 
-<ul class="breadcrumb">
-  <li><a href="<?php echo url_for('/recipes.php'); ?>">All Recipes</a></li>
-
-  <?php if($session->is_logged_in()) { ?>
-    <li><a href="<?php echo url_for('/active_record/index.php'); ?>">Your Recipes</a></li>
-  <?php } ?>
-</ul>
+<div class="container m-3">
+  <div class="row">
+    <ul class="breadcrumb">
+      <li><a href="<?php echo url_for('/recipes.php'); ?>">All Recipes</a></li>
+    
+      <?php if($session->is_logged_in()) { ?>
+        <li><a href="<?php echo url_for('/active_record/index.php'); ?>">Your Recipes</a></li>
+      <?php } ?>
+    </ul>
+  </div>
+</div>
 
 <div class="container my-4">
   <div class="row">
@@ -39,48 +43,65 @@ if ($session->is_logged_in()) {
         <p class="lead"><?php echo ucfirst(h($recipe->description)); ?></p>
       </div>
       
-      <div class="rating p-3 my-4 border rounded border-1 border-dark">
-        <?php echo Recipe::display_average_rating($recipe_id); ?>
-        <?php echo Recipe::display_total_raters($recipe_id); ?>
-        <!-- option to leave rating if it is not their own recipe and they haven't already left a rating -->
-        <?php if ($session->is_logged_in()) { ?>
-          <?php $rating_result = Recipe::check_if_user_submitted_rating($recipe_id, $id) ?>
-          <?php if ($recipe->user_id == $id ) { ?>
-            <p>This recipe is yours!</p>
-            <!-- DELETE BUTTON  -->
-            <a class="btn btn-primary" href="<?php echo url_for('/active_record/recipes/delete.php?id=' . h(u($recipe->id))); ?>">Delete Recipe</a>
-          <?php } elseif ($rating_result) { ?>
-            <p class="rating-icon">Thanks for rating this recipe <?php echo ($rating_result->rating_level); ?> <i class="fa-solid fa-drumstick-bite"></i>!</p>
-            <form action="<?php echo url_for('/active_record/ratings/delete_rating.php'); ?>" method="post" class="my-2">
-            <input type="hidden" name="rating_id" value="<?php echo $rating_result->id ?>" >
-              <input type="submit" class="btn btn-warning mt-2" value="Change Rating">
-            </form>
-
-          <?php } else { ?>
-            <form action="<?php echo url_for('/active_record/ratings/submit_rating.php'); ?>" method="post" class="my-2">
-              <?php include_once('../ratings/rating_form_fields.php'); ?>
-              <input type="submit" class="btn btn-warning mt-2" value="Submit Rating">
-            </form>
-          <?php } ?>
-        <?php } ?>
-      <!-- Printing button -->
-      <div class="text-start my-4">
-        <a href="<?php echo url_for('/active_record/recipes/generate_pdf.php?id=' . h($recipe_id)); ?>" class="btn btn-warning border-1 border-dark" target="_blank">Print Recipe</a>
+      <div class="container rating p-4 my-4 border rounded border-1 border-dark text-center">
+        <div class="row">
+          <div class="col-12 col-md-12">
+            <?php echo Recipe::display_average_rating($recipe_id); ?>
+            <?php echo Recipe::display_total_raters($recipe_id); ?>
+          </div>
+            <!-- option to leave rating if it is not their own recipe and they haven't already left a rating -->
+            <?php if ($session->is_logged_in()) { ?>
+              <?php $rating_result = Recipe::check_if_user_submitted_rating($recipe_id, $id) ?>
+              <?php if ($recipe->user_id == $id ) { ?>
+                <div class="col-12 col-md-12">
+                  <p>This recipe is yours!</p>
+                  <!-- DELETE BUTTON  -->
+                  <a class="btn btn-warning border-1 border-dark" href="<?php echo url_for('/active_record/recipes/delete.php?id=' . h(u($recipe->id))); ?>">Delete Recipe</a>
+                </div>
+              <?php } elseif ($rating_result) { ?>
+                <div class="col-12 col-md-12">
+                  <p class="rating-icon">Thanks for rating this recipe <?php echo ($rating_result->rating_level); ?> <i class="fa-solid fa-drumstick-bite"></i>!</p>
+                  <form action="<?php echo url_for('/active_record/ratings/delete_rating.php'); ?>" method="post" class="my-2">
+                  <input type="hidden" name="rating_id" value="<?php echo $rating_result->id ?>" >
+                    <input type="submit" class="btn btn-warning border-1 border-dark mt-2" value="Change Rating">
+                  </form>
+                </div>
+              <?php } else { ?>
+                <div class="col-12 col-md-12">
+                  <form action="<?php echo url_for('/active_record/ratings/submit_rating.php'); ?>" method="post" class="my-2">
+                    <?php include_once('../ratings/rating_form_fields.php'); ?>
+                    <input type="submit" class="btn btn-warning border-1 border-dark mt-2" value="Submit Rating">
+                  </form>
+                </div>
+              <?php } ?>
+            <?php } ?>
+          
+          <!-- Printing button -->
+          <div class="col-12 col-md-12 align-self-end mt-2">
+            <a href="<?php echo url_for('/active_record/recipes/generate_pdf.php?id=' . h($recipe_id)); ?>" class="btn btn-warning border-1 border-dark" target="_blank">Print Recipe</a>
+          </div>
+        </div>
       </div>
 
-      </div>
 
-      <div class="recipe-details p-3 mb-4 border rounded border-1 border-dark">
-        <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
-        <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
-        <p>Servings: <span class="quantity"><?php echo h($recipe->servings); ?></span></p>
-        <p>Yield: <span class="quantity"><?php echo h(abs($recipe->yield));?> </span> 
-        <?php if ($recipe->yield > 1) {
-          h($recipe->get_measurement_name($recipe)) . "s" ;
-        } else {
-          h($recipe->get_measurement_name($recipe));
-        }
-         ;"</p>" ?>
+      <div class="container recipe-details p-3 mb-4 border rounded border-1 border-dark">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
+            <p>Cook Time: <?php echo h($recipe->cook_time_minutes); ?> minutes</p>
+            <p>Servings: <span class="quantity"><?php echo h($recipe->servings); ?></span></p>
+            <p>Yield: <span class="quantity"><?php echo h(abs($recipe->yield));?> </span>
+            <?php if ($recipe->yield > 1) {
+              h($recipe->get_measurement_name($recipe)) . "s" ;
+            } else {
+              h($recipe->get_measurement_name($recipe));
+            }
+             ;"</p>" ?>
+          </div>
+          <div class="col-md-6">
+          <?php echo Recipe::recipe_categories($recipe->id) ?>
+          </div>
+        </div>
       </div>
 
       <div>

@@ -69,6 +69,51 @@ class Recipe extends DatabaseObject {
     return $html;
   }
 
+// Retrieve associated RecipeDiet categories
+  static public function get_recipeDiet($recipe_id) {
+    return RecipeDiet::find_by_recipe_id($recipe_id);
+  }
+
+// Retrieve associated RecipeStyle categories
+  static public function get_recipeStyle($recipe_id) {
+    return RecipeStyle::find_by_recipe_id($recipe_id);
+  }
+
+// Retrieve associated RecipeMealType categories
+  static public function get_recipeMealType($recipe_id) {
+    return RecipeMealType::find_by_recipe_id($recipe_id);
+  }
+
+// Display Categories
+  static public function recipe_categories($recipe_id) {
+    $dietArr = Recipe::get_recipeDiet($recipe_id);
+    $styleArr = Recipe::get_recipeStyle($recipe_id);
+    $mealtypeArr = Recipe::get_recipeMealType($recipe_id);
+
+    $html = "<ul class=\"list-unstyled ps-0\">";
+
+    if ($dietArr) {
+      foreach ($dietArr as $diet) {
+        $html .= "<li>" . find_value_from_lookup(($diet->diet_id), 'diet') . "</li>";
+      }
+    }
+
+    if ($styleArr) {
+      foreach ($styleArr as $style) {
+        $html .= "<li>" . find_value_from_lookup(($style->style_id), 'style') . "</li>";
+      }
+    }
+
+    if ($mealtypeArr) {
+      foreach ($mealtypeArr as $meal_type) {
+        $html .= "<li>" . find_value_from_lookup(($meal_type->meal_type_id), 'meal_type') . "</li>";
+      }
+    }
+
+    $html .= "</ul>";
+    return $html;
+  }
+
 // Retrieve associated images
   static public function get_images($recipe_id) {
     $result = Image::find_by_recipe_id($recipe_id);

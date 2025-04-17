@@ -15,7 +15,8 @@
                 <h3 class="card-title fw-bold"><?php echo h($recipe->recipe_title); ?></h3>
                 <p class="text-muted"><?php echo ($recipe->user_info($recipe)) ?></p>
                 <p class="card-text flex-grow-1"><?php echo h($recipe->description); ?></p>
-                <p class="fw-bold text-warning"><?php Recipe::display_average_rating($recipe->id) ?></p>
+                <?php echo Recipe::recipe_categories($recipe->id) ?>
+                <?php Recipe::display_average_rating($recipe->id) ?>
               </div>
 
             </a>

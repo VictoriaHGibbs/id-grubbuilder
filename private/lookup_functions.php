@@ -22,6 +22,6 @@ function find_value_from_lookup($id, $table) {
   $sql .= "WHERE id='" . $id . "'";
   $result = mysqli_query($database, $sql);
   while($row = mysqli_fetch_assoc($result)) {
-    echo ucwords($row[$table]);
+    return ucwords($row[$table]);
   }
 }

@@ -1,6 +1,6 @@
 <div class="rating-container">
-  <p>Have you made this one? If so leave a rating!</p>
-  <div class="star-widget">
+  <p class="align-self-center">Have you made this one? If so leave a rating!</p>
+  <div class="star-widget align-self-center">
     <input type="radio" name="rating[rating_level]" id="rate-5" value="5" required>
     <label for="rate-5" class="fas fa-drumstick-bite"></label>
 
