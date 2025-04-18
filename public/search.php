@@ -13,7 +13,7 @@ if ($session->is_logged_in()) {
 
 <h2 class="text-center fw-bold mb-4 py-4">Search Results</h2>
 
-<form action="<?php echo url_for('/recipes.php'); ?>" method="post">
+<form action="<?php echo url_for('/search.php'); ?>" method="post">
 
   <?php include(SHARED_PATH . '/recipe_sort.php'); ?>
 

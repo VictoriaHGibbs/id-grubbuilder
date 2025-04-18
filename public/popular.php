@@ -13,7 +13,7 @@ if ($session->is_logged_in()) {
 
 <h2 class="text-center fw-bold mb-4 py-4">Popular Recipes</h2>
 
-<form action="<?php echo url_for('/recipes.php'); ?>" method="post">
+<form action="<?php echo url_for('/popular.php'); ?>" method="post">
 
   <?php include(SHARED_PATH . '/recipe_sort.php'); ?>
 
@@ -24,7 +24,7 @@ if ($session->is_logged_in()) {
   $all_recipes = Recipe::find_all();
 
   $recipes = array_filter($all_recipes, function($recipe) {
-    return $recipe->average_rating($recipe->id) >= 3;
+    return $recipe->average_rating($recipe->id) >= 4;
     });
 
   $current_page = $_GET['page'] ?? 1;
