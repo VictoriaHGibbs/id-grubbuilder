@@ -35,7 +35,7 @@
           <li class="nav-item"><a href="<?php echo url_for('/about.php') ?>" class="nav-link link-body-emphasis px-2">About</a></li>
         </ul>
         <div class="flex-shrink-0 dropdown">
-            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <a href="#" class="btn btn-warning d-block border border-1 border-dark link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               <span><i class="fa-solid fa-user"></i> <?php echo ($session->username); ?></span>
             </a>
             <ul class="dropdown-menu text-small shadow">

@@ -15,13 +15,13 @@ include(SHARED_PATH . '/user_header.php');
 ?>
 
 
-<h2 class="text-center mb-4">Admin User Dashboard</h2>
+<h2 class="text-center mb-2">Admin User Dashboard</h2>
 
 <section class="table-responsive">
   <table class="table table-warning table-hover align-middle shadow-sm">
     <h3 class="text-center mb-3">List of Users</h3>
     <div class="mb-3">
-      <a href="<?php echo url_for('/active_record/users/new.php') ?>" class="btn btn-warning ">Manually Add User</a>
+      <a href="<?php echo url_for('/active_record/users/new.php') ?>" class="btn btn-warning border border-1 border-dark">Manually Add User</a>
     </div>
       <thead class="table-dark">
         <tr>
@@ -46,9 +46,9 @@ include(SHARED_PATH . '/user_header.php');
                 <td><?php echo find_value_from_lookup(h($user->role_id), 'role'); ?></td>
                 <td><?php echo h($user->active_display()); ?></td>
                 <td><?php echo h($user->joined_at); ?></td>
-                <td><a href="<?php echo url_for('/active_record/users/show.php?id=' . h(u($user->id))); ?>" class="btn btn-warning btn-sm">View</a></td>
-                <td><a href="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($user->id))); ?>" class="btn btn-warning btn-sm">Edit</a></td>
-                <td><a href="<?php echo url_for('/active_record/users/delete.php?id=' . h(u($user->id))); ?>" class="btn btn-warning btn-sm">Delete</a></td>
+                <td><a href="<?php echo url_for('/active_record/users/show.php?id=' . h(u($user->id))); ?>" class="btn btn-warning border border-1 border-dark">View</a></td>
+                <td><a href="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($user->id))); ?>" class="btn btn-warning border border-1 border-dark">Edit</a></td>
+                <td><a href="<?php echo url_for('/active_record/users/delete.php?id=' . h(u($user->id))); ?>" class="btn btn-warning border border-1 border-dark">Delete</a></td>
             </tr>
         <?php } ?>
       </tbody>
@@ -84,9 +84,9 @@ include(SHARED_PATH . '/user_header.php');
                   <td><?php echo find_value_from_lookup(h($admin->role_id), 'role'); ?></td>
                   <td><?php echo h($admin->active_display()); ?></td>
                   <td><?php echo h($admin->joined_at); ?></td>
-                  <td><a href="<?php echo url_for('/active_record/users/show.php?id=' . h(u($admin->id))); ?>" class="btn btn-warning btn-sm">View</a></td>
-                  <td><a href="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($admin->id))); ?>" class="btn btn-warning btn-sm">Edit</a></td>
-                  <td><a href="<?php echo url_for('/active_record/users/delete.php?id=' . h(u($admin->id))); ?>" class="btn btn-warning btn-sm">Delete</a></td>
+                  <td><a href="<?php echo url_for('/active_record/users/show.php?id=' . h(u($admin->id))); ?>" class="btn btn-warning border border-1 border-dark">View</a></td>
+                  <td><a href="<?php echo url_for('/active_record/users/edit.php?id=' . h(u($admin->id))); ?>" class="btn btn-warning border border-1 border-dark">Edit</a></td>
+                  <td><a href="<?php echo url_for('/active_record/users/delete.php?id=' . h(u($admin->id))); ?>" class="btn btn-warning border border-1 border-dark">Delete</a></td>
               </tr>
           <?php } ?>
         </tbody>
@@ -95,37 +95,47 @@ include(SHARED_PATH . '/user_header.php');
 <?php } ?>
 
 
-<h2 class="text-center mb-4">Recipe Category Management</h2>
+<h2 class="text-center my-4 fs-1">Recipe Category Management</h2>
 
-<section class="table-responsive">
+<div class="accordion">
+  <div class="accordion-item">
+    <section class="table-responsive">
+    
+      <h3 class="accordion-header">
+        <button class="accordion-button bg-warning fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-controls="panelsStayOpen-collapseOne">Diets</button>
+      </h3>
 
-  <table class="table table-warning table-hover align-middle shadow-sm">
-    <h3 class="text-center mb-3">Diets</h3>
-    <thead class="table-dark">
-      <tr>
-        <th>ID</th>
-        <th>Diet</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <?php foreach ($diets as $diet) { ?>
-        <tr>
-          <td><?php echo h($diet->id); ?></td>
-          <td><?php echo h($diet->diet); ?></td>
-          <td>
-            <a href="<?php echo url_for('/active_record/categories/diet_edit.php?id=' . h(u($diet->id))); ?>" class="btn btn-warning btn-sm">Edit</a>
-            <a href="<?php echo url_for('/active_record/categories/diet_delete.php?id=' . h(u($diet->id))); ?>" class="btn btn-warning btn-sm">Delete</a>
-          </td>
-        </tr>
-      <?php } ?>
-    </tbody>
-  </table>
-  <div class="text-start mb-3">
-    <a href="<?php echo url_for('/active_record/categories/diet_new.php') ?>" class="btn btn-warning">Add New Diet</a>
+      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <table class="table table-warning table-hover align-middle shadow-sm">
+            <thead class="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Diet</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($diets as $diet) { ?>
+                <tr>
+                  <td><?php echo h($diet->id); ?></td>
+                  <td><?php echo h($diet->diet); ?></td>
+                  <td>
+                    <a href="<?php echo url_for('/active_record/categories/diet_edit.php?id=' . h(u($diet->id))); ?>" class="btn btn-warning border border-1 border-dark">Edit</a>
+                    <a href="<?php echo url_for('/active_record/categories/diet_delete.php?id=' . h(u($diet->id))); ?>" class="btn btn-warning border border-1 border-dark">Delete</a>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-start m-3">
+        <a href="<?php echo url_for('/active_record/categories/diet_new.php') ?>" class="btn btn-warning border border-1 border-dark">Add New Diet</a>
+      </div>
+    </section>
   </div>
-</section>
+</div> 
 
 <section class="table-responsive">
   
@@ -145,15 +155,15 @@ include(SHARED_PATH . '/user_header.php');
           <td><?php echo h($meal_type->id); ?></td>
           <td><?php echo h($meal_type->meal_type); ?></td>
           <td>
-            <a href="<?php echo url_for('/active_record/categories/meal_type_edit.php?id=' . h(u($meal_type->id))); ?>" class="btn btn-warning btn-sm">Edit</a>
-            <a href="<?php echo url_for('/active_record/categories/meal_type_delete.php?id=' . h(u($meal_type->id))); ?>" class="btn btn-warning btn-sm">Delete</a>
+            <a href="<?php echo url_for('/active_record/categories/meal_type_edit.php?id=' . h(u($meal_type->id))); ?>" class="btn btn-warning border border-1 border-dark">Edit</a>
+            <a href="<?php echo url_for('/active_record/categories/meal_type_delete.php?id=' . h(u($meal_type->id))); ?>" class="btn btn-warning border border-1 border-dark">Delete</a>
           </td>
         </tr>
       <?php } ?>
     </tbody>
   </table>
   <div class="text-start mb-3">
-    <a href="<?php echo url_for('/active_record/categories/meal_type_new.php') ?>" class="btn btn-warning">Add New Meal Type</a>
+    <a href="<?php echo url_for('/active_record/categories/meal_type_new.php') ?>" class="btn btn-warning border border-1 border-dark">Add New Meal Type</a>
   </div>
 </section>
 
@@ -175,15 +185,15 @@ include(SHARED_PATH . '/user_header.php');
           <td><?php echo h($style->id); ?></td>
           <td><?php echo h($style->style); ?></td>
           <td>
-            <a href="<?php echo url_for('/active_record/categories/style_edit.php?id=' . h(u($style->id))); ?>" class="btn btn-warning btn-sm">Edit</a>
-            <a href="<?php echo url_for('/active_record/categories/style_delete.php?id=' . h(u($style->id))); ?>" class="btn btn-warning btn-sm">Delete</a>
+            <a href="<?php echo url_for('/active_record/categories/style_edit.php?id=' . h(u($style->id))); ?>" class="btn btn-warning border border-1 border-dark">Edit</a>
+            <a href="<?php echo url_for('/active_record/categories/style_delete.php?id=' . h(u($style->id))); ?>" class="btn btn-warning border border-1 border-dark">Delete</a>
           </td>
         </tr>
       <?php } ?>
     </tbody>
   </table>
   <div class="text-start mb-3">
-    <a href="<?php echo url_for('/active_record/categories/style_new.php') ?>" class="btn btn-warning">Add New Style</a>
+    <a href="<?php echo url_for('/active_record/categories/style_new.php') ?>" class="btn btn-warning border border-1 border-dark">Add New Style</a>
   </div>
 </section>
 
