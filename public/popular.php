@@ -40,7 +40,7 @@ if ($session->is_logged_in()) {
 
   if ($recipes) { ?>
 
-  <div id="preview" class="container text-center mt-4 p-4 rounded border border-1 border-dark">
+  <div id="preview" class="container text-center mt-4 p-md-4 p-2 rounded border border-1 border-dark">
     <?php include(SHARED_PATH . '/recipe_card.php'); ?>
   </div>
     <?php $url = url_for('/popular.php');

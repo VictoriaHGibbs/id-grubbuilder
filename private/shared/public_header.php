@@ -37,9 +37,9 @@
     <header class="py-3 mb-4 border-bottom">
       <div class="container d-flex flex-wrap justify-content-center">
         <a href="<?php echo url_for('/index.php'); ?>" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
-          <h1 class="fs-4">Grub Builder</h1>
+          <h1 class="fs-1">Grub Builder</h1>
         </a>
-        <form action="<?php echo url_for('/search.php'); ?>" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+        <form action="<?php echo url_for('/search.php'); ?>" method="get" class="col-12 col-lg-4 mb-3 mb-lg-0 align-self-center" role="search">
           <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="search" name="search">
         </form>
       </div>

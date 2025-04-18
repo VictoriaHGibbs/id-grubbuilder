@@ -2,7 +2,7 @@
 require_once('../private/initialize.php');
 
 $current_page = $_GET['page'] ?? 1;
-$per_page = 3;
+$per_page = 6;
 $total_count = Recipe::count_all();
 
 $pagination = new Pagination($current_page, $per_page, $total_count);
@@ -24,9 +24,8 @@ if ($session->is_logged_in()) {
   <a href="<?php echo url_for('/recipes.php') ?>" class="btn btn-lg btn-warning border-dark">Explore Recipes</a>
 </section>
 
-<div id="preview" class="container text-center mt-4 p-4 rounded border border-1 border-dark">
+<div id="preview" class="container text-center mt-4 p-md-4 p-2 rounded border border-1 border-dark">
   <?php include(SHARED_PATH . '/recipe_card.php'); ?>
-  <!-- <img src="<?php echo url_for('assets/images/sushi01.webp');?>" class="img-fluid rounded shadow-lg" alt="A large colorful plate of sushi." > -->
 </div>
 
 <?php $url = url_for('/index.php');

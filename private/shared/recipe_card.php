@@ -3,7 +3,7 @@
 
   <div class="row">
     <?php foreach($recipes as $recipe) { ?>
-        <div class="col-12 col-sm-6 col-md-4 mb-4">
+        <div class="col-12 col-sm-6 col-lg-4 mb-4">
           <div class="card h-100 shadow-sm border-1 border-dark rounded-3 d-flex flex-column">
             <a href="<?php echo url_for('active_record/recipes/show.php?id=' . h(u($recipe->id))); ?>" class="text-dark text-decoration-none align-self-stretch h-100">
 

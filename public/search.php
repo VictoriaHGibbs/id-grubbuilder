@@ -35,7 +35,7 @@ if ($session->is_logged_in()) {
 
     <section class="card-preview-container">
 
-    <div id="preview" class="container text-center mt-4 p-4 rounded border border-1 border-dark">
+    <div id="preview" class="container text-center mt-4 p-md-4 p-2 rounded border border-1 border-dark">
       <?php include(SHARED_PATH . '/recipe_card.php'); ?>
     </div>
     </section>
