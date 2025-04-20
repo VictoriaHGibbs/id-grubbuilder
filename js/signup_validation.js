@@ -22,10 +22,13 @@ let password = document.getElementById(`password`);
 let confirmPassword = document.getElementById(`confirm_password`);
 
 
-// Validation functions
 /**
+ * Validates the username input field.
+ * Ensures the username is not empty, has a minimum length of 5 characters,
+ * and does not exceed 20 characters.
+ * Updates the `usernameError` span with appropriate messages.
  * 
- * @returns 
+ * @returns {boolean} Returns false if validation fails, otherwise undefined.
  */
 function validateUsername() {
   let usernameValue = username.value;
@@ -46,7 +49,8 @@ function validateUsername() {
 }
 
 /**
- * 
+ * Counts the number of characters in the username input field
+ * and updates the `nameLength` span with the count.
  */
 function countCharacters() {
   let number = username.value.length;
@@ -54,7 +58,12 @@ function countCharacters() {
 }
 
 /**
+ * Validates the email input field.
+ * Ensures the email is not empty, does not exceed 100 characters,
+ * and matches a valid email format.
+ * Updates the `emailError` span with appropriate messages.
  * 
+ * @returns {boolean} Returns false if validation fails, otherwise undefined.
  */
 function validateEmail() {
   let emailValue = email.value;
@@ -76,7 +85,10 @@ function validateEmail() {
 }
 
 /**
- * 
+ * Validates the password input field.
+ * Ensures the password is not empty, has a minimum length of 12 characters,
+ * contains at least one uppercase letter, one lowercase letter, one number,
+ * and one symbol. Updates the corresponding indicators and the `passwordError` span.
  */
 function validatePassword() {
   let passwordValue = password.value;
@@ -130,7 +142,11 @@ function validatePassword() {
 }
 
 /**
+ * Validates that the confirm password input field matches the password input field.
+ * Ensures the confirm password is not empty and matches the password.
+ * Updates the `confirmPasswordError` span with appropriate messages.
  * 
+ * @returns {boolean} Returns false if validation fails, otherwise undefined.
  */
 function validatePasswordMatch() {
   let confirmPasswordValue = confirmPassword.value;
@@ -148,8 +164,6 @@ function validatePasswordMatch() {
   confirmPasswordError.innerHTML = `Valid`;
 
 }
-
-
 
 // Event listeners
 

@@ -17,13 +17,24 @@ addDirectionBtn.addEventListener("click", addAnotherDirection);
 addImageBtn.addEventListener("click", addAnotherImage);
   
   
-  // Remove extra fields dynamically
+/**
+ * Removes a parent element of the clicked "remove" button.
+ * 
+ * @param {Event} event - The event object triggered by the click.
+ */
+
   function remove(event) {
     if (event.target.classList.contains("remove")) {
       event.target.parentElement.remove();
     }
   };
   
+/**
+ * Adds a new ingredient input row to the ingredient container.
+ * 
+ * @param {Event} event - The event object triggered by the click.
+ */
+
   function addAnotherIngredient(event) {
     event.preventDefault(); // Prevent form submission when adding fields
 
@@ -57,6 +68,11 @@ addImageBtn.addEventListener("click", addAnotherImage);
     ingredientContainer.addEventListener("click", remove);
 };
 
+/**
+ * Adds a new direction input row to the direction container.
+ * 
+ * @param {Event} event - The event object triggered by the click.
+ */
 
 function addAnotherDirection(event) {
   event.preventDefault(); // Prevent form submission when adding fields
@@ -76,6 +92,11 @@ function addAnotherDirection(event) {
   directionContainer.addEventListener("click", remove);
 };
 
+/**
+ * Adds a new image upload input row to the image container.
+ * 
+ * @param {Event} event - The event object triggered by the click.
+ */
 
 function addAnotherImage(event) {
   event.preventDefault(); // Prevent form submission when adding fields
