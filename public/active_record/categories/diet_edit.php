@@ -37,23 +37,22 @@ if (is_post_request()) {
 <?php include(SHARED_PATH . '/user_header.php'); ?>
 
 
-
   <a href="<?php echo url_for('/active_record/users/index.php'); ?>">Back to Admin Dashboard</a>
 
- 
-    <h1>Edit Diet</h1>
+    <h2 class="text-center fs-1 my-4">Edit Diet</h2>
 
     <?php echo display_errors($diet->errors); ?>
 
-    <form action="<?php echo url_for('/active_record/categories/diet_edit.php?id=' . h(u($id))); ?>" method="post">
+    <form action="<?php echo url_for('/active_record/categories/diet_edit.php?id=' . h(u($id))); ?>" method="post" class="container mt-4 d-flex justify-content-center">
 
-      <?php include('diet_form.php'); ?>
+      <div class="row w-50">
+        <?php include('diet_form.php'); ?>
 
-     
-      <input type="submit" value="Edit Diet">
+        <div class="mt-4 text-center">
+          <input type="submit" value="Edit Diet" class="btn btn-warning border border-1 border-dark">
+        </div>
+      </div>
      
     </form>
-
- 
 
 <?php include(SHARED_PATH . '/user_footer.php'); ?>

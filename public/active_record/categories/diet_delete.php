@@ -29,15 +29,18 @@ if(is_post_request()) {
 
   <a href="<?php echo url_for('/active_record/users/index.php'); ?>">Back to Admin Dashboard</a>
 
-    <h1>Delete Diet</h1>
-    <p>Are you sure you want to delete this diet?</p>
-    <p><?php echo h($diet->diet); ?></p>
-
-    <form action="<?php echo url_for('/active_record/categories/diet_delete.php?id=' . h(u($id))); ?>" method="post">
-
-        <input type="submit" name="commit" value="Delete Diet">
-     
-    </form>
+    <div class="container">
+      <h2 class="text-center fs-1 my-4">Delete Diet</h2>
+      <p class="text-center">Are you sure you want to delete this diet?</p>
+      <p class="fs-3 text-center"><?php echo h($diet->diet); ?></p>
+      <form action="<?php echo url_for('/active_record/categories/diet_delete.php?id=' . h(u($id))); ?>" method="post" class="container mt-4">
+        
+        <div class="d-flex justify-content-center mt-4">
+          <input type="submit" name="commit" value="Delete Diet" class="btn btn-warning border border-1 border-dark">
+        </div>
+      
+      </form>
+    </div>
 
 
 <?php include(SHARED_PATH . '/user_footer.php'); ?>

@@ -50,33 +50,33 @@ if (!isset($user)) {
 
 
 <?php if ($session->is_admin_logged_in()): ?>
-<fieldset class="mb-3">
-    <legend class="form-label">Active</legend>
-
-    <div class="form-check">
-      <input type="radio" id="active" name="user[active]" value="1" class="form-check-input">
-      <label for="active" class="form-check-label">Active</label>
-    </div>
-
-    <div class="form-check">
-      <input type="radio" id="inactive" name="user[active]" value="0" class="form-check-input">
-      <label for="inactive" class="form-check-label">Inactive</label>
+<fieldset class="container mb-3">
+    <div class="d-flex flex-column align-items-center mt-4">
+      <legend class="form-label text-center">Active</legend>
+      <div class="form-check">
+        <input type="radio" id="active" name="user[active]" value="1" class="form-check-input">
+        <label for="active" class="form-check-label">Active</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" id="inactive" name="user[active]" value="0" class="form-check-input">
+        <label for="inactive" class="form-check-label">Inactive</label>
+      </div>
     </div>
 </fieldset>
 <?php endif; ?>
 
 <?php if ($session->is_superadmin_logged_in()): ?>
-<fieldset class="mb-3">
-    <legend class="form-label">User Level</legend>
-
-    <div class="form-check">
-      <input type="radio" id="user" name="user[role_id]" value="1" class="form-check-input">
-      <label for="user" class="form-check-label">User</label>
-    </div>
-
-    <div class="form-check">
-      <input type="radio" id="admin" name="user[role_id]" value="2" class="form-check-input">
-      <label for="admin" class="form-check-label">Admin</label>
+<fieldset class="container mb-3">
+    <div class="d-flex flex-column align-items-center mt-4">
+      <legend class="form-label text-center">User Level</legend>
+      <div class="form-check">
+        <input type="radio" id="user" name="user[role_id]" value="1" class="form-check-input">
+        <label for="user" class="form-check-label">User</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" id="admin" name="user[role_id]" value="2" class="form-check-input">
+        <label for="admin" class="form-check-label">Admin</label>
+      </div>
     </div>
 </fieldset>
 <?php endif; ?>

@@ -30,18 +30,19 @@ if (is_post_request()) {
 <a href="<?php echo url_for('/active_record/users/index.php'); ?>">Back to Admin Dashboard</a>
 
 
-<h1>Add Style</h1>
+<h2 class="text-center fs-1 my-4">Add Style</h2>
 
 <?php echo display_errors($style->errors);
 ?>
 
-<form action="<?php echo url_for('/active_record/categories/style_new.php'); ?>" method="post">
-
+<form action="<?php echo url_for('/active_record/categories/style_new.php'); ?>" method="post" class="container mt-4 d-flex justify-content-center">
+  <div class="row w-50">
     <?php include('style_form.php'); ?>
 
-
-    <input type="submit" value="Add Style">
-
+    <div class="mt-4 text-center">
+      <input type="submit" value="Add Style" class="btn btn-warning border border-1 border-dark">
+    </div>
+  </div>
 </form>
 
 <?php include(SHARED_PATH . '/user_footer.php'); ?>

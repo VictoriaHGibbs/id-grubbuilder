@@ -47,10 +47,10 @@ if (is_post_request()) {
 
 
 
-  <a href="<?php echo url_for('/active_record/users/index.php'); ?>">&laquo; Back to List</a>
+  <a href="<?php echo url_for('/active_record/users/index.php'); ?>"> Back to User List</a>
 
  
-    <h1>Edit User</h1>
+    <h2 class="text-center fs-1 my-4">Edit User</h2>
 
     <?php echo display_errors($user->errors); ?>
 
@@ -58,13 +58,10 @@ if (is_post_request()) {
 
       <?php include('form_fields.php'); ?>
 
-     
-      <input type="submit" value="Edit User">
+      <div class="d-flex justify-content-center mt-4">
+        <input type="submit" value="Edit User" class="btn btn-warning border border-1 border-dark">
+      </div>
      
     </form>
-
- 
-
-
 
 <?php include(SHARED_PATH . '/user_footer.php'); ?>

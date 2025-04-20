@@ -38,15 +38,19 @@ if (is_post_request()) {
   <a href="<?php echo url_for('/active_record/users/index.php'); ?>">Back to Admin Dashboard</a>
 
  
-    <h1>Edit Meal Type</h1>
+    <h2 class="text-center fs-1 my-4">Edit Meal Type</h2>
 
     <?php echo display_errors($meal_type->errors); ?>
 
-    <form action="<?php echo url_for('/active_record/categories/meal_type_edit.php?id=' . h(u($id))); ?>" method="post">
+    <form action="<?php echo url_for('/active_record/categories/meal_type_edit.php?id=' . h(u($id))); ?>" method="post" class="container mt-4 d-flex justify-content-center">
 
+    <div class="row w-50">
       <?php include('meal_type_form.php'); ?>
 
-      <input type="submit" value="Edit Meal Type">
+      <div class="mt-4 text-center">
+        <input type="submit" value="Edit Meal Type" class="btn btn-warning border border-1 border-dark">
+      </div>
+    </div>
      
     </form>
 
