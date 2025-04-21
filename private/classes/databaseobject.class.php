@@ -81,6 +81,21 @@ class DatabaseObject
     return $result;
   }
 
+  static public function find_by_user_id_paginated($id, $per_page, $pagination) {
+    $sql = "SELECT * FROM " . static::$table_name;
+    $sql .= " WHERE user_id='" . self::$database->escape_string($id) . "'";
+    $sql .= " LIMIT " . $pagination->offset() . ", " . $per_page . ";";
+    return static::find_by_sql($sql);
+  }
+
+  static public function count_all_by_user_id($id) {
+    $sql = "SELECT COUNT(*) FROM " . static::$table_name;
+    $sql .= " WHERE user_id='" . self::$database->escape_string($id) . "'";
+    $result_set = self::$database->query($sql);
+    $row = $result_set->fetch_array();
+    return array_shift($row);
+  }
+
   static public function find_by_user_role($role_id) {
     $sql = "SELECT * FROM " . static::$table_name . " ";
     $sql .= "WHERE role_id='" . self::$database->escape_string($role_id) . "'";

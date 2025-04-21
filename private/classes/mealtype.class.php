@@ -11,6 +11,11 @@ class MealType extends DatabaseObject {
     $this->meal_type = $args['meal_type'] ?? '';
   }
 
+  public function save() {
+    $this->meal_type = strtolower($this->meal_type);
+    return parent::save();
+  }
+
   protected function validate()
   {
     $this->errors = [];

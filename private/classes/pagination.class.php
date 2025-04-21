@@ -32,8 +32,8 @@ class Pagination {
   public function previous_link($url="") {
     $link = "";
     if($this->previous_page() != false) {
-      $link .= "<a href=\"{$url}page={$this->previous_page()}\" class=\"mx-2\">";
-      $link .= "&laquo; Previous page </a>";
+      $link .= "<li class=\"page-item\"><a href=\"{$url}page={$this->previous_page()}\" class=\"page-link text-dark\">";
+      $link .= "&laquo; Previous page </a></li>";
     }
     return $link;
   }
@@ -41,8 +41,8 @@ class Pagination {
   public function next_link($url="") {
     $link = "";
     if($this->next_page() != false) {
-      $link .= "<a href=\"{$url}page={$this->next_page()}\" class=\"mx-2\">";
-      $link .= " Next page &raquo;</a>";
+      $link .= "<li class=\"page-item\"><a href=\"{$url}page={$this->next_page()}\" class=\"page-link text-dark\">";
+      $link .= " Next page &raquo;</a></li>";
     }
     return $link;
   }
@@ -51,9 +51,9 @@ class Pagination {
     $output = "";
     for($i=1; $i <= $this->total_pages(); $i++) {
       if($i == $this->current_page) {
-        $output .= "<span class=\"selected mx-2 fw-bold border border-black px-1\">{$i}</span>";
+        $output .= "<li class=\"active page-item\"><a class=\"page-link bg-warning text-dark\">{$i}</a></li>";
       } else {
-        $output .= "<a href=\"{$url}page={$i}\" class=\"mx-2\">{$i}</a>";
+        $output .= "<li class=\"page-item\"><a href=\"{$url}page={$i}\" class=\"page-link text-dark\">{$i}</a></li>";
       }
     }
     return $output;
@@ -62,12 +62,13 @@ class Pagination {
   public function page_links($url="") {
     $output = "";
     if($this->total_pages() > 1) { 
-      $output .= "<div class=\"pagination container my-3 text-center\">";
+      $output .= "<nav aria-label=\"Page navigation.\">";
+      $output .= "<ul class=\"pagination container my-3 justify-content-center\">";
       $query_separator = (strpos($url, '?') === False) ? '?' : '&';
       $output .= $this->previous_link($url . $query_separator);
       $output .= $this->number_links($url . $query_separator);
       $output .= $this->next_link($url . $query_separator);
-      $output .= "</div>";
+      $output .= "</ul>";
     } 
     return $output;
   }

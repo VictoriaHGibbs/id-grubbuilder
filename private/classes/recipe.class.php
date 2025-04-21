@@ -47,7 +47,7 @@ class Recipe extends DatabaseObject {
       $measurement_id = $ingredient->get_measurement_id();
       $measurement = $ingredient->get_measurement_name($ingredient);
       if ($ingredient->quantity > 1 && $measurement_id != 16) $measurement .= "s";
-      $html .= "<li><span class=\"quantity\">" . abs($ingredient->quantity) . "</span> " . h($measurement) . " " . ucfirst(h($ingredient->ingredient_name)) . "</li>";
+      $html .= "<li class=\"mb-2\"><span class=\"quantity\">" . abs($ingredient->quantity) . "</span> " . h($measurement) . " " . ucfirst(h($ingredient->ingredient_name)) . "</li>";
     };
     $html .= "</ul>";
     return $html;
@@ -63,7 +63,7 @@ class Recipe extends DatabaseObject {
     $directions = Recipe::get_directions($recipe_id);
     $html = "<ol>";
     foreach ($directions as $direction) {
-      $html .= "<li>" . ucfirst(h($direction->direction_text)) . "</li>";
+      $html .= "<li class=\"mb-2\">" . ucfirst(h($direction->direction_text)) . "</li>";
     };
     $html .= "</ol>";
     return $html;

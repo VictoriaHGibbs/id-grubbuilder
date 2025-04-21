@@ -10,7 +10,11 @@ class Style extends DatabaseObject {
 
   public function __construct($args = []) {
     $this->style = $args['style'] ?? '';
+  }
 
+  public function save() {
+    $this->style = strtolower($this->style);
+    return parent::save();
   }
 
   protected function validate()

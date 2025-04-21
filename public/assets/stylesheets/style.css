@@ -22,8 +22,6 @@ main {
 }
 
 img {
-  border: solid 1px #3b1f13;
-  border-radius: 5px;
   height: auto;
   max-width: 100%;
 }
@@ -268,6 +266,14 @@ footer {
 .btn-sm {
   padding: 5px 10px;
   font-size: 0.875rem;
+}
+
+/******************* User Profile Area *****************/
+
+.user-info {
+  background-color: #f9da96;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 /******************* TEMP STYLING ******************/

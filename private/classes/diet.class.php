@@ -11,6 +11,11 @@ class Diet extends DatabaseObject {
     $this->diet = $args['diet'] ?? '';
   }
 
+  public function save() {
+    $this->diet = strtolower($this->diet);
+    return parent::save();
+  }
+
   protected function validate()
   {
     $this->errors = [];

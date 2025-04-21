@@ -30,8 +30,8 @@ if ($session->is_logged_in()) {
 </div>
 
 <div class="container my-4">
-  <div class="row">
-    <div class="col-lg-8">
+  <div class="row justify-items-center">
+    <div class="col-lg-8 col-12 mx-auto">
       <h2 class="mb-2"><?php echo ucwords(h($recipe->recipe_title)); ?></h2>
       <p class="text-muted"><?php echo Recipe::user_info($recipe) ?></p>
       
@@ -99,23 +99,23 @@ if ($session->is_logged_in()) {
              ;"</p>" ?>
           </div>
           <div class="col-md-6">
-          <?php echo Recipe::recipe_categories($recipe->id) ?>
+            <?php echo Recipe::recipe_categories($recipe->id) ?>
           </div>
         </div>
       </div>
 
       <div>
         <section class="mb-4">
-          <h3>Ingredients</h3>
+          <h3 class="">Ingredients</h3>
           <?php include_once('../recipes/recipe_size_fields.php'); ?>
-          <div class="ingredients-list p-3 border rounded border-1 border-dark">
+          <div class="ingredients-list mt-4 p-3 border rounded border-1 border-dark">
             <?php echo Recipe::ingredients($recipe_id); ?>
           </div>
         </section>
         
         <section class="mb-4">
           <h3>Directions</h3>
-          <div class="directions-list p-3 border rounded border-1 border-dark">
+          <div class="directions-list mt-4 p-3 border rounded border-1 border-dark">
             <?php echo Recipe::directions($recipe_id); ?>
           </div>
         </section>
@@ -125,10 +125,10 @@ if ($session->is_logged_in()) {
       <!-- <div class="nutrition">
       NUTRITION FACTS
       </div> -->
-    </div>
-
-    <div>
-      <?php Recipe::video($recipe_id); ?>
+      
+      <div>
+        <?php Recipe::video($recipe_id); ?>
+      </div>
     </div>
 
   </div>
