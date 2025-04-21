@@ -137,15 +137,6 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     </div>
     <input type="button" value="Add another direction step" id="add-direction" class="btn btn-warning">
   </fieldset>
-  
-
-
-
-
-
-
-
-
 
   <fieldset class="border p-3 mb-4">
     <legend class="h5">Images</legend>
@@ -153,45 +144,17 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     <small>Must be less than 2MB</small>
 
     <div id="image-line" class="mb-3">
-      <?php 
-      // Check if images are set in the session or from the database
-      $images = $_SESSION['uploaded_images'] ?? Recipe::get_images($recipe->id) ?? [];
-
-      var_dump($images); 
-
-      if (!empty($images)) {
-        foreach ($images as $index => $image) :
-          $image_url = is_array($image) ? $image['image_url'] : $image->image_url; 
-      ?>
-        <div class="row mb-2">
-          <div class="col-md-10">
-            <label for="image_<?php echo $index; ?>" class="form-label">Uploaded Image:</label>
-            <input type="text" id="image_<?php echo $index; ?>" name="image[<?php echo $index; ?>][image_url]" value="<?php echo h($image_url); ?>" class="form-control" readonly>
-          </div>
-          <button type="button" class="btn btn-warning remove w-25 ms-3 mt-3 md-4"><i class="fa-solid fa- xmark"></i> Remove Image</button>
-        </div>
-      <?php endforeach; } ?>
-
-      <div class="row mb-2">
-        <div class="col-md-10">
-          <label for="image" class="form-label">Upload New Image:</label>
-          <input type="file" id="image" name="image[]" accept=".jpg,.jpeg,.png,.webp" class="form-control">
-        </div>
-      </div>
+      <label for="image" class="form-label">Upload: </label>
+      <input type="file" id="image" name="image[]" accept=".jpg,.jpeg,.png,.webp" class="form-control">
     </div>
 
     <input type="button" name="image" id="add-image" value="Add Another Image" class="btn btn-warning">
   </fieldset>
 
-
-
-
-
-
-  <div class="mb-3 p-3">
+  <fieldset class="mb-3 p-3">
     <label for="youtube_url" class="form-label">YouTube Video Share Link:</label>
     <input type="text" id="youtube_url" name="youtube_url" class="form-control">
-  </div>
+  </fieldset>
 
   <div class="row p-3">
     <div class="col-md-4 mb-3">

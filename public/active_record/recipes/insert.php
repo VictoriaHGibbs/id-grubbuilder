@@ -5,9 +5,6 @@
 $database->begin_transaction();
 
 try {
-// Holding array for uploaded images for sticky fields
-  $uploaded_images = [];
-
 // Insert into RECIPE table
   $stmt1 = $_POST['recipe'];
   $recipe = new Recipe($stmt1);
@@ -19,81 +16,6 @@ try {
 
 // Get last inserted recipe_id
   $recipe_id = $recipe->id;
-
-// Check if new image
-  if (!empty($_FILES['image']['name'][0])) {
-    // Image Array Loop
-    foreach ($_FILES['image']['name'] as $index => $file_name) {
-      if (empty($file_name)) continue;
-        $recipe_id = $recipe_id ?? 0;
-        
-        $file_tmp_name = $_FILES['image']['tmp_name'][$index];
-        $file_size = $_FILES['image']['size'][$index];
-        $file_error = $_FILES['image']['error'][$index];
-
-        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-
-        $allowed = array('jpg', 'jpeg', 'png', 'webp');
-
-        if (in_array($file_ext, $allowed)) { 
-          if ($file_error === 0) {
-            if ($file_size < 2000001) {
-              $file_name_new =  "recipe_" . "$recipe_id" . "_" . "$index" . "." . $file_ext;
-              $file_destination = ('../../../uploads/') . $file_name_new;
-
-              if (move_uploaded_file($file_tmp_name, $file_destination)) {
-                $image_data = [
-                  'recipe_id' => $recipe_id,
-                  'image_line_item' => $index + 1,
-                  'image_url' => $file_name_new
-                ];
-
-                $uploaded_images[] = [
-                  'image_url' => $file_name_new,
-                  'image_line_item' => $index + 1,
-                ];
-
-                $image = new Image($image_data);
-                $image->save();
-
-              } else {
-                echo "Failed to move uploaded file.";
-              }
-            } else {
-              echo "Your file is too big!";
-            }
-          } else {
-            echo "There was an error uploading your file.";
-          }
-        } else {
-          echo "You cannot upload images of that type!";
-        }        
-    }
-  } 
-  
-  // Pulling from $_SESSION if no new image uploaded
-  if (!empty($_SESSION['image'])) {
-    foreach ($_SESSION['image'] as $index => $image_data) {
-      $image_data['recipe_id'] = $recipe_id;
-      $image = new Image($image_data);
-      $image->save();
-    }
-  } 
-  
-  if (empty($_FILES['image']['name'][0]) && empty($_SESSION['image'])) {
-    $image_data = [
-      'recipe_id' => $recipe_id,
-      'image_line_item' => $index + 1,
-      'image_url' => 'default_recipe1.webp'
-    ];
-
-    $image = new Image($image_data);
-    $image->save();
-    
-  }
-
-// Save uploaded images to session for sticky fields
-  $_SESSION['uploaded_images'] = $uploaded_images;
 
 // Ingredient Array Loop 
   foreach ($_POST['ingredient'] as $index => $ingredient_data) {
@@ -110,6 +32,53 @@ try {
     $direction = new Direction($direction_data);
     $direction->save();
   }
+
+// Check if image
+  if (!empty($_FILES['image']['name'][0])) {
+  // Image Array Loop
+      foreach ($_FILES['image']['name'] as $index => $file_name) {
+        if (empty($file_name)) continue;
+          $recipe_id = $recipe_id ?? 0;
+          
+          $file_tmp_name = $_FILES['image']['tmp_name'][$index];
+          $file_size = $_FILES['image']['size'][$index];
+          $file_error = $_FILES['image']['error'][$index];
+  
+          $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+  
+          $allowed = array('jpg', 'jpeg', 'png', 'webp');
+  
+          if (in_array($file_ext, $allowed)) { 
+            if ($file_error === 0) {
+              if ($file_size < 2000000) {
+                $file_name_new =  "recipe_" . "$recipe_id" . "_" . "$index" . "." . $file_ext;
+                $file_destination = ('../../../uploads/') . $file_name_new;
+  
+                if (move_uploaded_file($file_tmp_name, $file_destination)) {
+                  $image_data = [
+                    'recipe_id' => $recipe_id,
+                    'image_line_item' => $index + 1,
+                    'image_url' => $file_name_new
+                  ];
+  
+                  $image = new Image($image_data);
+                  $image->save();
+  
+                } else {
+                  echo "Failed to move uploaded file.";
+                }
+              } else {
+                echo "Your file is too big!";
+              }
+            } else {
+              echo "There was an error uploading your file.";
+            }
+          } else {
+            echo "You cannot upload images of that type!";
+          }
+  
+      }
+    }
 
 // Check if video
   if (has_presence($_POST['youtube_url'])) {
