@@ -39,11 +39,11 @@ if ($session->is_logged_in()) {
         <?php echo Recipe::images($recipe_id); ?>
       </div>
 
-      <div class="recipe-description p-3 my-4 border rounded border-1 border-dark">
+      <div class="styled-container p-3 my-4 border rounded border-1 border-dark">
         <p class="lead"><?php echo ucfirst(h($recipe->description)); ?></p>
       </div>
       
-      <div class="container rating p-4 my-4 border rounded border-1 border-dark text-center">
+      <div class="container styled-container  p-4 my-4 border rounded border-1 border-dark text-center">
         <div class="row">
           <div class="col-12 col-md-12">
             <?php echo Recipe::display_average_rating($recipe_id); ?>
@@ -84,7 +84,7 @@ if ($session->is_logged_in()) {
       </div>
 
 
-      <div class="container recipe-details p-3 mb-4 border rounded border-1 border-dark">
+      <div class="container styled-container p-3 mb-4 border rounded border-1 border-dark">
         <div class="row">
           <div class="col-md-6">
             <p>Prep Time: <?php echo h($recipe->prep_time_minutes); ?> minutes</p>
@@ -108,14 +108,14 @@ if ($session->is_logged_in()) {
         <section class="mb-4">
           <h3 class="">Ingredients</h3>
           <?php include_once('../recipes/recipe_size_fields.php'); ?>
-          <div class="ingredients-list mt-4 p-3 border rounded border-1 border-dark">
+          <div class="styled-container mt-4 p-3 border rounded border-1 border-dark">
             <?php echo Recipe::ingredients($recipe_id); ?>
           </div>
         </section>
         
         <section class="mb-4">
           <h3>Directions</h3>
-          <div class="directions-list mt-4 p-3 border rounded border-1 border-dark">
+          <div class="styled-container mt-4 p-3 border rounded border-1 border-dark">
             <?php echo Recipe::directions($recipe_id); ?>
           </div>
         </section>

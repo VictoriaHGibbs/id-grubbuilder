@@ -34,6 +34,13 @@ a {
   text-decoration: none;
 }
 
+.styled-container {
+  background-color: #f9da96;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+}
+
 /********************* Skip Link **********************/
 
 #skip-link {
@@ -58,6 +65,7 @@ a {
 /********************* Header and Footer **********************/
 
 header {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background: #f9da96;
   position: sticky;
   top: 0;
@@ -72,13 +80,6 @@ footer {
   width: 100%;
 }
 
-/**************** Home Page ***********************/
-
-#welcome, 
-#preview {
-  background-color: #f9da96;
-}
-
 /**************** Recipe Cards ***********************/
 
 .card:hover {
@@ -89,12 +90,6 @@ footer {
 
 /**************** Full Recipe ***********************/
 
-.recipe-details {
-  background-color: #f9da96;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
 .carousel-item img {
   max-height: 400px;
   object-fit: cover;
@@ -104,16 +99,6 @@ footer {
 .recipe-image img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
-}
-
-.ingredients-list, 
-.directions-list,
-.recipe-description,
-.rating,
-.categories {
-  background-color: #f9da96;
-  padding: 15px;
   border-radius: 8px;
 }
 
@@ -268,13 +253,6 @@ footer {
   font-size: 0.875rem;
 }
 
-/******************* User Profile Area *****************/
-
-.user-info {
-  background-color: #f9da96;
-  padding: 20px;
-  border-radius: 8px;
-}
 
 /******************* TEMP STYLING ******************/
 

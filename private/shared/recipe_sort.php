@@ -1,4 +1,4 @@
-<div class="categories container p-4 rounded border border-1 border-dark">
+<div class="styled-container container p-4 rounded border border-1 border-dark">
     <div class="row p-3">
 
       <div class="col-md-4 mb-3">

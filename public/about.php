@@ -10,8 +10,10 @@ if ($session->is_logged_in()) {
 }
 ?>
 
-<h2>About</h2>
-<p>This site provides an area to share recipes and connect with others.</p>
+<section class="styled-container container text-center my-5 p-4 rounded border border-1 border-dark">
+  <h2>About</h2>
+  <p>This site provides an area to share recipes and connect with others.</p>
+</section>
 
 <?php if ($session->is_logged_in()) {
   include(SHARED_PATH . '/user_footer.php');

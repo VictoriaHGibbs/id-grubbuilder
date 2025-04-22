@@ -26,7 +26,7 @@ if ($session->is_logged_in()) {
 
   </form>
 
-  <div id="preview" class="container text-center mt-4 p-md-4 p-2 rounded border border-1 border-dark">
+  <div class="styled-container container text-center mt-4 p-md-4 p-2 rounded border border-1 border-dark">
     <?php include(SHARED_PATH . '/recipe_card.php'); ?>
   </div>
 

@@ -18,7 +18,7 @@ $page_title = 'User Profile Page';
 include(SHARED_PATH . '/user_header.php');
 ?>
 
-<div class="user-info container mt-4 p-md-4 p-2 rounded border border-1 border-dark">
+<div class="styled-container container mt-4 p-md-4 p-2 rounded border border-1 border-dark">
   <div class="row mb-3">
     <img class="w-25 col-md-6 col-12" src="<?php echo ('../../uploads/') . "$profile_image" . "?" . mt_rand() ; ?>" alt="Profile Image">
     <div class="col-md-6 col-12">
@@ -57,7 +57,7 @@ include(SHARED_PATH . '/user_header.php');
   <p class="text-center"><a href="<?php echo url_for('/active_record/recipes/new.php'); ?>" class="btn btn-warning border border-1 border-dark">Add another recipe</a></p>
   <section class="card-preview-container">
     
-    <div id="preview" class="container text-center mt-4 p-md-4 p-2 rounded border border-1 border-dark">
+    <div class="styled-container container text-center mt-4 p-md-4 p-2 rounded border border-1 border-dark">
       <?php include(SHARED_PATH . '/recipe_card.php'); ?>
     </div>
 

@@ -117,7 +117,6 @@ try {
 
 // Commit transaction
   $database->commit();
-  unset($_SESSION['uploaded_images']);
   echo "Recipe creation successful!";
   $result = true;
   return $recipe_id;
@@ -125,10 +124,6 @@ try {
 } catch (Exception $error) {
   // Rollback transaction if error
   $database->rollback();
-
-  // Save uploaded images to session for sticky fields
-  $_SESSION['uploaded_images'] = $uploaded_images;
-
   $result = false;
   echo "Recipe not created! :( ";
   echo "Error: " . $error->getMessage();

@@ -15,30 +15,33 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     let measurementOptions = `<?php echo addslashes($measurement_options); ?>`;
 </script>
 
-  <div class="mb-3 p-3">
-    <label for="recipe_title" class="form-label">*Recipe Title: </label>
-    <input type="text" id="recipe_title" name="recipe[recipe_title]" maxlength="100" value="<?php echo isset($recipe->recipe_title) ? h($recipe->recipe_title) : ''; ?>" class="form-control" required>
-  </div>
-  
-  <div class="mb-3 p-3">
-    <label for="description" class="form-label">*Description: </label><br>
-    <small>255 character limit</small>
-    <textarea id="description" name="recipe[description]" maxlength="255" class="form-control" required><?php echo isset($recipe->description) ? h($recipe->description) : ''; ?></textarea>
-  </div>
-
-  <div class="row p-3">
-    <div class="col-md-6 mb-3">
-      <label for="prep_time_minutes" class="form-label">*Preparation time (minutes): </label>
-      <input type="number" step="any" id="prep_time_minutes" name="recipe[prep_time_minutes]" value="<?php echo isset($recipe->prep_time_minutes) ? h($recipe->prep_time_minutes) : ''; ?>" class="form-control"  required>
+  <fieldset class="styled-container border p-3 mb-4">
+    <div class="mb-3 p-3">
+      <label for="recipe_title" class="form-label">*Recipe Title: </label>
+      <input type="text" id="recipe_title" name="recipe[recipe_title]" maxlength="100" value="<?php echo isset($recipe->recipe_title) ? h($recipe->recipe_title) : ''; ?>" class="form-control" required>
     </div>
-
-    <div class="col-md-6 mb-3">
-      <label for="cook_time_minutes" class="form-label">*Cooking time (minutes): </label>
-      <input type="number" step="any" id="cook_time_minutes" name="recipe[cook_time_minutes]" value="<?php echo isset($recipe->cook_time_minutes) ? h($recipe->cook_time_minutes) : ''; ?>" class="form-control"  required>
+    
+    <div class="mb-3 p-3">
+      <label for="description" class="form-label">*Description: </label><br>
+      <small>255 character limit</small>
+      <textarea id="description" name="recipe[description]" maxlength="255" class="form-control" required><?php echo isset($recipe->description) ? h($recipe->description) : ''; ?></textarea>
     </div>
-  </div>
+  </fieldset>
+
+  <fieldset class="styled-container border p-3 mb-4">
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <label for="prep_time_minutes" class="form-label">*Preparation time (minutes): </label>
+        <input type="number" step="any" id="prep_time_minutes" name="recipe[prep_time_minutes]" value="<?php echo isset($recipe->prep_time_minutes) ? h($recipe->prep_time_minutes) : ''; ?>" class="form-control"  required>
+      </div>
+      <div class="col-md-6 col-12">
+        <label for="cook_time_minutes" class="form-label">*Cooking time (minutes): </label>
+        <input type="number" step="any" id="cook_time_minutes" name="recipe[cook_time_minutes]" value="<?php echo isset($recipe->cook_time_minutes) ? h($recipe->cook_time_minutes) : ''; ?>" class="form-control"  required>
+      </div>
+    </div>
+  </fieldset>
   
-  <fieldset class="border p-3 mb-4">
+  <fieldset class="styled-container border p-3 mb-4">
     <legend class="h5">Yield & Servings</legend>
     <div class="row">
       
@@ -63,7 +66,7 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     
   </fieldset>
 
-  <div class="mb-3 p-3">
+  <div class="styled-container border mb-4 p-3">
     <label for="visibility_id" class="form-label">*Who would you like to share this recipe with?</label>
     <select id="visibility_id" name="recipe[visibility_id]" class="form-select" required>
       <option value="">Visibility Options</option>
@@ -71,7 +74,7 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     </select>
   </div>
 
-  <fieldset class="border p-3 mb-4">
+  <fieldset class="styled-container border p-3 mb-4">
     <legend class="h5">*Ingredients</legend>
     <small>If a unit of measurement is not needed, select "Not Needed" from the drop-down.</small>
     <small>Example: "2 eggs"</small>
@@ -112,7 +115,7 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     <input type="button" value="Add another ingredient" id="add-ingredient" class="btn btn-warning">
   </fieldset>
 
-  <fieldset class="border p-3 mb-4">
+  <fieldset class="styled-container border p-3 mb-4">
     <legend class="h5">*Directions</legend>
     <p>Enter your directions one step at a time. Do not number them, that will be done for you!</p>
     <div id="direction-line" class="mb-3">
@@ -138,7 +141,7 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     <input type="button" value="Add another direction step" id="add-direction" class="btn btn-warning">
   </fieldset>
 
-  <fieldset class="border p-3 mb-4">
+  <fieldset class="styled-container border p-3 mb-4">
     <legend class="h5">Images</legend>
     <small>Must be jpg, jpeg, png, or webp.</small><br>
     <small>Must be less than 2MB</small>
@@ -151,32 +154,51 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     <input type="button" name="image" id="add-image" value="Add Another Image" class="btn btn-warning">
   </fieldset>
 
-  <fieldset class="mb-3 p-3">
+  <fieldset class="styled-container border mb-3 p-3">
+    <?php 
+      $youtube_url = $_POST['youtube_url'] ?? (isset($recipe->id) ? Recipe::get_video($recipe->id) : '') ?? '';
+    ?>
+
     <label for="youtube_url" class="form-label">YouTube Video Share Link:</label>
-    <input type="text" id="youtube_url" name="youtube_url" class="form-control">
+    <input type="text" id="youtube_url" name="youtube_url" value="<?php echo h($youtube_url); ?>" class="form-control">
   </fieldset>
 
-  <div class="row p-3">
-    <div class="col-md-4 mb-3">
-      <label for="meal_type" class="form-label">Select Meal Type:</label>
-      <select id="meal_type" name="meal_type_id" class="form-select">
-        <option value="">Meal Types</option>
-        <?php all_from_lookup('meal_type');?>
-      </select>
+  <fieldset class="styled-container border p-3">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="meal_type" class="form-label">Select Meal Type:</label>
+        <select id="meal_type" name="meal_type_id" class="form-select">
+          <option value="">Meal Types</option>
+          <?php
+            $meal_type_id = $_POST['meal_type_id'] ?? (isset($recipe->id) ? RecipeMealType::find_by_recipe_id($recipe->id)[0]->meal_type_id ?? null : null);
+      
+            all_from_lookup('meal_type', $meal_type_id);
+          ?>
+        </select>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="diet" class="form-label">Select Diet:</label>
+        <select id="diet" name="diet_id" class="form-select">
+          <option value="">Diets</option>
+          <?php
+            $diet_id = $_POST['diet_id'] ?? (isset($recipe->id) ? RecipeDiet::find_by_recipe_id($recipe->id)[0]->diet_id ?? null : null);
+      
+            all_from_lookup('diet', $diet_id);
+          ?>
+        </select>
+      </div>
+      
+      <div class="col-md-4 mb-3">
+        <label for="style" class="form-label">Select Style:</label>
+        <select id="style" name="style_id" class="form-select">
+          <option value="">Styles</option>
+          <?php
+            $style_id = $_POST['style_id'] ?? (isset($recipe->id) ? RecipeStyle::find_by_recipe_id($recipe->id)[0]->style_id ?? null : null);
+      
+            all_from_lookup('style', $style_id);
+          ?>
+        </select>
+      </div>
     </div>
-    <div class="col-md-4 mb-3">
-      <label for="diet" class="form-label">Select Diet:</label>
-      <select id="diet" name="diet_id" class="form-select">
-        <option value="">Diets</option>
-        <?php all_from_lookup('diet');?>
-      </select>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="style" class="form-label">Select Style:</label>
-      <select id="style" name="style_id" class="form-select">
-        <option value="">Styles</option>
-        <?php all_from_lookup('style');?>
-      </select>
-    </div> 
-  </div>
+  </fieldset>
 
