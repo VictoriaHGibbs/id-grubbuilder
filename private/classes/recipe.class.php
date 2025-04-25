@@ -185,9 +185,9 @@ class Recipe extends DatabaseObject {
     
     if (isset($average)) {
       if (!is_int($average)) $average = number_format($average, 1);
-      echo "<p class=\"rating-icon\">Average Rating: " . h($average) . "/5 <i class=\"fa-solid fa-drumstick-bite\"></i>";
+      echo "<p class=\"mb-3 rating-icon\">Average Rating: " . h($average) . "/5 <i class=\"fa-solid fa-drumstick-bite\"></i>";
     } else {
-      echo  "<p>No ratings yet!";
+      echo  "<p class=\"mb-3\">No ratings yet!";
     }
   }
 

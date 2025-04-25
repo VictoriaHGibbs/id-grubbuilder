@@ -160,12 +160,14 @@ footer {
 
 .star-widget input:not(:checked) ~ label:hover,
 .star-widget input:not(:checked) ~ label:hover ~ label {
-  color: #f9da96;
+  color: #fcc247;
   cursor: pointer;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
 
 .star-widget input:checked ~ label {
   color: #fcc247;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
 
 .rating-icon i {
@@ -176,16 +178,16 @@ footer {
 /******************* Login Form *****************/
 
 .login-form {
-  max-width: 400px;
-  margin: 0 auto;
   background: #fff;
   border-radius: 8px;
+  margin: 0 auto;
+  max-width: 400px;
 }
 
 .login-form h2 {
+  color: #212123;
   font-size: 1.8rem;
   font-weight: bold;
-  color: #212123;
 }
 
 .btn-primary {

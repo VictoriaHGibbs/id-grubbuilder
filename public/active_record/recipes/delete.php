@@ -40,11 +40,11 @@ if(is_post_request()) {
   <div class="recipe delete">
     <h2 class="text-center fw-bold mb-4">Delete Recipe</h2>
     <p class="text-center mb-4">Are you sure you want to delete this recipe?</p>
-    <p class="text-center mb-4"><?php echo h($recipe->recipe_title); ?></p>
+    <p class="text-center mb-4 fs-3"><?php echo h($recipe->recipe_title); ?></p>
 
     <form action="<?php echo url_for('/active_record/recipes/delete.php?id=' . h(u($id))); ?>" method="post" class="container mt-4">
       <div class="mt-4 text-center">
-        <input type="submit" name="delete" value="Delete Recipe" class="btn btn-warning">
+        <input type="submit" name="delete" value="Delete Recipe" class="btn btn-warning border border-1 border-dark">
       </div>
     </form>
 

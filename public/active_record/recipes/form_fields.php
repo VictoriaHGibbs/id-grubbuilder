@@ -80,39 +80,39 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     <small>Example: "2 eggs"</small>
     <div id="ingredient-line" class="mb-3">
       <?php 
-      $ingredients = $_POST['ingredient'] ?? (isset($recipe->id) ? Recipe::get_ingredients($recipe->id) : []) ?? [];
-      if (empty($ingredients)) {
-          $ingredients = [['quantity' => '', 'measurement_id' => '', 'ingredient_name' => '']];
-      }       
-      
-      foreach ($ingredients as $index => $ingredient) :
-      ?>
-      <div class="row mb-2">
-          <div class="col-md-4">
-              <label class="form-label">*Quantity: </label>
-              <input type="number" step="any" name="ingredient[<?php echo $index; ?>][quantity]" 
-                    value="<?php echo h($ingredient['quantity'] ?? $ingredient->quantity ?? ''); ?>" 
-                    class="form-control" required>
-          </div>
+        $ingredients = $_POST['ingredient'] ?? (isset($recipe->id) ? Recipe::get_ingredients($recipe->id) : []) ?? [];
+        if (empty($ingredients)) {
+            $ingredients = [['quantity' => '', 'measurement_id' => '', 'ingredient_name' => '']];
+        }       
+        
+        foreach ($ingredients as $index => $ingredient) :
+        ?>
+        <div class="row mb-2">
+            <div class="col-md-4">
+                <label class="form-label">*Quantity: </label>
+                <input type="number" step="any" name="ingredient[<?php echo $index; ?>][quantity]" 
+                      value="<?php echo h($ingredient['quantity'] ?? $ingredient->quantity ?? ''); ?>" 
+                      class="form-control" required>
+            </div>
 
-          <div class="col-md-4">
-              <label class="form-label">Select Unit: </label>
-              <select name="ingredient[<?php echo $index; ?>][measurement_id]" class="form-select">
-                  <option value="">Units</option>
-                  <?php all_from_lookup('measurement', $ingredient['measurement_id'] ?? $ingredient->measurement_id ?? ''); ?>
-              </select>
-          </div>
+            <div class="col-md-4">
+                <label class="form-label">*Select Unit: </label>
+                <select name="ingredient[<?php echo $index; ?>][measurement_id]" class="form-select" required>
+                    <option value="">Units</option>
+                    <?php all_from_lookup('measurement', $ingredient['measurement_id'] ?? $ingredient->measurement_id ?? ''); ?>
+                </select>
+            </div>
 
-          <div class="col-md-4">
-              <label class="form-label">*Ingredient: </label>
-              <input type="text" name="ingredient[<?php echo $index; ?>][ingredient_name]" 
-                    value="<?php echo h($ingredient['ingredient_name'] ?? $ingredient->ingredient_name ?? ''); ?>" 
-                    class="form-control" required>
-          </div>
-      </div>
+            <div class="col-md-4">
+                <label class="form-label">*Ingredient: </label>
+                <input type="text" name="ingredient[<?php echo $index; ?>][ingredient_name]" 
+                      value="<?php echo h($ingredient['ingredient_name'] ?? $ingredient->ingredient_name ?? ''); ?>" 
+                      class="form-control enter-target-ingredient" required>
+            </div>
+        </div>
       <?php endforeach; ?>
     </div>
-    <input type="button" value="Add another ingredient" id="add-ingredient" class="btn btn-warning">
+    <input type="button" value="Add another ingredient" id="add-ingredient" class="btn btn-warning border border-1 border-dark">
   </fieldset>
 
   <fieldset class="styled-container border p-3 mb-4">
@@ -133,12 +133,12 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
           <label class="form-label">Step <?php echo $index + 1; ?>: </label>
           <input type="text" name="direction[<?php echo $index; ?>][direction_text]" 
                 value="<?php echo h($direction['direction_text'] ?? $direction->direction_text ?? ''); ?>" 
-                class="form-control" required>
+                class="form-control enter-target-direction" required>
         </div>
       </div>
       <?php endforeach; ?>
     </div>
-    <input type="button" value="Add another direction step" id="add-direction" class="btn btn-warning">
+    <input type="button" value="Add another direction step" id="add-direction" class="btn btn-warning border border-1 border-dark">
   </fieldset>
 
   <fieldset class="styled-container border p-3 mb-4">
@@ -151,7 +151,7 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
       <input type="file" id="image" name="image[]" accept=".jpg,.jpeg,.png,.webp" class="form-control">
     </div>
 
-    <input type="button" name="image" id="add-image" value="Add Another Image" class="btn btn-warning">
+    <input type="button" name="image" id="add-image" value="Add Another Image" class="btn btn-warning border border-1 border-dark">
   </fieldset>
 
   <fieldset class="styled-container border mb-3 p-3">

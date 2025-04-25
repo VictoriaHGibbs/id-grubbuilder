@@ -17,6 +17,13 @@
                 <p class="card-text flex-grow-1"><?php echo h($recipe->description); ?></p>
                 <?php echo Recipe::recipe_categories($recipe->id) ?>
                 <?php Recipe::display_average_rating($recipe->id) ?>
+
+                <?php if ($recipe->user_id == $_SESSION['user_id'] && ($page_title == 'User Profile Page')) { ?>
+                  <ul class="list-unstyled ps-0">
+                    <li><a class="mb-2 btn btn-warning border-1 border-dark" href="<?php echo url_for('/active_record/recipes/delete.php?id=' . h(u($recipe->id))); ?>">Delete Recipe</a></li>
+                    <li><a class="btn btn-warning border-1 border-dark" href="<?php echo url_for('/active_record/recipes/edit.php?id=' . h(u($recipe->id))); ?>">Edit Recipe</a></li>
+                  </ul>
+                <?php } ?>
               </div>
 
             </a>
