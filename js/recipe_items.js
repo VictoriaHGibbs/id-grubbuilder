@@ -16,7 +16,11 @@ addIngredientBtn.addEventListener("click", addAnotherIngredient);
 addDirectionBtn.addEventListener("click", addAnotherDirection);
 addImageBtn.addEventListener("click", addAnotherImage);
   
-  
+ingredientContainer.addEventListener("click", remove);
+directionContainer.addEventListener("click", remove);
+imageContainer.addEventListener("click", remove);
+
+
 /**
  * Removes a parent element of the clicked "remove" button.
  * 
@@ -48,7 +52,7 @@ addImageBtn.addEventListener("click", addAnotherImage);
 
       <div class="col-md-4">
         <label for="ing_measurement_id">Select Unit: </label>
-        <select name="ingredient[${ingredientIndex}][measurement_id]" class="form-select" required>
+        <select name="ingredient[${ingredientIndex}][measurement_id]" class="form-select" required> 
           <option value="">Units</option>
           ${measurementOptions} 
         </select>

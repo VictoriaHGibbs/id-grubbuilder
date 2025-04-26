@@ -16,9 +16,9 @@ class Ingredient extends DatabaseObject {
   public function __construct($args = []) {
     $this->recipe_id = $args['recipe_id'] ?? '';
     $this->ingredient_line_item = $args['ingredient_line_item'] ?? '';
-    $this->quantity = $args['quantity'] ?? '';
+    $this->quantity = isset($args['quantity']) ? (float)$args['quantity'] : null;
     $this->ingredient_name = $args['ingredient_name'] ?? '';
-    $this->measurement_id = $args['measurement_id'] ?? '';
+    $this->measurement_id = isset($args['measurement_id']) ? (int)$args['measurement_id'] : null;
     $this->sort_order = $args['sort_order'] ?? $this->ingredient_line_item;
   }
 

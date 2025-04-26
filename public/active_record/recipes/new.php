@@ -43,7 +43,7 @@ if(is_post_request()) {
       <?php include('form_fields.php'); ?>
       
       <div class="mt-4">
-        <input type="submit" value="Create Recipe" class="btn btn-warning">
+        <input type="submit" value="Create Recipe" class="btn btn-warning border-1 border-dark mt-2">
       </div>
       
     </form>

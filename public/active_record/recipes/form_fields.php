@@ -86,12 +86,15 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
         }       
         
         foreach ($ingredients as $index => $ingredient) :
-        ?>
-        <div class="row mb-2">
+          $quantity = is_object($ingredient) ? $ingredient->quantity : ($ingredient['quantity'] ?? '');
+          $measurement_id = is_object($ingredient) ? $ingredient->measurement_id : ($ingredient['measurement_id'] ?? '');
+          $ingredient_name = is_object($ingredient) ? $ingredient->ingredient_name : ($ingredient['ingredient_name'] ?? '');
+      ?>
+          <div class="row mb-2">
             <div class="col-md-4">
                 <label class="form-label">*Quantity: </label>
                 <input type="number" step="any" name="ingredient[<?php echo $index; ?>][quantity]" 
-                      value="<?php echo h($ingredient['quantity'] ?? $ingredient->quantity ?? ''); ?>" 
+                      value="<?php echo h($quantity); ?>" 
                       class="form-control" required>
             </div>
 
@@ -99,17 +102,20 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
                 <label class="form-label">*Select Unit: </label>
                 <select name="ingredient[<?php echo $index; ?>][measurement_id]" class="form-select" required>
                     <option value="">Units</option>
-                    <?php all_from_lookup('measurement', $ingredient['measurement_id'] ?? $ingredient->measurement_id ?? ''); ?>
+                    <?php all_from_lookup('measurement', $measurement_id); ?>
                 </select>
             </div>
 
             <div class="col-md-4">
                 <label class="form-label">*Ingredient: </label>
                 <input type="text" name="ingredient[<?php echo $index; ?>][ingredient_name]" 
-                      value="<?php echo h($ingredient['ingredient_name'] ?? $ingredient->ingredient_name ?? ''); ?>" 
+                      value="<?php echo h($ingredient_name); ?>" 
                       class="form-control enter-target-ingredient" required>
             </div>
-        </div>
+            
+            <button type="button" class="btn btn-warning border border-1 border-dark remove w-25 ms-3 mt-3 md-4">Remove Ingredient</button>
+           
+          </div>
       <?php endforeach; ?>
     </div>
     <input type="button" value="Add another ingredient" id="add-ingredient" class="btn btn-warning border border-1 border-dark">
@@ -121,38 +127,48 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     <div id="direction-line" class="mb-3">
 
       <?php 
-      $directions = $_POST['direction'] ?? Recipe::get_directions($recipe->id) ?? [];
-      if (empty($directions)) {
-          $directions = [['direction_text' => '']];
-      }
+        $directions = $_POST['direction'] ?? Recipe::get_directions($recipe->id) ?? [];
+        if (empty($directions)) {
+            $directions = [['direction_text' => '']];
+        }
 
-      foreach ($directions as $index => $direction) :
+        foreach ($directions as $index => $direction) :
+          $direction_text = is_object($direction) ? $direction->direction_text : ($direction['direction_text'] ?? '');
       ?>
       <div class="row mb-2">
         <div class="col-md-12">
           <label class="form-label">Step <?php echo $index + 1; ?>: </label>
           <input type="text" name="direction[<?php echo $index; ?>][direction_text]" 
-                value="<?php echo h($direction['direction_text'] ?? $direction->direction_text ?? ''); ?>" 
+                value="<?php echo h($direction_text); ?>" 
                 class="form-control enter-target-direction" required>
         </div>
+        <button type="button" class="btn btn-warning border border-1 border-dark remove w-25 ms-3 mt-3 md-4">Remove Direction</button>
       </div>
       <?php endforeach; ?>
     </div>
     <input type="button" value="Add another direction step" id="add-direction" class="btn btn-warning border border-1 border-dark">
   </fieldset>
 
-  <fieldset class="styled-container border p-3 mb-4">
-    <legend class="h5">Images</legend>
-    <small>Must be jpg, jpeg, png, or webp.</small><br>
-    <small>Must be less than 2MB</small>
 
-    <div id="image-line" class="mb-3">
-      <label for="image" class="form-label">Upload: </label>
-      <input type="file" id="image" name="image[]" accept=".jpg,.jpeg,.png,.webp" class="form-control">
-    </div>
+  <?php if ($page_title == 'Create Recipe') { ?>        
+    <fieldset class="styled-container border p-3 mb-4">
+      <legend class="h5">Images</legend>
+      <small>Must be jpg, jpeg, png, or webp.</small><br>
+      <small>Must be less than 2MB</small>
 
-    <input type="button" name="image" id="add-image" value="Add Another Image" class="btn btn-warning border border-1 border-dark">
-  </fieldset>
+    
+        <div id="image-line" class="mb-3">
+          <div class="col-md-12">
+            <label for="image" class="form-label">Upload: </label>
+            <input type="file" id="image" name="image[]" accept=".jpg,.jpeg,.png,.webp" class="form-control">
+            <button type="button" class="btn btn-warning border border-1 border-dark remove w-25 ms-3 mt-3 md-4">Remove Image</button>
+          </div>
+        </div>
+
+      <input type="button" name="image" id="add-image" value="Add Another Image" class="btn btn-warning border border-1 border-dark">
+    </fieldset>
+    <?php } ?>
+
 
   <fieldset class="styled-container border mb-3 p-3">
     <?php 

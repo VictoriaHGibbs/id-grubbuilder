@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="<?php echo url_for('assets/stylesheets/style.css'); ?>">
   <script src="<?php echo (JS_PATH . 'recipe_size.js'); ?>" defer></script>
   <?php
-    if ($page_title == 'Create Recipe' ) { ?>
+    if ($page_title == 'Create Recipe' || $page_title == 'Edit Recipe') { ?>
       <script src="<?php echo (JS_PATH . 'recipe_items.js'); ?>" defer></script>
     <?php } ?>
       

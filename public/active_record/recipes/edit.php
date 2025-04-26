@@ -9,6 +9,8 @@ if(!isset($_GET['id'])) {
 }
 $id = $_GET['id'];
 $recipe = Recipe::find_by_id($id);
+
+
 if($recipe == false) {
   redirect_to(url_for('/active_record/index.php'));
 }
@@ -43,7 +45,7 @@ if(is_post_request()) {
   <a class="back-link" href="<?php echo url_for('/active_record/index.php'); ?>">Back to List</a>
 
   <div class="recipe edit">
-    <h1>Edit Recipe</h1>
+    <h2 class="text-center fs-1 mb-4">Edit Recipe</h2>
 
     <?php echo display_errors($recipe->errors); ?>
 
@@ -52,7 +54,7 @@ if(is_post_request()) {
       <?php include('form_fields.php'); ?>
       
       <div class="mt-4">
-        <input type="submit" value="Create Recipe" class="btn btn-warning">
+        <input type="submit" value="Update Recipe" class="btn btn-warning border-1 border-dark mt-2">
       </div>
       
     </form>
