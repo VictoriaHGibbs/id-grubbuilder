@@ -15,6 +15,7 @@ define("IMAGE_PATH", dirname(WWW_ROOT, 1) . '/uploads/');
 define("JS_PATH", dirname(WWW_ROOT, 1) . '/js/');
 
 require_once('db_credentials.php');
+require_once('api_keys.php');
 require_once('database_functions.php');
 require_once('functions.php');
 require_once('lookup_functions.php');

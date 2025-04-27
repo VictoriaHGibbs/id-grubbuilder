@@ -46,6 +46,7 @@ if (!isset($user)) {
     <input type="password" id="confirm_password" name="user[confirm_password]" class="form-control" <?php if (!($session->is_admin_logged_in())): ?> required <?php endif; ?> value="">
     <span class="form-text text-bg-warning min-height-error" id="confirm-password-error"></span>
   </div>
+  <div class="g-recaptcha mb-3" data-sitekey="6LegsSUrAAAAAKKAcuYPeEyql6sBY2TQ5NjVt7h1"></div>
 </fieldset>
 
 
