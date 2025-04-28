@@ -127,7 +127,7 @@ $measurement_options = ob_get_clean(); // Get the buffered content and clear buf
     <div id="direction-line" class="mb-3">
 
       <?php 
-        $directions = $_POST['direction'] ?? Recipe::get_directions($recipe->id) ?? [];
+        $directions = $_POST['direction'] ?? (isset($recipe->id) ? Recipe::get_directions($recipe->id) : []) ?? [];
         if (empty($directions)) {
             $directions = [['direction_text' => '']];
         }
