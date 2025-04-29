@@ -12,6 +12,7 @@
   <script src="https://kit.fontawesome.com/11d6778b2f.js" crossorigin="anonymous"></script>
 
   <script src="<?php echo (JS_PATH . 'recipe_size.js'); ?>" defer></script>
+  <script src="<?php echo (JS_PATH . 'recipe_filter.js'); ?>" defer></script>
   <?php
     if ($page_title == 'Create Recipe' || $page_title == 'Edit Recipe') { ?>
       <script src="<?php echo (JS_PATH . 'recipe_items.js'); ?>" defer></script>

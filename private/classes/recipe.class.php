@@ -144,7 +144,7 @@ class Recipe extends DatabaseObject {
     $styleArr = Recipe::get_recipeStyle($recipe_id);
     $mealtypeArr = Recipe::get_recipeMealType($recipe_id);
 
-    $html = "<ul class=\"list-unstyled ps-0\">";
+    $html = "<ul class=\"list-unstyled ps-0 mb-0\">";
 
     if ($dietArr) {
       foreach ($dietArr as $diet) {
@@ -440,5 +440,6 @@ class Recipe extends DatabaseObject {
 
     return $this->errors;
   }
+
 
 }
