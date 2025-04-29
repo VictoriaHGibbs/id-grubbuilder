@@ -11,8 +11,8 @@ define("SHARED_PATH", PRIVATE_PATH . '/shared');
 $public_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
 $doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);
 define("WWW_ROOT", $doc_root);
-define("IMAGE_PATH", dirname(WWW_ROOT, 1) . '/uploads/');
-define("JS_PATH", dirname(WWW_ROOT, 1) . '/js/');
+define("IMAGE_PATH", dirname(WWW_ROOT, 1) . 'uploads/');
+
 
 require_once('db_credentials.php');
 require_once('api_keys.php');

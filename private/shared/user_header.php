@@ -11,11 +11,11 @@
   <!-- Replace src in the script for fontawesome below with your own or it will not work -->
   <script src="https://kit.fontawesome.com/11d6778b2f.js" crossorigin="anonymous"></script>
 
-  <script src="<?php echo (JS_PATH . 'recipe_size.js'); ?>" defer></script>
-  <script src="<?php echo (JS_PATH . 'recipe_filter.js'); ?>" defer></script>
+  <script src="<?php echo url_for('/assets/js/recipe_size.js'); ?>" defer></script>
+
   <?php
     if ($page_title == 'Create Recipe' || $page_title == 'Edit Recipe') { ?>
-      <script src="<?php echo (JS_PATH . 'recipe_items.js'); ?>" defer></script>
+      <script src="<?php echo url_for('/assets/js/recipe_items.js'); ?>" defer></script>
     <?php } ?>
 
       

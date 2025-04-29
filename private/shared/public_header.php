@@ -11,11 +11,11 @@
   <!-- Replace src in the script below for fontawesome with your own or it will not work -->
   <script src="https://kit.fontawesome.com/11d6778b2f.js" crossorigin="anonymous"></script>
 
-  <script src="<?php echo (JS_PATH . 'recipe_size.js'); ?>" defer></script>
-  <script src="<?php echo (JS_PATH . 'recipe_filter.js'); ?>" defer></script>
+  <script src="<?php echo url_for('/assets/js/recipe_size.js'); ?>" defer></script>
+
   <?php 
     if ((isset($page_title)) && ($page_title == 'Sign Up')) { ?>
-      <script src="<?php  echo (JS_PATH . 'signup_validation.js'); ?>" defer></script>
+      <script src="<?php  echo url_for('/assets/js/signup_validation.js'); ?>" defer></script>
   <?php } ?>
   <meta
       name="description"
