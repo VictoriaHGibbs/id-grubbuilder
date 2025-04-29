@@ -11,24 +11,50 @@ class Pagination {
     $this->total_count = (int) $total_count;
   }
 
+  /**
+   * Calculates the offset for the current page.
+   *
+   * @return int The offset value for the current page.
+   */
   public function offset() {
     return $this->per_page * ($this->current_page - 1);
   }
 
+  /**
+   * Calculates the total number of pages.
+   *
+   * @return int The total number of pages.
+   */
   public function total_pages() {
     return ceil($this->total_count / $this->per_page);
   }
 
+  /**
+   * Determines the previous page number.
+   *
+   * @return int|false The previous page number, or false if there is no previous page.
+   */
   public function previous_page() {
     $prev = $this->current_page - 1;
     return ($prev > 0) ? $prev : false;
   }
 
+  /**
+   * Determines the next page number.
+   *
+   * @return int|false The next page number, or false if there is no next page.
+   */
   public function next_page() {
     $next = $this->current_page + 1;
     return ($next <= $this->total_pages()) ? $next : false;
   }
 
+  /**
+   * Generates the HTML for the "Previous" page link.
+   *
+   * @param string $url The base URL for the pagination links.
+   * @return string The HTML for the "Previous" page link, or an empty string if there is no previous page.
+   */
   public function previous_link($url="") {
     $link = "";
     if($this->previous_page() != false) {
@@ -38,6 +64,12 @@ class Pagination {
     return $link;
   }
 
+  /**
+   * Generates the HTML for the "Next" page link.
+   *
+   * @param string $url The base URL for the pagination links.
+   * @return string The HTML for the "Next" page link, or an empty string if there is no next page.
+   */
   public function next_link($url="") {
     $link = "";
     if($this->next_page() != false) {
@@ -47,6 +79,12 @@ class Pagination {
     return $link;
   }
 
+  /**
+   * Generates the HTML for the numbered page links.
+   *
+   * @param string $url The base URL for the pagination links.
+   * @return string The HTML for the numbered page links.
+   */
   public function number_links($url="") {
     $output = "";
     for($i=1; $i <= $this->total_pages(); $i++) {
@@ -59,6 +97,12 @@ class Pagination {
     return $output;
   }
 
+  /**
+   * Generates the complete HTML for the pagination links.
+   *
+   * @param string $url The base URL for the pagination links.
+   * @return string The HTML for the pagination links, including "Previous", "Next", and numbered links.
+   */
   public function page_links($url="") {
     $output = "";
     if($this->total_pages() > 1) { 

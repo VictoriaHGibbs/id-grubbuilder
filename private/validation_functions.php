@@ -120,6 +120,18 @@ function has_unique_username($username, $current_id = "0")
   }
 }
 
+/**
+ * Extracts the video identifier from a YouTube URL.
+ *
+ * This function supports three types of YouTube URLs:
+ * - Standard watch URLs (e.g., "https://www.youtube.com/watch?v=VIDEO_ID")
+ * - Shortened URLs (e.g., "https://youtu.be/VIDEO_ID")
+ * - Shorts URLs (e.g., "https://www.youtube.com/shorts/VIDEO_ID")
+ *
+ * @param string $string The YouTube URL to extract the video identifier from.
+ * 
+ * @return string|null The extracted video identifier if the URL is valid, or null if the URL is invalid.
+ */
 function set_video($string) {
   $substring = "watch?v=";
   $substring2 = "tu.be/";

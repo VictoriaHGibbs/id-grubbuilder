@@ -18,12 +18,5 @@ class Image extends DatabaseObject {
     $this->sort_order = $args['sort_order'] ?? $this->image_line_item;
   }
 
-  protected function validate()
-  {
-    $this->errors = [];
 
-    // Subclass specific validation
-
-    return $this->errors;
-  }
 }

@@ -22,10 +22,10 @@ include(SHARED_PATH . '/user_header.php');
   <div class="row mb-3">
     <img class="w-25 col-md-6 col-12" src="<?php echo ('../../uploads/') . "$profile_image" . "?" . mt_rand() ; ?>" alt="Profile Image">
     <div class="col-md-6 col-12">
-      <h2>USER PROFILE INFORMATION HERE </h2>
-      <p>DATE JOINED</p>
-      <p>NUMBER OF RECIPES CONTRIBUTED</p>
-      <p>NUMBER OF RECIPES RATED</p>
+      <h2><?php echo User::get_username_by_id($id) ?></h2>
+      <p>Member Since: <?php echo date('F j, Y', strtotime(User::find_by_id($id)->joined_at)); ?></p>
+      <p>Recipes Added: <?php echo "$total_count" ?></p>
+      <p>Recipes Rated: <?php echo User::count_all_ratings_by_user_id($id) ?></p>
     </div>
   </div>
 

@@ -2,14 +2,10 @@
 
 
 // Get measurement options as a string of HTML
-ob_start(); // Start output buffering
+ob_start(); 
 all_from_lookup('measurement');
-$measurement_options = ob_get_clean(); // Get the buffered content and clear buffer
-
-// if (!isset($recipe)) {
-//   redirect_to(url_for('active_record/recipes.index.php'));
-// }
-// ?>
+$measurement_options = ob_get_clean(); 
+?>
 
 <script>
     let measurementOptions = `<?php echo addslashes($measurement_options); ?>`;

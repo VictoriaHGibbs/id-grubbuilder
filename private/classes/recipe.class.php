@@ -34,12 +34,22 @@ class Recipe extends DatabaseObject {
     $this->visibility_id = $args['visibility_id'] ?? 1;
   }
 
-// Retrieve associated ingredients
+  /**
+   * Retrieves the ingredients associated with a specific recipe.
+   *
+   * @param int $recipe_id The ID of the recipe for which to fetch ingredients.
+   * @return array An array of Ingredient objects associated with the given recipe ID.
+   */
   static public function get_ingredients($recipe_id) {
     return Ingredient::find_by_recipe_id($recipe_id);
   }
 
-// Display ingredients
+  /**
+   * Generates an HTML unordered list of ingredients for a given recipe.
+   *
+   * @param int $recipe_id The ID of the recipe for which to retrieve ingredients.
+   * @return string An HTML string containing a list of ingredients with their quantities and measurements.
+   */
   static public function ingredients($recipe_id) {
     $ingredients = Recipe::get_ingredients($recipe_id);
     $html = "<ul>";
@@ -53,12 +63,25 @@ class Recipe extends DatabaseObject {
     return $html;
   }
   
-// Retrieve associated directions
+  /**
+   * Retrieves the directions associated with a specific recipe.
+   *
+   * @param int $recipe_id The ID of the recipe for which to retrieve directions.
+   * @return array|null An array of directions if found, or null if no directions exist for the given recipe ID.
+   */
   static public function get_directions($recipe_id) {
     return Direction::find_by_recipe_id($recipe_id);
   }
 
-// Display directions
+  /**
+   * Generates an ordered list of directions for a given recipe.
+   *
+   * This method retrieves the directions associated with the specified recipe ID,
+   * formats them into an HTML ordered list, and returns the resulting HTML string.
+   *
+   * @param int $recipe_id The ID of the recipe for which directions are to be retrieved.
+   * @return string The HTML string containing the ordered list of directions.
+   */
   static public function directions($recipe_id) {
     $directions = Recipe::get_directions($recipe_id);
     $html = "<ol>";
@@ -69,22 +92,53 @@ class Recipe extends DatabaseObject {
     return $html;
   }
 
-// Retrieve associated RecipeDiet categories
+  /**
+   * Retrieves the diet information associated with a specific recipe.
+   *
+   * @param int $recipe_id The ID of the recipe for which to retrieve diet information.
+   * @return mixed The diet information associated with the recipe, as returned by RecipeDiet::find_by_recipe_id().
+   */
   static public function get_recipeDiet($recipe_id) {
     return RecipeDiet::find_by_recipe_id($recipe_id);
   }
 
-// Retrieve associated RecipeStyle categories
+  /**
+   * Retrieves the style information associated with a specific recipe.
+   *
+   * @param int $recipe_id The ID of the recipe for which to retrieve style information.
+   * @return mixed The style information associated with the recipe, as returned by RecipeStyle::find_by_recipe_id().
+   */
   static public function get_recipeStyle($recipe_id) {
     return RecipeStyle::find_by_recipe_id($recipe_id);
   }
 
-// Retrieve associated RecipeMealType categories
+  /**
+   * Retrieves the meal type information associated with a specific recipe.
+   *
+   * @param int $recipe_id The ID of the recipe for which to retrieve meal type information.
+   * @return mixed The meal type information associated with the recipe, as returned by RecipeMealType::find_by_recipe_id().
+   */
   static public function get_recipeMealType($recipe_id) {
     return RecipeMealType::find_by_recipe_id($recipe_id);
   }
 
-// Display Categories
+  /**
+   * Generates an HTML unordered list of recipe categories based on the recipe ID.
+   *
+   * This method retrieves the diet, style, and meal type categories associated
+   * with a given recipe ID and formats them into an HTML list.
+   *
+   * @param int $recipe_id The ID of the recipe for which categories are retrieved.
+   * @return string An HTML string containing an unordered list of recipe categories.
+   *
+   * The categories are retrieved using the following methods:
+   * - Recipe::get_recipeDiet($recipe_id): Retrieves diet categories.
+   * - Recipe::get_recipeStyle($recipe_id): Retrieves style categories.
+   * - Recipe::get_recipeMealType($recipe_id): Retrieves meal type categories.
+   *
+   * Each category is displayed as a list item (<li>) with its value fetched
+   * using the `find_value_from_lookup` function.
+   */
   static public function recipe_categories($recipe_id) {
     $dietArr = Recipe::get_recipeDiet($recipe_id);
     $styleArr = Recipe::get_recipeStyle($recipe_id);
@@ -114,7 +168,12 @@ class Recipe extends DatabaseObject {
     return $html;
   }
 
-// Retrieve associated images
+  /**
+   * Retrieves the images associated with a specific recipe.
+   *
+   * @param int $recipe_id The ID of the recipe for which to retrieve images.
+   * @return mixed The images associated with the recipe, as returned by Image::find_by_recipe_id().
+   */
   static public function get_images($recipe_id) {
     $result = Image::find_by_recipe_id($recipe_id);
     if ($result) {
@@ -122,7 +181,18 @@ class Recipe extends DatabaseObject {
     }
   }
 
-// Display images
+
+  /**
+   * Generates and displays a Bootstrap carousel for recipe images.
+   *
+   * This static method retrieves images associated with a given recipe ID
+   * and creates a Bootstrap carousel to display them. If no images are found,
+   * the method does not output anything.
+   *
+   * @param int $recipe_id The ID of the recipe for which images are to be displayed.
+   *
+   * @return void Outputs the HTML for the Bootstrap carousel if images are available.
+   */
   static public function images($recipe_id) {
     $images = Recipe::get_images($recipe_id);
     if ($images) {
@@ -148,7 +218,17 @@ class Recipe extends DatabaseObject {
     }
   }
 
-// Display first image by sort_order
+  /**
+   * Outputs the first image of a recipe as an HTML image element.
+   *
+   * This method retrieves all images associated with a given recipe ID,
+   * selects the first image from the list, and generates an HTML structure
+   * to display the image. If no images are found, no output is generated.
+   *
+   * @param int $recipe_id The ID of the recipe whose first image is to be displayed.
+   * 
+   * @return void
+   */
   static public function first_image_only($recipe_id) {
     $images = Recipe::get_images($recipe_id);
     if ($images){
@@ -159,12 +239,26 @@ class Recipe extends DatabaseObject {
     }
   }
 
-// Retrieve associated ratings
+  /**
+   * Retrieves the ratings associated with a specific recipe.
+   *
+   * @param int $recipe_id The ID of the recipe for which to retrieve ratings.
+   * @return mixed The ratings associated with the recipe, as returned by Rating::find_by_recipe_id().
+   */
   static public function get_ratings($recipe_id) {
     return Rating::find_by_recipe_id($recipe_id);
   }
 
-// Average and display ratings
+
+  /**
+   * Calculates the average rating for a given recipe.
+   *
+   * This method retrieves all ratings associated with the specified recipe ID,
+   * sums up the rating levels, and calculates the average rating.
+   *
+   * @param int $recipe_id The ID of the recipe for which the average rating is calculated.
+   * @return float|null The average rating as a float, or null if there are no ratings.
+   */
   static public function average_rating($recipe_id) {
     $ratings = Recipe::get_ratings($recipe_id);
     $rows = 0;
@@ -179,7 +273,18 @@ class Recipe extends DatabaseObject {
     }
   }
 
-// Display Average rating
+
+  /**
+   * Displays the average rating for a given recipe.
+   *
+   * This method calculates the average rating of a recipe using the `average_rating` method
+   * and displays it in a formatted HTML paragraph. If the average rating is not an integer,
+   * it formats the value to one decimal place. If no ratings are available, it displays
+   * a message indicating that there are no ratings yet.
+   *
+   * @param int $recipe_id The ID of the recipe for which the average rating is to be displayed.
+   * @return void Outputs the average rating or a "No ratings yet" message directly to the page.
+   */
   static public function display_average_rating($recipe_id) {
     $average = Recipe::average_rating($recipe_id);
     
@@ -191,14 +296,35 @@ class Recipe extends DatabaseObject {
     }
   }
 
-// Display the number of people who have rated the recipe
+
+  /**
+   * Displays the total number of raters for a given recipe.
+   *
+   * This method retrieves the ratings for the specified recipe ID
+   * and calculates the total number of contributors based on the
+   * affected rows in the database.
+   *
+   * @param int $recipe_id The ID of the recipe to retrieve ratings for.
+   * @return string A formatted string displaying the total number of contributors.
+   */
   static public function display_total_raters($recipe_id) {
     Recipe::get_ratings($recipe_id);
     $total = parent::$database->affected_rows;
     return " (" . h($total) . " contributors)</p>";
   }
 
-// Checks to see if the current user has already rated the recipe
+
+  /**
+   * Checks if a user has submitted a rating for a specific recipe.
+   *
+   * This method retrieves all ratings for the given recipe and checks if the
+   * specified user has already submitted a rating. If a rating is found, it
+   * returns the rating object; otherwise, it returns null.
+   *
+   * @param int $recipe_id The ID of the recipe to check ratings for.
+   * @param int $user_id The ID of the user to check for a submitted rating.
+   * @return object|null The rating object if the user has submitted a rating, or null if not.
+   */
   static public function check_if_user_submitted_rating($recipe_id, $user_id) {
     $ratings = Recipe::get_ratings($recipe_id);
     if ($ratings) {
@@ -210,28 +336,63 @@ class Recipe extends DatabaseObject {
     }
   }
 
-// Retrieve user id 
+  /**
+   * Retrieves the user ID associated with the recipe.
+   *
+   * @return int The user ID as an integer.
+   */
   public function get_user_id() {
     return (int) $this->user_id;
   }
 
-// Display user info, takes recipe object
+  /**
+   * Retrieves and displays the username of the user who created the recipe.
+   *
+   * @param object $recipe An instance of the recipe object, which provides access to the user ID.
+   * 
+   * @return void Outputs the username of the recipe creator.
+   */
   static public function user_info($recipe) {
       $user_id = $recipe->get_user_id();
       $username = User::get_username_by_id($user_id);
       echo "Created by: " . $username;
   }
   
+  /**
+   * Sets the user ID for the recipe object.
+   *
+   * This method retrieves the user ID from the current session
+   * and assigns it to the `user_id` property of the object.
+   *
+   * @return void
+   */
   protected function set_user_id() {
     $this->user_id = $_SESSION['user_id'];
   }
 
+  /**
+   * Creates a new recipe record.
+   *
+   * This method sets the user ID for the recipe and then calls the parent
+   * class's create method to handle the actual creation process.
+   *
+   * @return mixed The result of the parent create method.
+   */
   protected function create() {
     $this->set_user_id();
     return parent::create();
   }
 
-  // Retrieves the stored youtube video object
+  
+  /**
+   * Retrieves the video associated with a specific recipe.
+   *
+   * This method fetches a video record linked to the given recipe ID
+   * by utilizing the `find_by_recipe_id` method of the `Video` class.
+   *
+   * @param int $recipe_id The ID of the recipe for which the video is to be retrieved.
+   * @return mixed The video object associated with the recipe, or null if no video is found.
+   */
   static public function get_video($recipe_id) {
     $result =  Video::find_by_recipe_id($recipe_id);
     if ($result) {
@@ -239,7 +400,17 @@ class Recipe extends DatabaseObject {
     }
   }
 
-  // Displays the link by putting it in the iframe
+  /**
+   * Displays the video associated with a specific recipe.
+   *
+   * This method retrieves the video information for the given recipe ID
+   * and generates an HTML structure to display the video using an iframe.
+   * If no videos are found, no output is generated.
+   *
+   * @param int $recipe_id The ID of the recipe for which to display the video.
+   *
+   * @return void Outputs the HTML for the video iframe if available.
+   */
   static public function video($recipe_id) {
     $videos = Recipe::get_video($recipe_id);
     if ($videos) {
@@ -253,6 +424,14 @@ class Recipe extends DatabaseObject {
     }
   }
 
+  /**
+   * Validates the data for the current instance.
+   *
+   * This method performs validation specific to the subclass and populates
+   * the `$errors` property with any validation errors encountered.
+   *
+   * @return array An array of validation errors. If no errors are found, the array will be empty.
+   */
   protected function validate()
   {
     $this->errors = [];

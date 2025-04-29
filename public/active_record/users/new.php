@@ -5,7 +5,6 @@ require_admin_login();
 
 if (is_post_request()) {
 
-    // Create record using post parameters
     $args = $_POST['user'];
     $user = new User($args);
     $result = $user->save();
