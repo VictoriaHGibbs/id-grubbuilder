@@ -4,7 +4,7 @@
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 px-3 px-md-5 mt-4 border-top">
 
     <div class="col-12 col-md-4 d-flex justify-content-start align-items-center mb-2 mb-md-0">
-      <span class="text-body-secondary small"><?php include(SHARED_PATH . '/copyright_disclaimer.php'); ?></span>
+      <div class="text-body-secondary small"><?php include(SHARED_PATH . '/copyright_disclaimer.php'); ?></div>
     </div>
 
     <ul class="nav col-12 col-md-4 justify-content-center mb-2 mb-md-0">

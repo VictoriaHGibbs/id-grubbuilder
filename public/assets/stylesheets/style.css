@@ -44,22 +44,22 @@ a {
 /********************* Skip Link **********************/
 
 #skip-link {
-  position: absolute;
-  top: -50px; 
-  left: 50px;
   background: #fcc247;
-  color: #212123; 
-  padding: 10px 15px;
-  font-weight: bold;
-  text-decoration: none;
   border-radius: 5px;
+  color: #212123; 
+  font-weight: bold;
+  left: 50px;
+  padding: 10px 15px;
+  position: absolute;
+  text-decoration: none;
+  top: -50px; 
   transition: top 0.3s ease-in-out;
   z-index: 2000; 
 }
 
 #skip-link:focus {
-  top: 10px; 
   outline: 3px solid #212123; 
+  top: 10px; 
 }
 
 /********************* Header and Footer **********************/
@@ -83,23 +83,23 @@ footer {
 /**************** Recipe Cards ***********************/
 
 .card:hover {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
   transition: 0.3s ease-in-out;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /**************** Full Recipe ***********************/
 
 .carousel-item img {
+  border-radius: 10px;
   max-height: 400px;
   object-fit: cover;
-  border-radius: 10px;
 }
 
 .recipe-image img {
-  max-width: 100%;
-  height: auto;
   border-radius: 8px;
+  height: auto;
+  max-width: 100%;
 }
 
 .breadcrumb {
@@ -119,22 +119,22 @@ footer {
 }
 
 .video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height:width) */
-  height: 0;
-  overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height:width) */
+  position: relative;
+  width: 100%;
 }
 
 .video-container iframe {
+  border: none;
+  height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  border: none;
 }
 
 /****************** Rating System ******************/
@@ -205,16 +205,16 @@ footer {
 /******************* Signup Form *****************/
 
 .signup-form {
-  max-width: 400px;
-  margin: 0 auto;
   background: #fff;
   border-radius: 8px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .signup-form h2 {
+  color: #333;
   font-size: 1.8rem;
   font-weight: bold;
-  color: #333;
 }
 
 .btn-primary {
@@ -230,8 +230,8 @@ footer {
 }
 
 .min-height-error {
-  min-height: 20px;
   display: inline-block;
+  min-height: 20px;
 }
 
 /******************* Admin Dashboard tables *****************/
@@ -251,11 +251,6 @@ footer {
 }
 
 .btn-sm {
-  padding: 5px 10px;
   font-size: 0.875rem;
+  padding: 5px 10px;
 }
-
-
-/******************* TEMP STYLING ******************/
-
-

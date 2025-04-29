@@ -233,7 +233,7 @@ class Recipe extends DatabaseObject {
     $images = Recipe::get_images($recipe_id);
     if ($images){
     $image = $images[0];
-    echo '<div id="image-card">';
+    echo '<div class="image-card">';
     echo '<img class="small-card" src="' .IMAGE_PATH . h($image->image_url) . '"  alt="Recipe Image." >';
     echo '</div>';
     }

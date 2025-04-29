@@ -46,14 +46,16 @@ if (!isset($user)) {
     <input type="password" id="confirm_password" name="user[confirm_password]" class="form-control" <?php if (!($session->is_admin_logged_in())): ?> required <?php endif; ?> value="">
     <span class="form-text text-bg-warning min-height-error" id="confirm-password-error"></span>
   </div>
-  <div class="g-recaptcha mb-3" data-sitekey="6LegsSUrAAAAAKKAcuYPeEyql6sBY2TQ5NjVt7h1"></div>
+  <?php if ($page_title == 'Sign Up') { ?>
+    <div class="g-recaptcha mb-3" data-sitekey="6LegsSUrAAAAAKKAcuYPeEyql6sBY2TQ5NjVt7h1"></div>
+  <?php } ?>
 </fieldset>
 
 
 <?php if ($session->is_admin_logged_in()): ?>
 <fieldset class="container mb-3">
-    <div class="d-flex flex-column align-items-center mt-4">
-      <legend class="form-label text-center">Active</legend>
+    <!-- <div class="d-flex flex-column align-items-center mt-4"> -->
+      <legend class="form-label">Active</legend>
       <div class="form-check">
         <input type="radio" id="active" name="user[active]" value="1" class="form-check-input">
         <label for="active" class="form-check-label">Active</label>
@@ -62,14 +64,14 @@ if (!isset($user)) {
         <input type="radio" id="inactive" name="user[active]" value="0" class="form-check-input">
         <label for="inactive" class="form-check-label">Inactive</label>
       </div>
-    </div>
+    <!-- </div> -->
 </fieldset>
 <?php endif; ?>
 
 <?php if ($session->is_superadmin_logged_in()): ?>
 <fieldset class="container mb-3">
-    <div class="d-flex flex-column align-items-center mt-4">
-      <legend class="form-label text-center">User Level</legend>
+    <!-- <div class="d-flex flex-column align-items-center mt-4"> -->
+      <legend class="form-label">User Level</legend>
       <div class="form-check">
         <input type="radio" id="user" name="user[role_id]" value="1" class="form-check-input">
         <label for="user" class="form-check-label">User</label>
@@ -78,6 +80,6 @@ if (!isset($user)) {
         <input type="radio" id="admin" name="user[role_id]" value="2" class="form-check-input">
         <label for="admin" class="form-check-label">Admin</label>
       </div>
-    </div>
+    <!-- </div> -->
 </fieldset>
 <?php endif; ?>

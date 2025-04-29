@@ -12,7 +12,7 @@ if ($session->is_logged_in()) {
 
 <div class="container my-5 text-center">
   <section>
-    <h1 class="text-center fw-bold mb-4 py-4">About Grubbuilder</h1>
+    <h2 class="text-center fw-bold mb-4 py-4">About Grubbuilder</h2>
     <div class="styled-container container text-center my-5 p-4 rounded border border-1 border-dark">
       <p class="lead">Building a community around nutritious recipes.</p>
     </div>
