@@ -4,13 +4,13 @@ class User extends DatabaseObject
 {
 
     static public $table_name = 'user';
-    static public $db_columns = ['id', 'username', 'profile_image_url', 'f_name', 'l_name', 'email_address', 'password_hash', 'joined_at', 'role_id', 'active'];
-    
+    static public $db_columns = ['id', 'username', 'profile_image_url', 'email_address', 'password_hash', 'joined_at', 'role_id', 'active'];
+
     public $id;
     public $username;
     public $profile_image_url;
-    public $f_name;
-    public $l_name;
+    // public $f_name;
+    // public $l_name;
     public $email_address;
     protected $password_hash;
     public $joined_at;
@@ -26,8 +26,8 @@ class User extends DatabaseObject
     {
         $this->username = $args['username'] ?? '';
         $this->profile_image_url = $args['profile_image_url'] ?? 'default_profile.webp';
-        $this->f_name = $args['f_name'] ?? '';
-        $this->l_name = $args['l_name'] ?? '';
+        // $this->f_name = $args['f_name'] ?? '';
+        // $this->l_name = $args['l_name'] ?? '';
         $this->email_address = $args['email_address'] ?? '';
         $this->password_hash = $args['password_hash'] ?? '';
         $this->joined_at = $args['joined_at'] ?? date('Y-m-d H:i:s');
@@ -51,8 +51,8 @@ class User extends DatabaseObject
         $user = self::find_by_id($id);
         return $user ? $user->username : null;
     }
-    
-    
+
+
     /**
      * Retrieves the profile image URL of a user by their ID.
      *
@@ -62,9 +62,10 @@ class User extends DatabaseObject
      * @param int $id The ID of the user whose profile image URL is to be retrieved.
      * @return string|null The profile image URL of the user, or null if the user is not found.
      */
-    static public function get_user_image($id) {
-      $user = self::find_by_id($id);
-      return $user ? $user->profile_image_url : null;
+    static public function get_user_image($id)
+    {
+        $user = self::find_by_id($id);
+        return $user ? $user->profile_image_url : null;
     }
 
 
@@ -89,37 +90,38 @@ class User extends DatabaseObject
      * - "There was an error uploading your file." if there is an upload error.
      * - "You cannot upload images of that type!" if the file type is not allowed.
      */
-    static public function set_profile_image($id) {
-      $file = $_FILES['profile_image_url'];
+    static public function set_profile_image($id)
+    {
+        $file = $_FILES['profile_image_url'];
 
-      $file_name = $file['name']; 
-      $file_tmp_name = $file['tmp_name'];
-      $file_size = $file['size'];
-      $file_error = $file['error'];
-      $file_type = $file['type'];
+        $file_name = $file['name'];
+        $file_tmp_name = $file['tmp_name'];
+        $file_size = $file['size'];
+        $file_error = $file['error'];
+        $file_type = $file['type'];
 
-      $file_ext = explode('.', $file_name);  
-      $file_actual_ext = strtolower(end($file_ext)); 
+        $file_ext = explode('.', $file_name);
+        $file_actual_ext = strtolower(end($file_ext));
 
-      $allowed = array('jpg', 'jpeg', 'png', 'webp');
+        $allowed = array('jpg', 'jpeg', 'png', 'webp');
 
-      if (in_array($file_actual_ext, $allowed)) { 
-        if ($file_error === 0) {
-          if ($file_size < 75000) { 
-            $file_name_new = "profile_" . $id . "." . $file_actual_ext;
-            $file_destination = ('../../uploads/') . $file_name_new;
-            move_uploaded_file($file_tmp_name, $file_destination);
-            $sql = "UPDATE user SET profile_image_url='" . self::$database->escape_string($file_name_new) . "' WHERE id='" . $id . "';"; 
-            parent::$database->query($sql);
-          } else {
-            echo "<p>Your file is too big!</p>";
-          }
+        if (in_array($file_actual_ext, $allowed)) {
+            if ($file_error === 0) {
+                if ($file_size < 75000) {
+                    $file_name_new = "profile_" . $id . "." . $file_actual_ext;
+                    $file_destination = ('../../uploads/') . $file_name_new;
+                    move_uploaded_file($file_tmp_name, $file_destination);
+                    $sql = "UPDATE user SET profile_image_url='" . self::$database->escape_string($file_name_new) . "' WHERE id='" . $id . "';";
+                    parent::$database->query($sql);
+                } else {
+                    echo "<p>Your file is too big!</p>";
+                }
+            } else {
+                echo "<p>There was an error uploading your file.</p>";
+            }
         } else {
-          echo "<p>There was an error uploading your file.</p>";
+            echo "<p>You cannot upload images of that type!</p>";
         }
-      } else {
-        echo "<p>You cannot upload images of that type!</p>";
-      }
     }
 
     /**
@@ -127,8 +129,9 @@ class User extends DatabaseObject
      *
      * @return string Returns 'Active' if the user is active, otherwise 'Deactivated'.
      */
-    public function active_display() {
-      return $this->active == 1 ? 'Active' : 'Deactivated';
+    public function active_display()
+    {
+        return $this->active == 1 ? 'Active' : 'Deactivated';
     }
 
     /**
@@ -136,9 +139,10 @@ class User extends DatabaseObject
      *
      * @return string The full name of the user, with leading and trailing whitespace removed.
      */
-    public function full_name() {
-      return trim("{$this->f_name} {$this->l_name}");
-    }
+    // public function full_name()
+    // {
+    //     return trim("{$this->f_name} {$this->l_name}");
+    // }
 
 
     /**
@@ -177,9 +181,10 @@ class User extends DatabaseObject
      *
      * @return bool Returns true on success, false on failure.
      */
-    protected function create() {
-      $this->set_hashed_password();
-      return parent::create();
+    protected function create()
+    {
+        $this->set_hashed_password();
+        return parent::create();
     }
 
     /**
@@ -190,15 +195,16 @@ class User extends DatabaseObject
      *
      * @return bool Returns true on success, false on failure.
      */
-    protected function update() {
-      if($this->password != '') {
-        $this->set_hashed_password();
-        // validate password
-      } else {
-        // password not being updated, skip hashing and validation
-        $this->password_required = false;
-      }
-      return parent::update();
+    protected function update()
+    {
+        if ($this->password != '') {
+            $this->set_hashed_password();
+            // validate password
+        } else {
+            // password not being updated, skip hashing and validation
+            $this->password_required = false;
+        }
+        return parent::update();
     }
 
     /**
@@ -208,48 +214,49 @@ class User extends DatabaseObject
      *
      * @return array An array of error messages if validation fails, otherwise an empty array.
      */
-    protected function validate() {
-      $this->errors = [];
+    protected function validate()
+    {
+        $this->errors = [];
 
-      if(is_blank($this->username)) {
-        $this->errors[] = "Username cannot be blank.";
-      } elseif (!has_length($this->username, array('min' => 5, 'max' => 20))) {
-        $this->errors[] = "Username must be between 5 and 20 characters.";
-      } elseif (!has_unique_username($this->username, $this->id ?? 0)) {
-        $this->errors[] = "Username not allowed. Try another.";
-      }
-  
-      if(is_blank($this->email_address)) {
-        $this->errors[] = "Email cannot be blank.";
-      } elseif (!has_length($this->email_address, array('max' => 100))) {
-        $this->errors[] = "Email must be less than 100 characters.";
-      } elseif (!has_valid_email_format($this->email_address)) {
-        $this->errors[] = "Email must be a valid format.";
-      }
-  
-      if($this->password_required) {
-        if(is_blank($this->password)) {
-          $this->errors[] = "Password cannot be blank.";
-        } elseif (!has_length($this->password, array('min' => 12))) {
-          $this->errors[] = "Password must contain 12 or more characters";
-        } elseif (!preg_match('/[A-Z]/', $this->password)) {
-          $this->errors[] = "Password must contain at least 1 uppercase letter";
-        } elseif (!preg_match('/[a-z]/', $this->password)) {
-          $this->errors[] = "Password must contain at least 1 lowercase letter";
-        } elseif (!preg_match('/[0-9]/', $this->password)) {
-          $this->errors[] = "Password must contain at least 1 number";
-        } elseif (!preg_match('/[^A-Za-z0-9\s]/', $this->password)) {
-          $this->errors[] = "Password must contain at least 1 symbol";
+        if (is_blank($this->username)) {
+            $this->errors[] = "Username cannot be blank.";
+        } elseif (!has_length($this->username, array('min' => 5, 'max' => 20))) {
+            $this->errors[] = "Username must be between 5 and 20 characters.";
+        } elseif (!has_unique_username($this->username, $this->id ?? 0)) {
+            $this->errors[] = "Username not allowed. Try another.";
         }
-  
-        if(is_blank($this->confirm_password)) {
-          $this->errors[] = "Confirm password cannot be blank.";
-        } elseif ($this->password !== $this->confirm_password) {
-          $this->errors[] = "Password and confirm password must match.";
+
+        if (is_blank($this->email_address)) {
+            $this->errors[] = "Email cannot be blank.";
+        } elseif (!has_length($this->email_address, array('max' => 100))) {
+            $this->errors[] = "Email must be less than 100 characters.";
+        } elseif (!has_valid_email_format($this->email_address)) {
+            $this->errors[] = "Email must be a valid format.";
         }
-      }
-  
-      return $this->errors;
+
+        if ($this->password_required) {
+            if (is_blank($this->password)) {
+                $this->errors[] = "Password cannot be blank.";
+            } elseif (!has_length($this->password, array('min' => 12))) {
+                $this->errors[] = "Password must contain 12 or more characters";
+            } elseif (!preg_match('/[A-Z]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 uppercase letter";
+            } elseif (!preg_match('/[a-z]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 lowercase letter";
+            } elseif (!preg_match('/[0-9]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 number";
+            } elseif (!preg_match('/[^A-Za-z0-9\s]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 symbol";
+            }
+
+            if (is_blank($this->confirm_password)) {
+                $this->errors[] = "Confirm password cannot be blank.";
+            } elseif ($this->password !== $this->confirm_password) {
+                $this->errors[] = "Password and confirm password must match.";
+            }
+        }
+
+        return $this->errors;
     }
 
     /**
@@ -261,18 +268,19 @@ class User extends DatabaseObject
      * @param string $username The username of the user to find.
      * @return User|false The user object if found, otherwise false.
      */
-    static public function find_by_username($username) {
-      $sql = "SELECT * FROM " . static::$table_name . " ";
-      $sql .= "WHERE username='" . self::$database->escape_string($username) . "'";
-      $obj_array = static::find_by_sql($sql);
-      if(!empty($obj_array)) {
-        return array_shift($obj_array);
-      } else {
-        return false;
-      }
+    static public function find_by_username($username)
+    {
+        $sql = "SELECT * FROM " . static::$table_name . " ";
+        $sql .= "WHERE username='" . self::$database->escape_string($username) . "'";
+        $obj_array = static::find_by_sql($sql);
+        if (!empty($obj_array)) {
+            return array_shift($obj_array);
+        } else {
+            return false;
+        }
     }
 
-    
+
     /**
      * Retrieves the recipes rated by a specific user.
      *
@@ -284,8 +292,9 @@ class User extends DatabaseObject
      *               which could be an array of ratings or another data structure, 
      *               depending on the implementation.
      */
-    static public function get_user_rated_recipes($user_id) {
-      return Rating::find_rating_by_user_id($user_id);
+    static public function get_user_rated_recipes($user_id)
+    {
+        return Rating::find_rating_by_user_id($user_id);
     }
 
     /**
@@ -297,10 +306,10 @@ class User extends DatabaseObject
      * @param int $user_id The ID of the user whose ratings are to be counted.
      * @return int The total number of ratings given by the user.
      */
-    static public function count_all_ratings_by_user_id($user_id) {
-      $ratings = User::get_user_rated_recipes($user_id);
-      $total = count($ratings);
-      return $total;
+    static public function count_all_ratings_by_user_id($user_id)
+    {
+        $ratings = User::get_user_rated_recipes($user_id);
+        $total = count($ratings);
+        return $total;
     }
-
 }
